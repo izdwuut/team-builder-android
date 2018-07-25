@@ -63,3 +63,11 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
+
+# Project-specific
+app/src/main/res/raw/cert.cer
+app/src/main/java/com/example/konikiewiczb/myapplication/Config.java
+
+
+# Android Studio
+.idea
