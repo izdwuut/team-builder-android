@@ -64,36 +64,18 @@ public class RetrofitClient<E> {
             return client;
         }
         try {
-            CertificateFactory cf = CertificateFactory.getInstance("X.509");
-            InputStream caInput = cert;
-            Certificate ca;
-            try {
-                ca = cf.generateCertificate(caInput);
-                System.out.println("ca=" + ((X509Certificate) ca).getSubjectDN());
-            } finally {
-                caInput.close();
-            }
+            Certificate ca = getCert(cert);
+            KeyStore keyStore = getKeyStore(ca);
 
-            // Create a KeyStore containing our trusted CAs
-            String keyStoreType = KeyStore.getDefaultType();
-            KeyStore keyStore = KeyStore.getInstance(keyStoreType);
-            keyStore.load(null, Config.KEYSTORE_PASS.toCharArray());
-            keyStore.setCertificateEntry("ca", ca);
-
-            // Create a TrustManager that trusts the CAs in our KeyStore
-            String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
-            TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
+            TrustManagerFactory tmf = getTrustManagerFactory();
             tmf.init(keyStore);
 
-            // Create an SSLContext that uses our TrustManager
-            SSLContext sslContext = SSLContext.getInstance("TLS");
+            SSLContext sslContext = getSSLContext();
             sslContext.init(null, tmf.getTrustManagers(), null);
 
-            TrustManager[] trustManagers = tmf.getTrustManagers();
-            X509TrustManager x509TrustManager = (X509TrustManager) trustManagers[0];
+            X509TrustManager x509TrustManager = getTrustManager(tmf);
 
-            //create Okhttp client
-            OkHttpClient client = new OkHttpClient.Builder()
+            client = new OkHttpClient.Builder()
                 .sslSocketFactory(sslContext.getSocketFactory(), x509TrustManager)
                 .hostnameVerifier(new HostnameVerifier() {
                     @Override
@@ -102,11 +84,43 @@ public class RetrofitClient<E> {
                     }
                 })
                 .build();
-            RetrofitClient.client = client;
-            return client;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return client;
+    }
+
+    static Certificate getCert(InputStream cert) throws CertificateException, IOException {
+        CertificateFactory cf = CertificateFactory.getInstance("X.509");
+        InputStream caInput = cert;
+        Certificate ca;
+        try {
+            ca = cf.generateCertificate(caInput);
+        } finally {
+            caInput.close();
+        }
+        return ca;
+    }
+
+    static KeyStore getKeyStore(Certificate cert) throws KeyStoreException, IOException, CertificateException, NoSuchAlgorithmException {
+        String keyStoreType = KeyStore.getDefaultType();
+        KeyStore keyStore = KeyStore.getInstance(keyStoreType);
+        keyStore.load(null, Config.KEYSTORE_PASS.toCharArray());
+        keyStore.setCertificateEntry("ca", cert);
+        return keyStore;
+    }
+
+    static TrustManagerFactory getTrustManagerFactory() throws NoSuchAlgorithmException {
+        String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
+        return TrustManagerFactory.getInstance(tmfAlgorithm);
+    }
+
+    static SSLContext getSSLContext() throws NoSuchAlgorithmException {
+        return SSLContext.getInstance("TLS");
+    }
+
+    static X509TrustManager getTrustManager(TrustManagerFactory tmf) {
+        TrustManager[] trustManagers = tmf.getTrustManagers();
+        return (X509TrustManager) trustManagers[0];
     }
 }
