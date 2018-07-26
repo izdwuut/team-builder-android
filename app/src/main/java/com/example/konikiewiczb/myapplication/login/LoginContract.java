@@ -10,7 +10,7 @@ public interface LoginContract {
 
         void loadWelcomePage();
 
-        InputStream getKeyStore();
+        InputStream getCert();
 
     }
 

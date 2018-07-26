@@ -51,7 +51,7 @@ public class LoginActivity extends Activity implements LoginContract.View, View.
         startActivity(new Intent(getApplicationContext(),WelcomeActivity.class));
     }
 
-    public InputStream getKeyStore() {
+    public InputStream getCert() {
         InputStream file = getResources().openRawResource(R.raw.cert);
         return file;
     }
