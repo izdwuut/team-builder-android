@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".welcome.WelcomeActivity">
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Welcome" />
-
     <Button
         android:id="@+id/logout"
         android:layout_width="wrap_content"
@@ -22,4 +13,12 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:text="LOGOUT" />
+
+    <ListView
+        android:id="@+id/users_list"
+        android:layout_width="match_parent"
+        android:layout_height="460dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
