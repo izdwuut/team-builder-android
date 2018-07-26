@@ -2,7 +2,6 @@ package com.example.konikiewiczb.myapplication.welcome;
 
 import com.example.konikiewiczb.myapplication.framework.IOnFinishedListener;
 import com.example.konikiewiczb.myapplication.framework.RetrofitClient;
-import com.example.konikiewiczb.myapplication.model.LoginResponse;
 import com.example.konikiewiczb.myapplication.model.User;
 
 import java.io.InputStream;
