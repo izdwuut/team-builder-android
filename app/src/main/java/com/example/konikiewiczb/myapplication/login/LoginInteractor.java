@@ -34,7 +34,6 @@ public class LoginInteractor implements LoginContract.Interactor {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 loginPresenter.onResponse(response);
-                System.out.println("response: " + response);
             }
 
             @Override
