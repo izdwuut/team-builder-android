@@ -67,6 +67,7 @@ fastlane/readme.md
 # Project-specific
 app/src/main/res/raw/cert.cer
 app/src/main/java/com/example/konikiewiczb/myapplication/Config.java
+app/src/main/res/raw/font_awesome_solid.otf
 
 
 # Android Studio

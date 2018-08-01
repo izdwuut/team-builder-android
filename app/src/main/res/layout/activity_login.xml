@@ -1,36 +1,111 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:gravity="center_horizontal"
-    android:orientation="vertical"  tools:context=".login.LoginActivity">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    tools:context=".login.LoginActivity"
+    tools:layout_editor_absoluteY="25dp">
 
-
-    <EditText android:id="@+id/email" android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:hint="Email"
-        android:inputType="textEmailAddress" android:maxLines="1"
-        android:singleLine="true" />
-
-    <EditText android:id="@+id/password" android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="155dp"
         android:layout_height="wrap_content"
-        android:hint="Hasło"
-        android:inputType="textPassword"
-        android:maxLines="1" android:singleLine="true" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button android:id="@+id/sign_in"
-        android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:layout_marginTop="16dp" android:text="SIGN IN"
-     />
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
 
-        <Button
-            android:id="@+id/sign_up"
-            android:layout_width="match_parent"
+        <com.example.konikiewiczb.myapplication.framework.views.IconTextView
+            android:id="@+id/icon_email"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:text="@string/icon_email" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="307dp"
             android:layout_height="wrap_content"
-            android:text="Register"
-            android:onClick="showRegistrationPage" />
+            android:hint="Email"
+            android:inputType="textPassword" />
     </LinearLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+        <com.example.konikiewiczb.myapplication.framework.views.IconTextView
+            android:id="@+id/icon_password"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:text="@string/icon_password" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="307dp"
+            android:layout_height="wrap_content"
+            android:hint="Hasło"
+            android:inputType="textPassword" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/sign_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Zaloguj"
+        app:layout_constraintBottom_toTopOf="@+id/text_view_id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="1.0"
+        android:background="@color/black"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/text_view_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="LUB"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/sign_up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/sign_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:onClick="showRegistrationPage"
+        android:text="Zarejestruj"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/white"
+        />
+</android.support.constraint.ConstraintLayout>
