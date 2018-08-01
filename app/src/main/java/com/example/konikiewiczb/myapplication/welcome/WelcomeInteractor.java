@@ -1,5 +1,6 @@
 package com.example.konikiewiczb.myapplication.welcome;
 
+import com.example.konikiewiczb.myapplication.framework.Api;
 import com.example.konikiewiczb.myapplication.framework.IOnFinishedListener;
 import com.example.konikiewiczb.myapplication.framework.RetrofitClient;
 import com.example.konikiewiczb.myapplication.model.User;
@@ -22,7 +23,7 @@ public class WelcomeInteractor implements WelcomeContract.Interactor {
 
     @Override
     public void getUsersList(String token) {
-         Call<List<User>> call = RetrofitClient.getApi(cert)
+         Call<List<User>> call = RetrofitClient.get(cert, Api.class)
                 .getUsersList(token);
 
         call.enqueue(new Callback<List<User>>() {

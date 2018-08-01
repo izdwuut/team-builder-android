@@ -2,6 +2,7 @@ package com.example.konikiewiczb.myapplication.login;
 
 import android.preference.PreferenceManager;
 
+import com.example.konikiewiczb.myapplication.framework.Api;
 import com.example.konikiewiczb.myapplication.framework.IOnFinishedListener;
 import com.example.konikiewiczb.myapplication.framework.RetrofitClient;
 import com.example.konikiewiczb.myapplication.model.LoginResponse;
@@ -26,7 +27,7 @@ public class LoginInteractor implements LoginContract.Interactor {
 
     @Override
     public void handleLogin(User user) {
-        Call<LoginResponse> call = RetrofitClient.getApi(cert)
+        Call<LoginResponse> call = RetrofitClient.get(cert, Api.class)
                 .login(user);
 
         call.enqueue(new Callback<LoginResponse>() {
