@@ -30,7 +30,7 @@ public class LoginActivity extends Activity implements LoginContract.View, View.
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
-        login = findViewById(R.id.sign_in_register);
+        login = findViewById(R.id.sign_in);
         login.setOnClickListener(this);
     }
 
