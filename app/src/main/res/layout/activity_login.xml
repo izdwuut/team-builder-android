@@ -14,7 +14,7 @@
         android:inputType="textPassword"
         android:maxLines="1" android:singleLine="true" />
 
-    <Button android:id="@+id/sign_in_register"
+    <Button android:id="@+id/sign_in"
         android:layout_width="match_parent" android:layout_height="wrap_content"
         android:layout_marginTop="16dp" android:text="SIGN IN"
      />
@@ -25,11 +25,11 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/sign_up"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Register"
-            android:onClick="showRegistrationPage"/>
+            android:onClick="showRegistrationPage" />
     </LinearLayout>
 
 </LinearLayout>
