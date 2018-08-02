@@ -43,7 +43,10 @@
             android:layout_width="307dp"
             android:layout_height="wrap_content"
             android:hint="Email"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:backgroundTint="@color/black"
+            android:textCursorDrawable="@null"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -66,7 +69,10 @@
             android:layout_width="307dp"
             android:layout_height="wrap_content"
             android:hint="Hasło"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:backgroundTint="@color/black"
+            android:textCursorDrawable="@null"
+            />
     </LinearLayout>
 
 
