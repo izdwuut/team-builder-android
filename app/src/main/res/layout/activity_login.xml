@@ -11,79 +11,87 @@
     tools:layout_editor_absoluteY="25dp">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/logo"
         android:layout_width="155dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="52dp"
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/inputs_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        app:layout_constraintTop_toBottomOf="@+id/logo">
 
-        <com.example.konikiewiczb.myapplication.framework.views.IconTextView
-            android:id="@+id/icon_email"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:text="@string/icon_email" />
-
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="307dp"
+        <LinearLayout
+            android:id="@+id/email_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/black"
-            android:fontFamily="sans-serif"
-            android:hint="Email"
-            android:inputType="textPassword"
-            android:textCursorDrawable="@null" />
-    </LinearLayout>
+            android:layout_marginTop="56dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+            <com.example.konikiewiczb.myapplication.framework.views.IconTextView
+                android:id="@+id/icon_email"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:text="@string/icon_email" />
 
-        <com.example.konikiewiczb.myapplication.framework.views.IconTextView
-            android:id="@+id/icon_password"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:text="@string/icon_password" />
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="307dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/black"
+                android:fontFamily="sans-serif"
+                android:hint="Email"
+                android:inputType="textPassword"
+                android:textCursorDrawable="@null" />
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="307dp"
+        <LinearLayout
+            android:id="@+id/password_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/black"
-            android:fontFamily="sans-serif"
-            android:hint="Hasło"
-            android:inputType="textPassword"
-            android:textCursorDrawable="@null" />
-    </LinearLayout>
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email_container">
+
+            <com.example.konikiewiczb.myapplication.framework.views.IconTextView
+                android:id="@+id/icon_password"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:text="@string/icon_password" />
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="307dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/black"
+                android:fontFamily="sans-serif"
+                android:hint="Hasło"
+                android:inputType="textPassword"
+                android:textCursorDrawable="@null" />
+        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/linearLayout4"
+        android:id="@+id/buttons_container"
         android:layout_width="match_parent"
         android:layout_height="124dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="52dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+        app:layout_constraintTop_toBottomOf="@+id/inputs_container">
 
         <Button
             android:id="@+id/sign_in"
