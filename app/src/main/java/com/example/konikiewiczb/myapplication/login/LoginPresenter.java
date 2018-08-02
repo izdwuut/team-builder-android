@@ -4,6 +4,7 @@ import com.example.konikiewiczb.myapplication.framework.IOnFinishedListener;
 import com.example.konikiewiczb.myapplication.model.LoginResponse;
 import com.example.konikiewiczb.myapplication.model.Repository;
 import com.example.konikiewiczb.myapplication.model.User;
+import com.example.konikiewiczb.myapplication.registration.RegistrationActivity;
 
 import retrofit2.Response;
 
