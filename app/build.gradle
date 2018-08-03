@@ -12,7 +12,7 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField "String", 'BASE_URL', '"https://10.0.2.2:8444/"'
+            buildConfigField "String", 'BASE_URL', '"http://10.0.2.2:8001/api"'
             buildConfigField "Boolean", "USE_DEV_API", "true"
         }
         release {
@@ -34,4 +34,5 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
     implementation 'com.android.support:design:28.0.0-alpha1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.3.1'
 }
