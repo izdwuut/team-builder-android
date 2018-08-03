@@ -1,18 +1,18 @@
 package com.example.konikiewiczb.myapplication.model;
 
 public class UserRegistration {
-    private String adressEmail;
+    private String emailAddress;
     private String firstname;
     private String lastname;
     private String password;
     private String confirmPassword;
 
-    public String getAdressEmail() {
-        return adressEmail;
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
-    public void setAdressEmail(String adressEmail) {
-        this.adressEmail = adressEmail;
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
     public String getFirstname() {
@@ -47,11 +47,15 @@ public class UserRegistration {
         this.confirmPassword = confirmPassword;
     }
 
-    public UserRegistration(String adressEmail, String firstname, String lastname, String password, String confirmPassword) {
-        this.adressEmail = adressEmail;
+    public UserRegistration(String emailAddress, String firstname, String lastname, String password, String confirmPassword) {
+        this.emailAddress = emailAddress;
         this.firstname = firstname;
         this.lastname = lastname;
         this.password = password;
         this.confirmPassword = confirmPassword;
+    }
+
+    public String toString() {
+        return this.emailAddress + " " + this.firstname +" " +this.lastname+ " " +this.password + " " + this.confirmPassword;
     }
 }
