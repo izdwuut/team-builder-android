@@ -1,5 +1,7 @@
 package com.example.konikiewiczb.myapplication.framework;
 
+import com.example.konikiewiczb.myapplication.BuildConfig;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -10,7 +12,7 @@ public class SecondRetrofitClient {
     public static Retrofit getRetrofit() {
         if(retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl(api.BASE_URL)
+                    .baseUrl(BuildConfig.BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             return retrofit;
