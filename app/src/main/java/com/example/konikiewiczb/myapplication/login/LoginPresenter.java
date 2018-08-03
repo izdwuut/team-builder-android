@@ -32,6 +32,7 @@ public class LoginPresenter implements LoginContract.Presenter, IOnFinishedListe
 
     @Override
     public void onResponse(Response<LoginResponse> response) {
+        view.hideProgressBar();
         String tokenResponse = response.body().getSuccess();
         if(tokenResponse.isEmpty()) {
             view.displayMessage("Invalid credentials.");
@@ -43,6 +44,7 @@ public class LoginPresenter implements LoginContract.Presenter, IOnFinishedListe
 
     @Override
     public void onFailure(String message) {
+        view.hideProgressBar();
         view.displayMessage(message);
     }
 }

@@ -1,11 +1,13 @@
 package com.example.konikiewiczb.myapplication.login;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.konikiewiczb.myapplication.R;
@@ -15,11 +17,13 @@ import com.example.konikiewiczb.myapplication.registration.RegistrationActivity;
 import com.example.konikiewiczb.myapplication.welcome.WelcomeActivity;
 
 import java.io.InputStream;
+import java.util.concurrent.TimeUnit;
 
 public class LoginActivity extends Activity implements LoginContract.View, View.OnClickListener {
     EditText email,password;
     Button login;
     LoginPresenter loginPresenter;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +36,16 @@ public class LoginActivity extends Activity implements LoginContract.View, View.
         password = findViewById(R.id.password);
         login = findViewById(R.id.sign_in);
         login.setOnClickListener(this);
+        progressBar = findViewById(R.id.progress_bar);
+        hideProgressBar();
+    }
+
+    public void hideProgressBar() {
+        progressBar.setVisibility(View.INVISIBLE);
+    }
+
+    void showProgressBar() {
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -41,6 +55,7 @@ public class LoginActivity extends Activity implements LoginContract.View, View.
 
     @Override
     public void onClick(View view) {
+        showProgressBar();
         loginPresenter.handleLogin(email.getText().toString(), password.getText().toString());
     }
 

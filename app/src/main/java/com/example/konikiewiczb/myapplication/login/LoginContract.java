@@ -12,6 +12,7 @@ public interface LoginContract {
 
         InputStream getCert();
 
+        void hideProgressBar();
     }
 
     interface Presenter {
