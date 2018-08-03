@@ -1,5 +1,7 @@
 package com.example.konikiewiczb.myapplication.framework;
 
+import android.support.annotation.Nullable;
+
 import com.example.konikiewiczb.myapplication.BuildConfig;
 import com.example.konikiewiczb.myapplication.Config;
 
@@ -28,9 +30,9 @@ public class RetrofitClient {
     static Api api;
     static OkHttpClient client;
 
-    private RetrofitClient (InputStream cert, Class<Api> api) {
+    private RetrofitClient (Class<Api> api, InputStream cert) {
         Retrofit.Builder builder = new retrofit2.Retrofit.Builder()
-                .baseUrl(Api.BASE_URL)
+                .baseUrl(BuildConfig.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create());
         if(BuildConfig.USE_DEV_API) {
             OkHttpClient client = getHttpClient(cert);
@@ -41,9 +43,9 @@ public class RetrofitClient {
     }
 
 
-    public static Api get(InputStream cert, Class<Api> api) {
+    public static Api get(Class<Api> api, @Nullable InputStream cert) {
         if(instance == null) {
-            instance = new RetrofitClient(cert, api);
+            instance = new RetrofitClient(api, cert);
         }
         return instance.getApi();
     }
