@@ -2,4 +2,5 @@
 <resources>
     <string name="icon_email">&#xf0e0;</string>
     <string name="icon_password">&#xf084;</string>
+    <string name="user_circle">&#xf2bd;</string>
 </resources>
