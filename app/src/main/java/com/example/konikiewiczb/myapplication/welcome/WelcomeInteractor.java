@@ -23,7 +23,7 @@ public class WelcomeInteractor implements WelcomeContract.Interactor {
 
     @Override
     public void getUsersList(String token) {
-         Call<List<User>> call = RetrofitClient.get(cert, Api.class)
+         Call<List<User>> call = RetrofitClient.get(Api.class)
                 .getUsersList(token);
 
         call.enqueue(new Callback<List<User>>() {
