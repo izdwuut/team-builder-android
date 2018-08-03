@@ -12,8 +12,9 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField "String", 'BASE_URL', '"http://10.0.2.2:8001/api"'
+            buildConfigField "String", 'BASE_URL', '"http://10.0.2.2:8001/api/"'
             buildConfigField "Boolean", "USE_DEV_API", "true"
+            buildConfigField "Boolean", "USE_SSL_CERT", "false"
         }
         release {
             minifyEnabled false

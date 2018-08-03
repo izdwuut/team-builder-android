@@ -18,16 +18,14 @@ import retrofit2.Response;
 
 public class LoginInteractor implements LoginContract.Interactor {
     IOnFinishedListener<Response<LoginResponse>> loginPresenter;
-    InputStream cert;
 
-    public LoginInteractor(IOnFinishedListener<Response<LoginResponse>> loginPresenter, InputStream cert) {
+    public LoginInteractor(IOnFinishedListener<Response<LoginResponse>> loginPresenter) {
         this.loginPresenter = loginPresenter;
-        this.cert = cert;
     }
 
     @Override
     public void handleLogin(User user) {
-        Call<LoginResponse> call = RetrofitClient.get(cert, Api.class)
+        Call<LoginResponse> call = RetrofitClient.get(Api.class)
                 .login(user);
 
         call.enqueue(new Callback<LoginResponse>() {

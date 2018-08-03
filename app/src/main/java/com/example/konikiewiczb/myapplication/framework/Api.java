@@ -15,14 +15,12 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface Api {
-    String BASE_URL = "http://localhost:8000";
-
     @POST("login")
     Call<LoginResponse> login(@Body User user);
 
     @GET("site/list")
     Call<List<User>> getUsersList(@Header("Authorization") String token);
 
-    @POST("/api/User")
+    @POST("User")
     Call<Void> registerUser(@Body UserRegistration userRegistration);
 }

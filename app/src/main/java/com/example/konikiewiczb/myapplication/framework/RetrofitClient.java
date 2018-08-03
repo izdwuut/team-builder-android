@@ -34,7 +34,7 @@ public class RetrofitClient {
         Retrofit.Builder builder = new retrofit2.Retrofit.Builder()
                 .baseUrl(BuildConfig.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create());
-        if(BuildConfig.USE_DEV_API) {
+        if(BuildConfig.USE_SSL_CERT) {
             OkHttpClient client = getHttpClient(cert);
             builder.client(client);
         }
@@ -42,8 +42,13 @@ public class RetrofitClient {
                 create(api);
     }
 
-
-    public static Api get(Class<Api> api, @Nullable InputStream cert) {
+    public static Api get(Class<Api> api) {
+        if(instance == null) {
+            instance = new RetrofitClient(api, null);
+        }
+        return instance.getApi();
+    }
+    public static Api get(Class<Api> api, InputStream cert) {
         if(instance == null) {
             instance = new RetrofitClient(api, cert);
         }

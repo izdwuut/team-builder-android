@@ -10,8 +10,6 @@ public interface LoginContract {
 
         void loadWelcomePage();
 
-        InputStream getCert();
-
         void hideProgressBar();
     }
 

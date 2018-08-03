@@ -14,7 +14,7 @@ public class LoginPresenter implements LoginContract.Presenter, IOnFinishedListe
     Repository token;
     public LoginPresenter(LoginContract.View view, Repository token) {
         this.view = view;
-        interactor = new LoginInteractor(this, view.getCert());
+        interactor = new LoginInteractor(this);
         this.token = token;
     }
 
