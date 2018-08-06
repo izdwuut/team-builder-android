@@ -42,6 +42,9 @@ public class LoginPresenter implements LoginContract.Presenter, IOnFinishedListe
         if(Http.isCodeInRange(response.code(), 200)) {
             token.set("sztywny token azji");
             loadWelcomePage();
+        } else {
+            view.setError("email", "Niepoprawne dane.");
+            view.setError("password", "Niepoprawne dane.");
         }
     }
 

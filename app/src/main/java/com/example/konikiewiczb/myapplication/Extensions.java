@@ -1,4 +1,4 @@
-package com.example.konikiewiczb.myapplication;
+package com.example.konikiewiczb.myapplication.framework;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,7 +11,7 @@ public class Extensions {
         View view = activity.getCurrentFocus();
         if (view == null) {
             view = new View(activity);
-        }else {
+        } else {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }

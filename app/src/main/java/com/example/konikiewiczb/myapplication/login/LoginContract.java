@@ -12,6 +12,8 @@ public interface LoginContract {
         void loadWelcomePage();
 
         void hideProgressBar();
+
+        void setError(String field, String error);
     }
 
     interface Presenter {
