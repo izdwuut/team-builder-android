@@ -15,8 +15,8 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface Api {
-    @POST("login")
-    Call<LoginResponse> login(@Body User user);
+    @POST("User/login")
+    Call<String> login(@Body UserRegistration user);
 
     @GET("site/list")
     Call<List<User>> getUsersList(@Header("Authorization") String token);

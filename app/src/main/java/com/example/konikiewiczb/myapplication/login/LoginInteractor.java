@@ -7,6 +7,7 @@ import com.example.konikiewiczb.myapplication.framework.IOnFinishedListener;
 import com.example.konikiewiczb.myapplication.framework.RetrofitClient;
 import com.example.konikiewiczb.myapplication.model.LoginResponse;
 import com.example.konikiewiczb.myapplication.model.User;
+import com.example.konikiewiczb.myapplication.model.UserRegistration;
 
 import java.io.InputStream;
 import java.util.List;
@@ -17,26 +18,26 @@ import retrofit2.Response;
 
 
 public class LoginInteractor implements LoginContract.Interactor {
-    IOnFinishedListener<Response<LoginResponse>> loginPresenter;
+    IOnFinishedListener<Response<String>> loginPresenter;
 
-    public LoginInteractor(IOnFinishedListener<Response<LoginResponse>> loginPresenter) {
+    public LoginInteractor(IOnFinishedListener<Response<String>> loginPresenter) {
         this.loginPresenter = loginPresenter;
     }
 
     @Override
-    public void handleLogin(User user) {
-        Call<LoginResponse> call = RetrofitClient.get(Api.class)
+    public void handleLogin(UserRegistration user) {
+        Call<String> call = RetrofitClient.get(Api.class)
                 .login(user);
 
-        call.enqueue(new Callback<LoginResponse>() {
+        call.enqueue(new Callback<String>() {
 
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+            public void onResponse(Call<String> call, Response<String> response) {
                 loginPresenter.onResponse(response);
             }
 
             @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 loginPresenter.onFailure(t.getMessage());
                 t.printStackTrace();
 

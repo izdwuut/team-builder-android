@@ -1,6 +1,7 @@
 package com.example.konikiewiczb.myapplication.login;
 
 import com.example.konikiewiczb.myapplication.model.User;
+import com.example.konikiewiczb.myapplication.model.UserRegistration;
 
 import java.io.InputStream;
 
@@ -19,6 +20,6 @@ public interface LoginContract {
     }
 
     interface Interactor {
-        void handleLogin(User user);
+        void handleLogin(UserRegistration user);
     }
 }

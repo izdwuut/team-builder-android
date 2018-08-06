@@ -1,14 +1,17 @@
 package com.example.konikiewiczb.myapplication.login;
 
+import android.util.Log;
+
 import com.example.konikiewiczb.myapplication.framework.IOnFinishedListener;
 import com.example.konikiewiczb.myapplication.model.LoginResponse;
 import com.example.konikiewiczb.myapplication.model.Repository;
 import com.example.konikiewiczb.myapplication.model.User;
+import com.example.konikiewiczb.myapplication.model.UserRegistration;
 import com.example.konikiewiczb.myapplication.registration.RegistrationActivity;
 
 import retrofit2.Response;
 
-public class LoginPresenter implements LoginContract.Presenter, IOnFinishedListener<Response<LoginResponse>> {
+public class LoginPresenter implements LoginContract.Presenter, IOnFinishedListener<Response<String>> {
     LoginContract.View view;
     LoginContract.Interactor interactor;
     Repository token;
@@ -20,7 +23,7 @@ public class LoginPresenter implements LoginContract.Presenter, IOnFinishedListe
 
     @Override
     public void handleLogin(String login, String password) {
-        interactor.handleLogin(new User(login, password));
+        interactor.handleLogin(new UserRegistration(login, password));
     }
 
     @Override
@@ -31,14 +34,14 @@ public class LoginPresenter implements LoginContract.Presenter, IOnFinishedListe
     }
 
     @Override
-    public void onResponse(Response<LoginResponse> response) {
+    public void onResponse(Response<String> response) {
         view.hideProgressBar();
-        String tokenResponse = response.body().getSuccess();
-        if(tokenResponse.isEmpty()) {
-            view.displayMessage("Invalid credentials.");
-        } else {
-            token.set(tokenResponse);
+        Log.d("Response:", String.valueOf(response.code()));
+        if(response.code() == 200) {
+            view.displayMessage(response.body());
             view.loadWelcomePage();
+        } else {
+            view.displayMessage("Niepoprawne dane.");
         }
     }
 
