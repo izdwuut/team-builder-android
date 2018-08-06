@@ -68,7 +68,6 @@
                 android:backgroundTint="@color/black"
                 android:fontFamily="sans-serif"
                 android:hint="Email"
-                android:inputType="textPassword"
                 android:textCursorDrawable="@null" />
         </LinearLayout>
 
