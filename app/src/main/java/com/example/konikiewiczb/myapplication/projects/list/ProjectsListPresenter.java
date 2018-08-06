@@ -1,23 +1,22 @@
-package com.example.konikiewiczb.myapplication.welcome;
+package com.example.konikiewiczb.myapplication.projects.list;
 
 import com.example.konikiewiczb.myapplication.framework.IOnFinishedListener;
 import com.example.konikiewiczb.myapplication.model.Repository;
-import com.example.konikiewiczb.myapplication.model.TokenRepository;
 import com.example.konikiewiczb.myapplication.model.User;
 
 import java.util.List;
 
 import retrofit2.Response;
 
-public class WelcomePresenter implements WelcomeContract.Presenter, IOnFinishedListener<Response<List<User>>> {
+public class ProjectsListPresenter implements ProjectsListContract.Presenter, IOnFinishedListener<Response<List<User>>> {
     Repository<String> token;
-    WelcomeContract.View view;
-    WelcomeContract.Interactor interactor;
+    ProjectsListContract.View view;
+    ProjectsListContract.Interactor interactor;
 
-    public WelcomePresenter(WelcomeContract.View view, Repository<String> token) {
+    public ProjectsListPresenter(ProjectsListContract.View view, Repository<String> token) {
         this.token = token;
         this.view = view;
-        this.interactor = new WelcomeInteractor(this, view.getCert());
+        this.interactor = new ProjectsListInteractor(this, view.getCert());
     }
     @Override
     public void logOut() {

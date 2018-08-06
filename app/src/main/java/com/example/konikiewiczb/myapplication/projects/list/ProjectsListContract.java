@@ -1,11 +1,11 @@
-package com.example.konikiewiczb.myapplication.welcome;
+package com.example.konikiewiczb.myapplication.projects.list;
 
 import com.example.konikiewiczb.myapplication.model.User;
 
 import java.io.InputStream;
 import java.util.List;
 
-public interface WelcomeContract {
+public interface ProjectsListContract {
     interface View {
          void showUsersList(List<User> users);
          InputStream getCert();
