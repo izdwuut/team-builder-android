@@ -14,6 +14,11 @@ public interface RegistrationView {
 
     void showSuccess();
 
+    void showFailureAler();
+
     void navigateToLogin();
 
+    void showProgress();
+
+    void hideProgress();
 }

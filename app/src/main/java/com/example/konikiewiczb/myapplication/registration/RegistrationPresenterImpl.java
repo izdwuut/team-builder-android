@@ -17,31 +17,92 @@ public class RegistrationPresenterImpl implements RegistrationPresenter, Registr
     }
     @Override
     public void onSuccess() {
+        registrationView.showSuccess();
     }
 
     @Override
     public void onFailure() {
-
+        registrationView.hideProgress();
+        registrationView.showFailureAler();
     }
 
     @Override
     public void validateData(String emailAdress, String firstname, String lastname, String password, String confirmPassword) {
         boolean dataAreOk=true;
+
         //validate email
+        if (emailAdress != null){
+            if(emailAdress.equals("")){
+                dataAreOk = false;
+                registrationView.showEmailError();
+            }
+            if(!emailAdress.contains("@")){
+                dataAreOk = false;
+                registrationView.showEmailError();
+            }
+        }else{
+            dataAreOk = false;
+            registrationView.showEmailError();
+        }
+
         //validate firstname
+        if(firstname != null){
+            if(firstname.equals("")){
+                dataAreOk = false;
+                registrationView.showFirstnameError();
+            }
+        }else{
+            dataAreOk = false;
+            registrationView.showEmailError();
+        }
+
         //validate lastname
+        if(lastname != null){
+            if(lastname.equals("")){
+                dataAreOk = false;
+                registrationView.showLastnameError();
+            }
+        }else{
+            dataAreOk = false;
+            registrationView.showEmailError();
+        }
+
         //validate password
+        if(password != null){
+            if(!password.equals("")){
+                if(password.length()<8){
+                    dataAreOk = false;
+                    registrationView.showPasswordError();
+                }
+            }else{
+                dataAreOk = false;
+                registrationView.showPasswordError();
+            }
+        }
+
         //validate confirm password
-        UserRegistration userRegistration = new UserRegistration(emailAdress, firstname, lastname, password, confirmPassword);
-        Log.d("RegistrationActivity","\n-------------------------\n" + "VALIDATING DATA" + "\n-------------------------\n");
+        if(confirmPassword==null){
+            dataAreOk = false;
+            registrationView.showConfirmPasswordError();
+        }
+        if(!confirmPassword.equals("")){
+            if(!confirmPassword.equals(password)){
+                dataAreOk = false;
+                registrationView.showConfirmPasswordError();
+            }
+        }else{
+            dataAreOk = false;
+            registrationView.showConfirmPasswordError();
+        }
+
         if(dataAreOk){
-            Log.d("RegistrationActivity","\n-------------------------\n" + "SENDING DATA TO INTERACTOR" + "\n-------------------------\n");
+            UserRegistration userRegistration = new UserRegistration(emailAdress, firstname, lastname, password, confirmPassword);
             registrationInteractor.registration(this, userRegistration);
         }
     }
 
     @Override
     public void onDestroy() {
-
+        registrationView = null;
     }
 }
