@@ -2,6 +2,7 @@ package com.example.konikiewiczb.myapplication.login;
 
 import android.util.Log;
 
+import com.example.konikiewiczb.myapplication.framework.Http;
 import com.example.konikiewiczb.myapplication.framework.IOnFinishedListener;
 import com.example.konikiewiczb.myapplication.model.LoginResponse;
 import com.example.konikiewiczb.myapplication.model.Repository;
@@ -14,8 +15,8 @@ import retrofit2.Response;
 public class LoginPresenter implements LoginContract.Presenter, IOnFinishedListener<Response<String>> {
     LoginContract.View view;
     LoginContract.Interactor interactor;
-    Repository token;
-    public LoginPresenter(LoginContract.View view, Repository token) {
+    Repository<String> token;
+    public LoginPresenter(LoginContract.View view, Repository<String> token) {
         this.view = view;
         interactor = new LoginInteractor(this);
         this.token = token;
@@ -37,11 +38,10 @@ public class LoginPresenter implements LoginContract.Presenter, IOnFinishedListe
     public void onResponse(Response<String> response) {
         view.hideProgressBar();
         Log.d("Response:", String.valueOf(response.code()));
-        if(response.code() == 200) {
-            view.displayMessage(response.body());
-            view.loadWelcomePage();
-        } else {
-            view.displayMessage("Niepoprawne dane.");
+        view.displayMessage(response.body());
+        if(Http.isCodeInRange(response.code(), 200)) {
+            token.set("sztywny token azji");
+            loadWelcomePage();
         }
     }
 
