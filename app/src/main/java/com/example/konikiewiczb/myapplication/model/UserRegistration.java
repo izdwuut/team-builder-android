@@ -47,6 +47,11 @@ public class UserRegistration {
         this.confirmPassword = confirmPassword;
     }
 
+    public UserRegistration(String emailAddress, String password) {
+        this.emailAddress = emailAddress;
+        this.password = password;
+    }
+
     public UserRegistration(String emailAddress, String firstname, String lastname, String password, String confirmPassword) {
         this.emailAddress = emailAddress;
         this.firstname = firstname;
