@@ -1,0 +1,9 @@
+diff a/app/src/main/java/com/example/konikiewiczb/myapplication/Extensions.java b/app/src/main/java/com/example/konikiewiczb/myapplication/Extensions.java	(rejected hunks)
+@@ -11,6 +11,7 @@
+         View view = activity.getCurrentFocus();
+         if (view == null) {
+             view = new View(activity);
++        } else {
+             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+         }
+     }

@@ -1,4 +1,4 @@
-package com.example.konikiewiczb.myapplication.welcome;
+package com.example.konikiewiczb.myapplication.projects.list;
 
 import com.example.konikiewiczb.myapplication.framework.Api;
 import com.example.konikiewiczb.myapplication.framework.IOnFinishedListener;
@@ -12,11 +12,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class WelcomeInteractor implements WelcomeContract.Interactor {
+public class ProjectsListInteractor implements ProjectsListContract.Interactor {
     IOnFinishedListener<Response<List<User>>> presenter;
     InputStream cert;
 
-    public WelcomeInteractor(IOnFinishedListener<Response<List<User>>> presenter, InputStream cert) {
+    public ProjectsListInteractor(IOnFinishedListener<Response<List<User>>> presenter, InputStream cert) {
         this.presenter = presenter;
         this.cert = cert;
     }

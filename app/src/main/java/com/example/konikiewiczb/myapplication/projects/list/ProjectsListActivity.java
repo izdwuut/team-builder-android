@@ -1,4 +1,4 @@
-package com.example.konikiewiczb.myapplication.welcome;
+package com.example.konikiewiczb.myapplication.projects.list;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -19,20 +19,20 @@ import com.example.konikiewiczb.myapplication.model.User;
 import java.io.InputStream;
 import java.util.List;
 
-public class WelcomeActivity extends Activity implements View.OnClickListener, WelcomeContract.View {
+public class ProjectsListActivity extends Activity implements View.OnClickListener, ProjectsListContract.View {
     Button logout;
     ListView usersList;
-    WelcomeContract.Presenter presenter;
-    WelcomeContract.Interactor interactor;
+    ProjectsListContract.Presenter presenter;
+    ProjectsListContract.Interactor interactor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+        setContentView(R.layout.activity_projects_list);
         logout = findViewById(R.id.logout);
         usersList = findViewById(R.id.users_list);
 
         logout.setOnClickListener(this);
-        presenter = new WelcomePresenter(this, new TokenRepository(getApplicationContext()));
+        presenter = new ProjectsListPresenter(this, new TokenRepository(getApplicationContext()));
         presenter.getUsersList();
     }
 

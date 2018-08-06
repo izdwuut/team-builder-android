@@ -11,7 +11,7 @@ public class Extensions {
         View view = activity.getCurrentFocus();
         if (view == null) {
             view = new View(activity);
-        } else {
+        }else {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
