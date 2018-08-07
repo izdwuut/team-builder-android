@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.example.konikiewiczb.myapplication.R;
 import com.example.konikiewiczb.myapplication.login.LoginActivity;
 import com.example.konikiewiczb.myapplication.model.TokenRepository;
-import com.example.konikiewiczb.myapplication.model.User;
+import com.example.konikiewiczb.myapplication.model.UserProject;
 
 import java.io.InputStream;
 import java.util.List;
@@ -32,8 +32,9 @@ public class ProjectsListActivity extends Activity implements View.OnClickListen
         usersList = findViewById(R.id.users_list);
 
         logout.setOnClickListener(this);
-        presenter = new ProjectsListPresenter(this, new TokenRepository(getApplicationContext()));
-        presenter.getUsersList();
+        TokenRepository token = new TokenRepository(getApplicationContext());
+        presenter = new ProjectsListPresenter(this, token);
+        presenter.getProjectsList();
     }
 
     @Override
@@ -43,29 +44,27 @@ public class ProjectsListActivity extends Activity implements View.OnClickListen
     }
 
     @Override
-    public void showUsersList(List<User> users) {
-        ArrayAdapter<User> adapter = new ArrayAdapter<User>(getApplicationContext(), android.R.layout.simple_list_item_1, users) {
+    public void showProjectsList(List<UserProject> userProjects) {
+        ArrayAdapter<UserProject> adapter = new ArrayAdapter<UserProject>(getApplicationContext(), android.R.layout.simple_list_item_1, userProjects) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 if (convertView == null) {
                     convertView = getLayoutInflater()
-                            .inflate(R.layout.item_user, null, false);
+                            .inflate(R.layout.item_user_project, null, false);
                 }
-                User user = this.getItem(position);
-                TextView name = convertView.findViewById(R.id.user_name);
-                String userName = user.getName() + ' ' + user.getSurname();
-                name.setText(userName);
+                UserProject project = this.getItem(position);
+
+                TextView projectName = convertView.findViewById(R.id.project_name);
+                projectName.setText(project.getName());
+                TextView role = convertView.findViewById(R.id.role);
+                role.setText(project.getRoleName());
+                TextView positionName = convertView.findViewById(R.id.position);
+                positionName.setText(project.getPositionName());
 
                 return convertView;
             }
         };
         usersList.setAdapter(adapter);
-    }
-
-    @Override
-    public InputStream getCert() {
-        InputStream file = getResources().openRawResource(R.raw.cert);
-        return file;
     }
 
     @Override
