@@ -3,6 +3,9 @@ package com.example.konikiewiczb.myapplication.projects.list;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.Adapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -21,15 +24,15 @@ import java.util.List;
 
 public class ProjectsListActivity extends Activity implements View.OnClickListener, ProjectsListContract.View {
     Button logout;
-    ListView usersList;
+    RecyclerView usersList;
     ProjectsListContract.Presenter presenter;
-    ProjectsListContract.Interactor interactor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_projects_list);
         logout = findViewById(R.id.logout);
         usersList = findViewById(R.id.users_list);
+        usersList.setLayoutManager(new LinearLayoutManager(this));
 
         logout.setOnClickListener(this);
         TokenRepository token = new TokenRepository(getApplicationContext());
@@ -45,30 +48,7 @@ public class ProjectsListActivity extends Activity implements View.OnClickListen
 
     @Override
     public void showProjectsList(List<UserProject> userProjects) {
-        ArrayAdapter<UserProject> adapter = new ArrayAdapter<UserProject>(getApplicationContext(), android.R.layout.simple_list_item_1, userProjects) {
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                if (convertView == null) {
-                    convertView = getLayoutInflater()
-                            .inflate(R.layout.item_user_project, null, false);
-                }
-                UserProject project = this.getItem(position);
-
-                TextView projectName = convertView.findViewById(R.id.project_name);
-                projectName.setText(project.getName());
-                TextView role = convertView.findViewById(R.id.role);
-                role.setText(project.getRoleName());
-                TextView positionName = convertView.findViewById(R.id.position);
-                positionName.setText(project.getPositionName());
-                int visible = View.INVISIBLE;
-                if(project.getRoleName().equals(getString(R.string.top_role))) {
-                    visible = View.VISIBLE;
-                }
-                convertView.findViewById(R.id.icon_star).setVisibility(visible);
-
-                return convertView;
-            }
-        };
+        Adapter adapter = new UserProjectsAdapter(userProjects);
         usersList.setAdapter(adapter);
     }
 
