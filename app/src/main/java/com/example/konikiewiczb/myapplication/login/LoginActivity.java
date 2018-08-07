@@ -59,7 +59,7 @@ public class LoginActivity extends Activity implements LoginContract.View, View.
     @Override
     public void onClick(View view) {
         showProgressBar();
-        loginPresenter.handleLogin(inputs.get("email").getText().toString(), inputs.get("email").getText().toString());
+        loginPresenter.handleLogin(inputs.get("email").getText().toString(), inputs.get("password").getText().toString());
     }
 
     @Override
