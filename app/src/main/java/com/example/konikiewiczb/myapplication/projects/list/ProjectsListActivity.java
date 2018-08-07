@@ -48,7 +48,7 @@ public class ProjectsListActivity extends Activity implements View.OnClickListen
 
     @Override
     public void showProjectsList(List<UserProject> userProjects) {
-        Adapter adapter = new UserProjectsAdapter(userProjects);
+        Adapter adapter = new UserProjectsAdapter(userProjects, getApplicationContext());
         usersList.setAdapter(adapter);
     }
 
