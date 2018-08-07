@@ -53,5 +53,6 @@ public class LoginPresenter implements LoginContract.Presenter, IOnFinishedLogin
     public void onFailure(String message) {
         view.hideProgressBar();
         view.displayMessage(message);
+        token.remove();
     }
 }
