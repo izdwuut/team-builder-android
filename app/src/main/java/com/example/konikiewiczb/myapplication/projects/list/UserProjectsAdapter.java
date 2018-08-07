@@ -45,7 +45,7 @@ public class UserProjectsAdapter extends RecyclerView.Adapter<UserProjectsAdapte
         UserProject project = dataset.get(position);
         holder.position.setText(project.getPositionName());
         holder.projectName.setText(project.getName());
-        holder.position.setText(project.getPositionName());
+        holder.role.setText(project.getRoleName());
     }
 
     @Override
