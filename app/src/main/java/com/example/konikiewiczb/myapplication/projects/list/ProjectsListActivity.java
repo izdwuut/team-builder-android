@@ -60,6 +60,11 @@ public class ProjectsListActivity extends Activity implements View.OnClickListen
                 role.setText(project.getRoleName());
                 TextView positionName = convertView.findViewById(R.id.position);
                 positionName.setText(project.getPositionName());
+                int visible = View.INVISIBLE;
+                if(project.getRoleName().equals(getString(R.string.top_role))) {
+                    visible = View.VISIBLE;
+                }
+                convertView.findViewById(R.id.icon_star).setVisibility(visible);
 
                 return convertView;
             }
