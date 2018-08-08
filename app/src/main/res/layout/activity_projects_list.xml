@@ -28,6 +28,22 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:indeterminateTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/member_projects"
+        app:layout_constraintStart_toStartOf="@+id/member_projects"
+        app:layout_constraintTop_toTopOf="parent" />
+
         <Button
             android:id="@+id/logout"
             android:layout_width="wrap_content"
@@ -37,14 +53,20 @@
             android:layout_alignParentTop="true"
             android:text="LOGOUT" />
 
-        <ListView
-            android:id="@+id/users_list"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/leader_projects"
             android:layout_width="match_parent"
-            android:layout_height="460dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/member_projects"
+            android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 
     <android.support.design.widget.NavigationView

@@ -1,44 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/f"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="88dp"
+    android:orientation="horizontal"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+    <com.example.konikiewiczb.myapplication.framework.views.IconTextView
+        android:id="@+id/icon_leader"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/icon_crown" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-        <com.example.konikiewiczb.myapplication.framework.views.IconTextView
-                android:id="@+id/icon_star"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:text="@string/icon_star" />
-        <LinearLayout
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/role"
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:gravity="bottom"
+            android:text="Small Text"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/project_name"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="Large Text"
+            android:textColor="@color/header"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/position"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/position"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Small Text"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-            <TextView
-                android:id="@+id/role"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Small Text"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-            <TextView
-                android:id="@+id/project_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Large Text"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-        </LinearLayout>
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
     </LinearLayout>
+
 </LinearLayout>
