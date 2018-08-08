@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.konikiewiczb.myapplication.R;
@@ -54,7 +53,7 @@ public class UserProjectsAdapter extends RecyclerView.Adapter<UserProjectsAdapte
         String role = project.getRoleName();
         holder.role.setText(project.getRoleName());
         int visible = View.INVISIBLE;
-        if(role.equals(context.getString(R.string.top_role))) {
+        if(role.equals(context.getString(R.string.leader_role))) {
             visible = View.VISIBLE;
         }
         holder.leaderIcon.setVisibility(visible);
