@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.konikiewiczb.myapplication.R;
@@ -23,6 +24,7 @@ public class ProjectsListActivity extends Activity implements View.OnClickListen
     Button logout;
     RecyclerView memberProjects, leaderProjects;
     ProjectsListContract.Presenter presenter;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,5 +70,15 @@ public class ProjectsListActivity extends Activity implements View.OnClickListen
         UserProjectsAdapter adapter = (UserProjectsAdapter) view.getAdapter();
         adapter.setDataset(dataset);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void hideProgressBar() {
+        progressBar.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void showProgressBar() {
+        progressBar.setVisibility(View.VISIBLE);
     }
 }
