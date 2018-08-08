@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -30,6 +31,8 @@ public class ProjectsListActivity extends Activity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_projects_list);
         logout = findViewById(R.id.logout);
+        progressBar = findViewById(R.id.progress_bar);
+        showProgressBar();
         leaderProjects = findViewById(R.id.leader_projects);
         leaderProjects.setAdapter(new UserProjectsAdapter(getApplicationContext(), View.VISIBLE));
         leaderProjects.setLayoutManager(new LinearLayoutManager(this));
@@ -43,6 +46,7 @@ public class ProjectsListActivity extends Activity implements View.OnClickListen
         TeamLeaderRepository teamLeader = new TeamLeaderRepository(context);
         presenter = new ProjectsListPresenter(this, token, teamLeader);
         presenter.getProjectsList();
+
     }
 
     @Override

@@ -48,10 +48,12 @@ public class ProjectsListPresenter implements ProjectsListContract.Presenter, IO
         }
         view.showMemberProjectsList(member);
         view.showLeaderProjectsList(leader);
+        view.hideProgressBar();
     }
 
     @Override
     public void onFailure(String message) {
         view.displayMessage(message);
+        view.hideProgressBar();
     }
 }
