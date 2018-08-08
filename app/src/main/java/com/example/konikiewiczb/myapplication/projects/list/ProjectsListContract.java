@@ -8,8 +8,10 @@ import java.util.List;
 
 public interface ProjectsListContract {
     interface View {
-         void showProjectsList(List<UserProject> projects);
          void displayMessage(String message);
+         void showLeaderProjectsList(List<UserProject> projects);
+         void showMemberProjectsList(List<UserProject> projects);
+
     }
 
     interface Presenter {

@@ -16,6 +16,7 @@ import java.util.List;
 public class UserProjectsAdapter extends RecyclerView.Adapter<UserProjectsAdapter.ViewHolder> {
     private List<UserProject> dataset;
     Context context;
+    int visibility;
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView projectName;
         public TextView position;
@@ -31,9 +32,9 @@ public class UserProjectsAdapter extends RecyclerView.Adapter<UserProjectsAdapte
         }
     }
 
-    public UserProjectsAdapter(List<UserProject> dataset, Context context) {
-        this.dataset = dataset;
+    public UserProjectsAdapter(Context context, int visibility) {
         this.context = context;
+        this.visibility = visibility;
     }
 
     @Override
@@ -50,17 +51,16 @@ public class UserProjectsAdapter extends RecyclerView.Adapter<UserProjectsAdapte
         UserProject project = dataset.get(position);
         holder.position.setText(project.getPositionName());
         holder.projectName.setText(project.getName());
-        String role = project.getRoleName();
         holder.role.setText(project.getRoleName());
-        int visible = View.INVISIBLE;
-        if(role.equals(context.getString(R.string.leader_role))) {
-            visible = View.VISIBLE;
-        }
-        holder.leaderIcon.setVisibility(visible);
+        holder.leaderIcon.setVisibility(visibility);
     }
 
     @Override
     public int getItemCount() {
-        return dataset.size();
+        return dataset == null ? 0 : dataset.size();
+    }
+
+    public void setDataset(List<UserProject> dataset) {
+        this.dataset = dataset;
     }
 }
