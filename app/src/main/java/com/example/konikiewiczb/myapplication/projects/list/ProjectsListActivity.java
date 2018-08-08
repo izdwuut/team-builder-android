@@ -19,7 +19,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.konikiewiczb.myapplication.ChatFragment;
 import com.example.konikiewiczb.myapplication.MessageFragment;
+import com.example.konikiewiczb.myapplication.ProfileFragment;
 import com.example.konikiewiczb.myapplication.R;
 import com.example.konikiewiczb.myapplication.login.LoginActivity;
 import com.example.konikiewiczb.myapplication.model.TokenRepository;
@@ -49,6 +51,11 @@ public class ProjectsListActivity extends AppCompatActivity implements View.OnCl
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+        if(savedInstanceState == null){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new MessageFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_profile);
+        }
 
         logout = findViewById(R.id.logout);
         usersList = findViewById(R.id.users_list);
@@ -77,11 +84,28 @@ public class ProjectsListActivity extends AppCompatActivity implements View.OnCl
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.nav_message:
+            case R.id.nav_profile:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new MessageFragment()).commit();
                 break;
+            case R.id.nav_settings:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new ChatFragment()).commit();
+                break;
+            case R.id.nav_all:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new ProfileFragment()).commit();
+                break;
+            case R.id.nav_signout:
+                Toast.makeText(this, "Singout",Toast.LENGTH_LONG).show();
+                break;
+            case R.id.nav_create:
+                Toast.makeText(this, "Create",Toast.LENGTH_LONG).show();
+                break;
         }
+
+        drawerLayout.closeDrawer(GravityCompat.START);
+
         return true;
     }
 
