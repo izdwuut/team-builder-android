@@ -6,6 +6,7 @@ import com.example.konikiewiczb.myapplication.model.User;
 import com.example.konikiewiczb.myapplication.model.UserProject;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Response;
@@ -34,9 +35,11 @@ public class ProjectsListPresenter implements ProjectsListContract.Presenter, IO
 
     @Override
     public void onResponse(Response<List<UserProject>> response) {
+        List<UserProject> projects = response.body();
+        projects.sort(Comparator.comparing(UserProject::getName).reversed());
         List<UserProject> member = new ArrayList<>();
         List<UserProject> leader = new ArrayList<>();
-        for(UserProject p : response.body()) {
+        for(UserProject p : projects) {
             if(p.getRoleName().equals(teamLeader.get())) {
                 leader.add(p);
             } else {
