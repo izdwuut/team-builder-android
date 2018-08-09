@@ -7,6 +7,7 @@
         <item
             android:id="@+id/nav_project_list"
             android:icon="@drawable/ic_project_diagram_solid"
+            android:checkable="true"
             android:title="Twoje projekty" />
     </group>
 
@@ -15,10 +16,12 @@
             <item
                 android:id="@+id/nav_profile"
                 android:icon="@drawable/ic_user_ninja_solid"
+                android:checkable="true"
                 android:title="Profil" />
             <item
                 android:id="@+id/nav_sign_out"
                 android:icon="@drawable/ic_sign_out_alt_solid"
+                android:checkable="true"
                 android:title="Wyloguj" />
         </menu>
     </item>

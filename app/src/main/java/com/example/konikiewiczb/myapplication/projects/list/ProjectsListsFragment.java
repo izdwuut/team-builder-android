@@ -77,12 +77,12 @@ public class ProjectsListsFragment extends Fragment implements ProjectsListContr
 
     @Override
     public void showProgressBar() {
-        progressBar.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
 }
