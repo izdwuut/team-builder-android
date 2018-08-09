@@ -2,27 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_height="176dp"
-    android:background="@color/colorAccent"
+    android:background="@drawable/nav_header_bcg_repeat"
     android:layout_width="match_parent"
     android:gravity="bottom"
     android:padding="16dp"
-    android:theme="@style/ThemeOverlay.AppCompat.Light">
-    
+    android:layout_marginTop="8dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
     <android.support.v7.widget.AppCompatImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher_round"/>
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:src="@drawable/logo" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
-        android:text="Elo"
+        android:text="Firstname Lastname"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="transition technolody menagement service"/>
+        android:text="User E-mail"/>
 
 </LinearLayout>

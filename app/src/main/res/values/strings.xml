@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Transition Technologies Managed Services</string>
+    <string name="app_projects_list">Lista projektow</string>
+    <string name="app_user_project">Twoje projekty</string>
     <string name="leader_role">Team Leader</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

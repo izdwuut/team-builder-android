@@ -3,11 +3,14 @@ package com.example.konikiewiczb.myapplication.projects.list;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -20,46 +23,48 @@ import com.example.konikiewiczb.myapplication.model.UserProject;
 
 import java.util.List;
 
-public class ProjectsListActivity extends AppCompatActivity implements View.OnClickListener, ProjectsListContract.View{
+public class ProjectsListsFragment extends Fragment implements View.OnClickListener, ProjectsListContract.View{
+
     Button logout;
     RecyclerView memberProjects, leaderProjects;
     ProjectsListContract.Presenter presenter;
     ProgressBar progressBar;
-    private DrawerLayout drawerLayout;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_projects_list);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        logout = findViewById(R.id.logout);
-        progressBar = findViewById(R.id.progress_bar);
+        View view = inflater.inflate(R.layout.activity_projects_list, container, false);
+
+        logout = view.findViewById(R.id.logout);
+        progressBar = view.findViewById(R.id.progress_bar);
         showProgressBar();
-        leaderProjects = findViewById(R.id.leader_projects);
-        leaderProjects.setAdapter(new UserProjectsAdapter(getApplicationContext(), View.VISIBLE));
-        leaderProjects.setLayoutManager(new LinearLayoutManager(this));
-        memberProjects = findViewById(R.id.member_projects);
-        memberProjects.setAdapter(new UserProjectsAdapter(getApplicationContext(), View.INVISIBLE));
-        memberProjects.setLayoutManager(new LinearLayoutManager(this));
+        leaderProjects = view.findViewById(R.id.leader_projects);
+        leaderProjects.setAdapter(new UserProjectsAdapter(getActivity().getApplicationContext(), View.VISIBLE));
+        leaderProjects.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+        memberProjects = view.findViewById(R.id.member_projects);
+        memberProjects.setAdapter(new UserProjectsAdapter(getActivity().getApplicationContext(), View.INVISIBLE));
+        memberProjects.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 
         logout.setOnClickListener(this);
-        Context context = getApplicationContext();
+        Context context = getActivity().getApplicationContext();
         TokenRepository token = new TokenRepository(context);
         TeamLeaderRepository teamLeader = new TeamLeaderRepository(context);
         presenter = new ProjectsListPresenter(this, token, teamLeader);
         presenter.getProjectsList();
 
+        return inflater.inflate(R.layout.activity_projects_list, container, false);
     }
 
     @Override
     public void onClick(View view) {
         presenter.logOut();
-        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        startActivity(new Intent(getActivity().getApplicationContext(), LoginActivity.class));
     }
 
     @Override
     public void displayMessage(String message) {
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -79,12 +84,12 @@ public class ProjectsListActivity extends AppCompatActivity implements View.OnCl
     }
 
     @Override
-    public void hideProgressBar() {
+    public void showProgressBar() {
         progressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
-    public void showProgressBar() {
+    public void hideProgressBar() {
         progressBar.setVisibility(View.VISIBLE);
     }
 }

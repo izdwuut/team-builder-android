@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.konikiewiczb.myapplication.R;
+import com.example.konikiewiczb.myapplication.UserAreaActivity;
 import com.example.konikiewiczb.myapplication.framework.ProgressBarToggler;
 import com.example.konikiewiczb.myapplication.model.Repository;
 import com.example.konikiewiczb.myapplication.model.TokenRepository;
@@ -67,7 +68,7 @@ public class LoginActivity extends Activity implements LoginContract.View, View.
 
     @Override
     public void loadWelcomePage() {
-        startActivity(new Intent(getApplicationContext(),ProjectsListActivity.class));
+        startActivity(new Intent(getApplicationContext(),UserAreaActivity.class));
     }
 
     public InputStream getCert() {

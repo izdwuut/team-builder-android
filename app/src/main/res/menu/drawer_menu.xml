@@ -5,37 +5,21 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_user_ninja_solid"
-            android:title="Profil" />
-        <item
-            android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_cogs_solid"
-            android:title="Ustawienia" />
-        <item
-            android:id="@+id/nav_signout"
-            android:icon="@drawable/ic_sign_out_alt_solid"
-            android:title="Wyloguj" />
+            android:id="@+id/nav_project_list"
+            android:icon="@drawable/ic_project_diagram_solid"
+            android:title="Twoje projekty" />
     </group>
 
-    <item android:title="Projekty">
+    <item android:title="Ustawienia">
         <menu>
             <item
-                android:id="@+id/nav_all"
-                android:icon="@drawable/ic_project_diagram_solid"
-                android:title="Wszystkie projekty" />
+                android:id="@+id/nav_profile"
+                android:icon="@drawable/ic_user_ninja_solid"
+                android:title="Profil" />
             <item
-                android:id="@+id/nav_yours"
-                android:icon="@drawable/ic_project_diagram_solid"
-                android:title="Twoje projekty" />
-            <item
-                android:id="@+id/nav_create"
-                android:icon="@drawable/ic_project_diagram_solid"
-                android:title="Utwórz projekt" />
-            <item
-                android:id="@+id/nav_left"
-                android:icon="@drawable/ic_project_diagram_solid"
-                android:title="Opu sc projekt" />
+                android:id="@+id/nav_sign_out"
+                android:icon="@drawable/ic_sign_out_alt_solid"
+                android:title="Wyloguj" />
         </menu>
     </item>
 
