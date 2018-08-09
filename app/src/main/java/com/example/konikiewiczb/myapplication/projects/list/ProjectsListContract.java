@@ -16,7 +16,6 @@ public interface ProjectsListContract {
     }
 
     interface Presenter {
-        void logOut();
         void getProjectsList();
     }
 

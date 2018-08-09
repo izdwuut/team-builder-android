@@ -16,11 +16,13 @@ import android.widget.Toast;
 
 import com.example.konikiewiczb.myapplication.login.LoginActivity;
 import com.example.konikiewiczb.myapplication.model.Repository;
+import com.example.konikiewiczb.myapplication.model.TokenRepository;
 import com.example.konikiewiczb.myapplication.projects.list.ProjectsListsFragment;
 
 public class UserAreaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private DrawerLayout drawerLayout;
+    private TokenRepository tokenRepository;
 
 
     @Override
@@ -57,6 +59,8 @@ public class UserAreaActivity extends AppCompatActivity implements NavigationVie
                         new ProfileFragment()).commit();
                 break;
             case R.id.nav_sign_out:
+                tokenRepository = new TokenRepository(getApplicationContext());
+                tokenRepository.remove();
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 break;
         }
@@ -71,7 +75,7 @@ public class UserAreaActivity extends AppCompatActivity implements NavigationVie
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START);
         }else{
-            super.onBackPressed();
+            this.moveTaskToBack(true);
         }
     }
 

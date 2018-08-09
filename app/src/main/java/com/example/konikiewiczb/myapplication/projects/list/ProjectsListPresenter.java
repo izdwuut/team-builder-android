@@ -23,10 +23,6 @@ public class ProjectsListPresenter implements ProjectsListContract.Presenter, IO
         this.interactor = new ProjectsListInteractor(this, token);
         this.teamLeader = teamLeader;
     }
-    @Override
-    public void logOut() {
-        token.remove();
-    }
 
     @Override
     public void getProjectsList() {

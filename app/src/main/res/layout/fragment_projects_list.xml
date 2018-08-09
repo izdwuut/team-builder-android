@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".projects.list.ProjectsListActivity"
+    tools:context=".UserAreaActivity"
     tools:openDrawer="start">
 
     <ProgressBar
@@ -24,15 +24,6 @@
         app:layout_constraintEnd_toEndOf="@+id/member_projects"
         app:layout_constraintStart_toStartOf="@+id/member_projects"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:text="LOGOUT" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/leader_projects"

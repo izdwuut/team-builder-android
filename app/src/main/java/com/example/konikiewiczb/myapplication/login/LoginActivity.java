@@ -7,16 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.konikiewiczb.myapplication.R;
 import com.example.konikiewiczb.myapplication.UserAreaActivity;
-import com.example.konikiewiczb.myapplication.framework.ProgressBarToggler;
 import com.example.konikiewiczb.myapplication.model.Repository;
 import com.example.konikiewiczb.myapplication.model.TokenRepository;
 import com.example.konikiewiczb.myapplication.registration.RegistrationActivity;
-import com.example.konikiewiczb.myapplication.projects.list.ProjectsListActivity;
 
 import java.io.InputStream;
 import java.util.HashMap;

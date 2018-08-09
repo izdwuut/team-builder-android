@@ -23,9 +23,8 @@ import com.example.konikiewiczb.myapplication.model.UserProject;
 
 import java.util.List;
 
-public class ProjectsListsFragment extends Fragment implements View.OnClickListener, ProjectsListContract.View{
+public class ProjectsListsFragment extends Fragment implements ProjectsListContract.View{
 
-    Button logout;
     RecyclerView memberProjects, leaderProjects;
     ProjectsListContract.Presenter presenter;
     ProgressBar progressBar;
@@ -34,9 +33,8 @@ public class ProjectsListsFragment extends Fragment implements View.OnClickListe
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.activity_projects_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_projects_list, container, false);
 
-        logout = view.findViewById(R.id.logout);
         progressBar = view.findViewById(R.id.progress_bar);
         showProgressBar();
         leaderProjects = view.findViewById(R.id.leader_projects);
@@ -46,21 +44,15 @@ public class ProjectsListsFragment extends Fragment implements View.OnClickListe
         memberProjects.setAdapter(new UserProjectsAdapter(getActivity().getApplicationContext(), View.INVISIBLE));
         memberProjects.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 
-        logout.setOnClickListener(this);
         Context context = getActivity().getApplicationContext();
         TokenRepository token = new TokenRepository(context);
         TeamLeaderRepository teamLeader = new TeamLeaderRepository(context);
         presenter = new ProjectsListPresenter(this, token, teamLeader);
         presenter.getProjectsList();
 
-        return inflater.inflate(R.layout.activity_projects_list, container, false);
+        return inflater.inflate(R.layout.fragment_projects_list, container, false);
     }
 
-    @Override
-    public void onClick(View view) {
-        presenter.logOut();
-        startActivity(new Intent(getActivity().getApplicationContext(), LoginActivity.class));
-    }
 
     @Override
     public void displayMessage(String message) {
@@ -92,4 +84,5 @@ public class ProjectsListsFragment extends Fragment implements View.OnClickListe
     public void hideProgressBar() {
         progressBar.setVisibility(View.VISIBLE);
     }
+
 }
