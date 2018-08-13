@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,7 @@ public class ProjectsListsFragment extends Fragment implements ProjectsListContr
         leaderProjects.setAdapter(new UserProjectsAdapter(getActivity().getApplicationContext(), View.VISIBLE));
         leaderProjects.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
         memberProjects = view.findViewById(R.id.member_projects);
-        memberProjects.setAdapter(new UserProjectsAdapter(getActivity().getApplicationContext(), View.VISIBLE));
+        memberProjects.setAdapter(new UserProjectsAdapter(getActivity().getApplicationContext(), View.INVISIBLE));
         memberProjects.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 
         Context context = getActivity().getApplicationContext();
@@ -50,7 +51,7 @@ public class ProjectsListsFragment extends Fragment implements ProjectsListContr
         presenter = new ProjectsListPresenter(this, user, teamLeader);
         presenter.getProjectsList();
 
-        return inflater.inflate(R.layout.fragment_projects_list, container, false);
+        return view;
     }
 
 
@@ -62,6 +63,7 @@ public class ProjectsListsFragment extends Fragment implements ProjectsListContr
     @Override
     public void showLeaderProjectsList(List<UserProject> projects) {
         setDataset(leaderProjects, projects);
+        Log.d("PROJECTS", projects.toString());
     }
 
     @Override
