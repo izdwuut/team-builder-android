@@ -1,4 +1,4 @@
-package com.example.konikiewiczb.myapplication.model;
+package com.example.konikiewiczb.myapplication.model.repositories;
 
 import android.content.Context;
 

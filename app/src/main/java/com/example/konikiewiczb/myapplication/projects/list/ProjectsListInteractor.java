@@ -3,8 +3,8 @@ package com.example.konikiewiczb.myapplication.projects.list;
 import com.example.konikiewiczb.myapplication.framework.Api;
 import com.example.konikiewiczb.myapplication.framework.IOnFinishedListener;
 import com.example.konikiewiczb.myapplication.framework.RetrofitClient;
-import com.example.konikiewiczb.myapplication.model.Repository;
 import com.example.konikiewiczb.myapplication.model.User;
+import com.example.konikiewiczb.myapplication.model.repositories.Repository;
 import com.example.konikiewiczb.myapplication.model.UserProject;
 
 import java.io.InputStream;
@@ -16,26 +16,22 @@ import retrofit2.Response;
 
 public class ProjectsListInteractor implements ProjectsListContract.Interactor {
     IOnFinishedListener<Response<List<UserProject>>> presenter;
-    InputStream cert;
-    Repository<String> token;
+    Repository<User> user;
 
-    public ProjectsListInteractor(IOnFinishedListener<Response<List<UserProject>>> presenter, Repository<String> token) {
+    public ProjectsListInteractor(IOnFinishedListener<Response<List<UserProject>>> presenter, Repository<User> user) {
         this.presenter = presenter;
-        this.cert = cert;
-        this.token = token;
+        this.user = user;
     }
 
     @Override
     public void getProjectsList() {
          Call<List<UserProject>> call = RetrofitClient.get(Api.class)
-                .getUserProjects(token.get());
+                .getUserProjects(user.get().getEmailAddress());
 
         call.enqueue(new Callback<List<UserProject>>() {
 
             @Override
             public void onResponse(Call<List<UserProject>> call, Response<List<UserProject>> response) {
-
-                System.out.println("resp: " + response.body());
                 presenter.onResponse(response);
             }
 

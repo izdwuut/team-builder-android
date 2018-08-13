@@ -1,7 +1,5 @@
 package com.example.konikiewiczb.myapplication.framework;
 
-import com.example.konikiewiczb.myapplication.model.User;
-
 import retrofit2.Response;
 
 public interface IOnFinishedLoginListener {

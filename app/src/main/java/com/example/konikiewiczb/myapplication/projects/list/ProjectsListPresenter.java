@@ -1,8 +1,8 @@
 package com.example.konikiewiczb.myapplication.projects.list;
 
 import com.example.konikiewiczb.myapplication.framework.IOnFinishedListener;
-import com.example.konikiewiczb.myapplication.model.Repository;
 import com.example.konikiewiczb.myapplication.model.User;
+import com.example.konikiewiczb.myapplication.model.repositories.Repository;
 import com.example.konikiewiczb.myapplication.model.UserProject;
 
 import java.util.ArrayList;
@@ -12,15 +12,14 @@ import java.util.List;
 import retrofit2.Response;
 
 public class ProjectsListPresenter implements ProjectsListContract.Presenter, IOnFinishedListener<Response<List<UserProject>>> {
-    Repository<String> token, teamLeader;
+    Repository<String> teamLeader;
     ProjectsListContract.View view;
     ProjectsListContract.Interactor interactor;
 
 
-    public ProjectsListPresenter(ProjectsListContract.View view, Repository<String> token, Repository<String> teamLeader) {
-        this.token = token;
+    public ProjectsListPresenter(ProjectsListContract.View view, Repository<User> user, Repository<String> teamLeader) {
         this.view = view;
-        this.interactor = new ProjectsListInteractor(this, token);
+        this.interactor = new ProjectsListInteractor(this, user);
         this.teamLeader = teamLeader;
     }
 

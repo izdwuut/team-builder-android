@@ -3,49 +3,46 @@ package com.example.konikiewiczb.myapplication.login;
 import android.util.Log;
 
 import com.example.konikiewiczb.myapplication.framework.Http;
-import com.example.konikiewiczb.myapplication.framework.IOnFinishedListener;
 import com.example.konikiewiczb.myapplication.framework.IOnFinishedLoginListener;
-import com.example.konikiewiczb.myapplication.model.LoginResponse;
-import com.example.konikiewiczb.myapplication.model.Repository;
 import com.example.konikiewiczb.myapplication.model.User;
-import com.example.konikiewiczb.myapplication.model.UserRegistration;
-import com.example.konikiewiczb.myapplication.registration.RegistrationActivity;
+import com.example.konikiewiczb.myapplication.model.repositories.Repository;
 
 import retrofit2.Response;
 
-public class LoginPresenter implements LoginContract.Presenter, IOnFinishedLoginListener {
+public class LoginPresenter implements LoginContract.Presenter {
     LoginContract.View view;
     LoginContract.Interactor interactor;
-    Repository<String> token;
-    public LoginPresenter(LoginContract.View view, Repository<String> token) {
+    Repository<User> userRepository;
+    User user;
+    public LoginPresenter(LoginContract.View view, Repository<User> userRepository) {
         this.view = view;
-        interactor = new LoginInteractor(this, token);
-        this.token = token;
+        interactor = new LoginInteractor(this, userRepository);
+        this.userRepository = userRepository;
     }
 
     @Override
     public void handleLogin(String login, String password) {
-        interactor.handleLogin(new UserRegistration(login, password));
+        this.user = new User(login, password);
+        interactor.handleLogin(user);
     }
 
     @Override
     public void loadWelcomePage() {
-        if(token.isSet()) {
+        if(userRepository.isSet()) {
             view.loadWelcomePage();
         }
     }
 
     @Override
-    public void onResponse(Response<String> response) {
+    public void logIn(Response<String> response) {
         view.hideProgressBar();
-        Log.d("Response:", String.valueOf(response.code()));
         view.displayMessage(response.body());
         if(Http.isCodeInRange(response.code(), 200)) {
-            loadWelcomePage();
+            interactor.getUser(this.user.getEmailAddress());
         } else {
             view.setError("email", "Niepoprawne dane.");
             view.setError("password", "Niepoprawne dane.");
-            token.remove();
+            userRepository.remove();
         }
     }
 
@@ -53,6 +50,18 @@ public class LoginPresenter implements LoginContract.Presenter, IOnFinishedLogin
     public void onFailure(String message) {
         view.hideProgressBar();
         view.displayMessage(message);
-        token.remove();
+        userRepository.remove();
+    }
+
+
+    @Override
+    public void saveUser(Response<User> response) {
+        if(Http.isCodeInRange(response.code(), 200)) {
+            Log.d("mail", response.body().getEmailAddress());
+            userRepository.set(response.body());
+            loadWelcomePage();
+        } else {
+            view.displayMessage("Wystąpił błąd. Spróbuj ponownie.");
+        }
     }
 }

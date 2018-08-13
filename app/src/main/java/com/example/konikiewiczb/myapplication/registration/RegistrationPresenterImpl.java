@@ -1,9 +1,6 @@
 package com.example.konikiewiczb.myapplication.registration;
 
-import android.util.Log;
-import android.widget.Toast;
-
-import com.example.konikiewiczb.myapplication.model.UserRegistration;
+import com.example.konikiewiczb.myapplication.model.User;
 
 public class RegistrationPresenterImpl implements RegistrationPresenter, RegistrationInteractor.OnRegistrationFinishedListener {
 
@@ -96,8 +93,8 @@ public class RegistrationPresenterImpl implements RegistrationPresenter, Registr
         }
 
         if(dataAreOk){
-            UserRegistration userRegistration = new UserRegistration(emailAdress, firstname, lastname, password, confirmPassword);
-            registrationInteractor.registration(this, userRegistration);
+            User user = new User(emailAdress, firstname, lastname, password, confirmPassword);
+            registrationInteractor.registration(this, user);
         }
     }
 

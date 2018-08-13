@@ -1,9 +1,8 @@
 package com.example.konikiewiczb.myapplication.framework;
 
 
-import com.example.konikiewiczb.myapplication.model.User;
 import com.example.konikiewiczb.myapplication.model.UserProject;
-import com.example.konikiewiczb.myapplication.model.UserRegistration;
+import com.example.konikiewiczb.myapplication.model.User;
 
 import java.util.List;
 
@@ -16,14 +15,16 @@ import retrofit2.http.Path;
 
 public interface Api {
     @POST("User/login")
-    Call<String> login(@Body UserRegistration user);
+    Call<String> login(@Body User user);
 
     @GET("User/{email}/projects")
     Call<List<UserProject>> getUserProjects(@Path("email") String email);
 
     @POST("User")
-    Call<Void> registerUser(@Body UserRegistration userRegistration);
+    Call<Void> registerUser(@Body User user);
 
     @GET("User/Users")
     Call<List<User>> getUserList();
+    @GET("User/{email}")
+    Call<User> getUser(@Path("email") String email);
 }

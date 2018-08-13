@@ -1,25 +1,26 @@
 package com.example.konikiewiczb.myapplication.projects.list;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.konikiewiczb.myapplication.R;
-import com.example.konikiewiczb.myapplication.login.LoginActivity;
-import com.example.konikiewiczb.myapplication.model.TeamLeaderRepository;
-import com.example.konikiewiczb.myapplication.model.TokenRepository;
+import com.example.konikiewiczb.myapplication.model.User;
+import com.example.konikiewiczb.myapplication.model.repositories.Repository;
+import com.example.konikiewiczb.myapplication.model.repositories.TeamLeaderRepository;
+import com.example.konikiewiczb.myapplication.model.repositories.TokenRepository;
 import com.example.konikiewiczb.myapplication.model.UserProject;
+import com.example.konikiewiczb.myapplication.model.repositories.UserRepository;
 
 import java.util.List;
 
@@ -45,12 +46,12 @@ public class ProjectsListsFragment extends Fragment implements ProjectsListContr
         memberProjects.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 
         Context context = getActivity().getApplicationContext();
-        TokenRepository token = new TokenRepository(context);
+        Repository<User> user = new UserRepository(context);
         TeamLeaderRepository teamLeader = new TeamLeaderRepository(context);
-        presenter = new ProjectsListPresenter(this, token, teamLeader);
+        presenter = new ProjectsListPresenter(this, user, teamLeader);
         presenter.getProjectsList();
 
-        return inflater.inflate(R.layout.fragment_projects_list, container, false);
+        return view;
     }
 
 
@@ -62,6 +63,7 @@ public class ProjectsListsFragment extends Fragment implements ProjectsListContr
     @Override
     public void showLeaderProjectsList(List<UserProject> projects) {
         setDataset(leaderProjects, projects);
+        Log.d("PROJECTS", projects.toString());
     }
 
     @Override
@@ -84,5 +86,4 @@ public class ProjectsListsFragment extends Fragment implements ProjectsListContr
     public void hideProgressBar() {
         progressBar.setVisibility(View.INVISIBLE);
     }
-
 }

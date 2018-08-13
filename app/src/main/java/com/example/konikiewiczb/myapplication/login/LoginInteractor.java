@@ -1,18 +1,12 @@
 package com.example.konikiewiczb.myapplication.login;
 
-import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.example.konikiewiczb.myapplication.framework.Api;
-import com.example.konikiewiczb.myapplication.framework.IOnFinishedListener;
 import com.example.konikiewiczb.myapplication.framework.IOnFinishedLoginListener;
 import com.example.konikiewiczb.myapplication.framework.RetrofitClient;
-import com.example.konikiewiczb.myapplication.model.LoginResponse;
-import com.example.konikiewiczb.myapplication.model.Repository;
+import com.example.konikiewiczb.myapplication.model.repositories.Repository;
 import com.example.konikiewiczb.myapplication.model.User;
-import com.example.konikiewiczb.myapplication.model.UserRegistration;
-
-import java.io.InputStream;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,31 +14,47 @@ import retrofit2.Response;
 
 
 public class LoginInteractor implements LoginContract.Interactor {
-    IOnFinishedLoginListener loginPresenter;
-    Repository token;
-
-    public LoginInteractor(IOnFinishedLoginListener loginPresenter, Repository token) {
+    LoginContract.Presenter loginPresenter;
+    Repository<User> user;
+    public LoginInteractor(LoginContract.Presenter loginPresenter, Repository<User> user) {
         this.loginPresenter = loginPresenter;
-        this.token = token;
+        this.user = user;
     }
 
     @Override
-    public void handleLogin(UserRegistration user) {
+    public void handleLogin(User user) {
         Call<String> call = RetrofitClient.get(Api.class)
                 .login(user);
-        token.set(user.getEmailAddress());
         call.enqueue(new Callback<String>() {
 
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                loginPresenter.onResponse(response);
+                loginPresenter.logIn(response);
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 loginPresenter.onFailure(t.getMessage());
                 t.printStackTrace();
+            }
+        });
+    }
 
+    @Override
+    public void getUser(String email) {
+        Call<User> call = RetrofitClient.get(Api.class)
+                .getUser(email);
+        call.enqueue(new Callback<User>() {
+
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                loginPresenter.saveUser(response);
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                loginPresenter.onFailure(t.getMessage());
+                t.printStackTrace();
             }
         });
     }

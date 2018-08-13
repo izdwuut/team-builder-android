@@ -1,10 +1,10 @@
 package com.example.konikiewiczb.myapplication.login;
 
+import com.example.konikiewiczb.myapplication.framework.IOnFinishedLoginListener;
 import com.example.konikiewiczb.myapplication.framework.ProgressBarToggler;
 import com.example.konikiewiczb.myapplication.model.User;
-import com.example.konikiewiczb.myapplication.model.UserRegistration;
 
-import java.io.InputStream;
+import retrofit2.Response;
 
 public interface LoginContract {
     interface View extends ProgressBarToggler {
@@ -18,9 +18,13 @@ public interface LoginContract {
     interface Presenter {
         void handleLogin(String login, String password);
         void loadWelcomePage();
+        void saveUser(Response<User> user);
+        void onFailure(String message);
+        void logIn(Response<String> user);
     }
 
     interface Interactor {
-        void handleLogin(UserRegistration user);
+        void handleLogin(User user);
+        void getUser(String email);
     }
 }
