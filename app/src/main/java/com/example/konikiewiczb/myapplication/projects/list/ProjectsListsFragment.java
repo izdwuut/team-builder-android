@@ -32,7 +32,7 @@ public class ProjectsListsFragment extends Fragment implements ProjectsListContr
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+        getActivity().setTitle("Twoje projekty");
         View view = inflater.inflate(R.layout.fragment_projects_list, container, false);
 
         progressBar = view.findViewById(R.id.progress_bar);

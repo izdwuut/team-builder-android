@@ -6,4 +6,5 @@
     <color name="black">#000</color>
     <color name="white">#FFF</color>
     <color name="header">#2d2d2d</color>
+    <color name="bgUserItem">#c9c9c9</color>
 </resources>

@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.example.konikiewiczb.myapplication.coworkers.CoWorkersFragment;
 import com.example.konikiewiczb.myapplication.login.LoginActivity;
 import com.example.konikiewiczb.myapplication.model.TokenRepository;
 import com.example.konikiewiczb.myapplication.projects.list.ProjectsListsFragment;
@@ -50,10 +51,17 @@ public class UserAreaActivity extends AppCompatActivity implements NavigationVie
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new ProjectsListsFragment()).commit();
                 break;
+
+            case R.id.nav_coworkers:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new CoWorkersFragment()).commit();
+                break;
+
             case R.id.nav_profile:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new ProfileFragment()).commit();
                 break;
+
             case R.id.nav_sign_out:
                 tokenRepository = new TokenRepository(getApplicationContext());
                 tokenRepository.remove();

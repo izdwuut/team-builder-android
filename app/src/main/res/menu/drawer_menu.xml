@@ -9,6 +9,13 @@
             android:icon="@drawable/ic_project_diagram_solid"
             android:checkable="true"
             android:title="Twoje projekty" />
+
+        <item
+            android:id="@+id/nav_coworkers"
+            android:icon="@drawable/ic_users_solid"
+            android:checkable="true"
+            android:title="Wspolpracownicy" />
+
     </group>
 
     <item android:title="Ustawienia">
