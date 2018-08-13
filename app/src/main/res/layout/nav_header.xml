@@ -15,15 +15,16 @@
         android:src="@drawable/logo" />
 
     <TextView
+        android:id="@+id/first_last_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
-        android:text="Firstname Lastname"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="User E-mail"/>
+        />
 
 </LinearLayout>

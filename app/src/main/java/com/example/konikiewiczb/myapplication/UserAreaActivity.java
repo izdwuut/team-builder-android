@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.konikiewiczb.myapplication.coworkers.CoWorkersFragment;
 import com.example.konikiewiczb.myapplication.login.LoginActivity;
@@ -43,7 +45,15 @@ public class UserAreaActivity extends AppCompatActivity implements NavigationVie
                     new ProjectsListsFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_project_list);
         }
+        userRepository = new UserRepository(getApplicationContext());
+        showUserInfo(navigationView.getHeaderView(0), userRepository.get());
+    }
 
+    void showUserInfo(View header, User user) {
+        TextView firstLastName = header.findViewById(R.id.first_last_name);
+        TextView email = header.findViewById(R.id.email);
+        firstLastName.setText(user.toString());
+        email.setText(user.getEmailAddress());
     }
 
     @Override
@@ -65,7 +75,6 @@ public class UserAreaActivity extends AppCompatActivity implements NavigationVie
                 break;
 
             case R.id.nav_sign_out:
-                userRepository = new UserRepository(getApplicationContext());
                 userRepository.remove();
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 break;

@@ -94,4 +94,8 @@ public class User {
     public void setSystemRole(String systemRole) {
         this.systemRole = systemRole;
     }
+
+    public String toString() {
+        return firstname + ' ' + lastname;
+    }
 }
