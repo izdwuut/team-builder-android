@@ -29,7 +29,7 @@ public class LoginInteractor implements LoginContract.Interactor {
 
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                loginPresenter.onResponse(response);
+                loginPresenter.logIn(response);
             }
 
             @Override
@@ -48,7 +48,6 @@ public class LoginInteractor implements LoginContract.Interactor {
 
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                Log.d("RESPonse", response.body().getFirstname());
                 loginPresenter.saveUser(response);
             }
 
@@ -56,7 +55,6 @@ public class LoginInteractor implements LoginContract.Interactor {
             public void onFailure(Call<User> call, Throwable t) {
                 loginPresenter.onFailure(t.getMessage());
                 t.printStackTrace();
-
             }
         });
     }

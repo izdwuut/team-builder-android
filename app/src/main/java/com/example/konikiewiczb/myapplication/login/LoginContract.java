@@ -15,10 +15,12 @@ public interface LoginContract {
         void setError(String field, String error);
     }
 
-    interface Presenter extends IOnFinishedLoginListener {
+    interface Presenter {
         void handleLogin(String login, String password);
         void loadWelcomePage();
         void saveUser(Response<User> user);
+        void onFailure(String message);
+        void logIn(Response<String> user);
     }
 
     interface Interactor {

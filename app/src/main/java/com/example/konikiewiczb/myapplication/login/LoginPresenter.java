@@ -9,7 +9,7 @@ import com.example.konikiewiczb.myapplication.model.repositories.Repository;
 
 import retrofit2.Response;
 
-public class LoginPresenter implements LoginContract.Presenter, IOnFinishedLoginListener {
+public class LoginPresenter implements LoginContract.Presenter {
     LoginContract.View view;
     LoginContract.Interactor interactor;
     Repository<User> userRepository;
@@ -34,11 +34,10 @@ public class LoginPresenter implements LoginContract.Presenter, IOnFinishedLogin
     }
 
     @Override
-    public void onResponse(Response<String> response) {
+    public void logIn(Response<String> response) {
         view.hideProgressBar();
         view.displayMessage(response.body());
         if(Http.isCodeInRange(response.code(), 200)) {
-            Log.d("email:", this.user.getEmailAddress());
             interactor.getUser(this.user.getEmailAddress());
         } else {
             view.setError("email", "Niepoprawne dane.");
