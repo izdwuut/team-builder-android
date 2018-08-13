@@ -12,13 +12,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.konikiewiczb.myapplication.login.LoginActivity;
-import com.example.konikiewiczb.myapplication.model.repositories.TokenRepository;
+import com.example.konikiewiczb.myapplication.model.User;
+import com.example.konikiewiczb.myapplication.model.repositories.Repository;
+import com.example.konikiewiczb.myapplication.model.repositories.UserRepository;
 import com.example.konikiewiczb.myapplication.projects.list.ProjectsListsFragment;
 
 public class UserAreaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private DrawerLayout drawerLayout;
-    private TokenRepository tokenRepository;
+    private Repository<User> userRepository;
 
 
     @Override
@@ -55,8 +57,8 @@ public class UserAreaActivity extends AppCompatActivity implements NavigationVie
                         new ProfileFragment()).commit();
                 break;
             case R.id.nav_sign_out:
-                tokenRepository = new TokenRepository(getApplicationContext());
-                tokenRepository.remove();
+                userRepository = new UserRepository(getApplicationContext());
+                userRepository.remove();
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 break;
         }

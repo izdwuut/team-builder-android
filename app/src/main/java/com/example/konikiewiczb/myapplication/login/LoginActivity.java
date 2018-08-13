@@ -11,8 +11,10 @@ import android.widget.Toast;
 
 import com.example.konikiewiczb.myapplication.R;
 import com.example.konikiewiczb.myapplication.UserAreaActivity;
+import com.example.konikiewiczb.myapplication.model.User;
 import com.example.konikiewiczb.myapplication.model.repositories.Repository;
 import com.example.konikiewiczb.myapplication.model.repositories.TokenRepository;
+import com.example.konikiewiczb.myapplication.model.repositories.UserRepository;
 import com.example.konikiewiczb.myapplication.registration.RegistrationActivity;
 
 import java.io.InputStream;
@@ -27,8 +29,8 @@ public class LoginActivity extends Activity implements LoginContract.View, View.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Repository tokenRepository = new TokenRepository(getApplicationContext());
-        loginPresenter = new LoginPresenter(this, tokenRepository);
+        Repository<User> userRepository = new UserRepository(getApplicationContext());
+        loginPresenter = new LoginPresenter(this, userRepository);
         loginPresenter.loadWelcomePage();
         setContentView(R.layout.activity_login);
 

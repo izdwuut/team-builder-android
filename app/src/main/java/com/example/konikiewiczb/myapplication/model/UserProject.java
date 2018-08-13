@@ -7,7 +7,6 @@ public class UserProject {
     String positionName;
 
     public UserProject(String name, String description, String roleName, String positionName) {
-
         this.name = name;
         this.description = description;
         this.roleName = roleName;

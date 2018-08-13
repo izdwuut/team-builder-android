@@ -14,9 +14,12 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.konikiewiczb.myapplication.R;
+import com.example.konikiewiczb.myapplication.model.User;
+import com.example.konikiewiczb.myapplication.model.repositories.Repository;
 import com.example.konikiewiczb.myapplication.model.repositories.TeamLeaderRepository;
 import com.example.konikiewiczb.myapplication.model.repositories.TokenRepository;
 import com.example.konikiewiczb.myapplication.model.UserProject;
+import com.example.konikiewiczb.myapplication.model.repositories.UserRepository;
 
 import java.util.List;
 
@@ -38,13 +41,13 @@ public class ProjectsListsFragment extends Fragment implements ProjectsListContr
         leaderProjects.setAdapter(new UserProjectsAdapter(getActivity().getApplicationContext(), View.VISIBLE));
         leaderProjects.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
         memberProjects = view.findViewById(R.id.member_projects);
-        memberProjects.setAdapter(new UserProjectsAdapter(getActivity().getApplicationContext(), View.INVISIBLE));
+        memberProjects.setAdapter(new UserProjectsAdapter(getActivity().getApplicationContext(), View.VISIBLE));
         memberProjects.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 
         Context context = getActivity().getApplicationContext();
-        TokenRepository token = new TokenRepository(context);
+        Repository<User> user = new UserRepository(context);
         TeamLeaderRepository teamLeader = new TeamLeaderRepository(context);
-        presenter = new ProjectsListPresenter(this, token, teamLeader);
+        presenter = new ProjectsListPresenter(this, user, teamLeader);
         presenter.getProjectsList();
 
         return inflater.inflate(R.layout.fragment_projects_list, container, false);
@@ -81,5 +84,4 @@ public class ProjectsListsFragment extends Fragment implements ProjectsListContr
     public void hideProgressBar() {
         progressBar.setVisibility(View.INVISIBLE);
     }
-
 }

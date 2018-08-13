@@ -1,14 +1,19 @@
 package com.example.konikiewiczb.myapplication.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class User {
     Integer id;
+    @SerializedName(value="emailAddress", alternate={"userEmail"})
     private String emailAddress;
     private String firstname;
     private String lastname;
     private String password;
     private String confirmPassword;
+    String systemRole;
     String department;
     String status;
+
     public String getEmailAddress() {
         return emailAddress;
     }
@@ -84,5 +89,13 @@ public class User {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getSystemRole() {
+        return systemRole;
+    }
+
+    public void setSystemRole(String systemRole) {
+        this.systemRole = systemRole;
     }
 }

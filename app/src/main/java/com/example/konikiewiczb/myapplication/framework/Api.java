@@ -22,4 +22,7 @@ public interface Api {
 
     @POST("User")
     Call<Void> registerUser(@Body User user);
+
+    @GET("User/{email}")
+    Call<User> getUser(@Path("email") String email);
 }

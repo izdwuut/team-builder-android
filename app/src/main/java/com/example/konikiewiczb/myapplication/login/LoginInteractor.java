@@ -1,5 +1,7 @@
 package com.example.konikiewiczb.myapplication.login;
 
+import android.util.Log;
+
 import com.example.konikiewiczb.myapplication.framework.Api;
 import com.example.konikiewiczb.myapplication.framework.IOnFinishedLoginListener;
 import com.example.konikiewiczb.myapplication.framework.RetrofitClient;
@@ -12,19 +14,17 @@ import retrofit2.Response;
 
 
 public class LoginInteractor implements LoginContract.Interactor {
-    IOnFinishedLoginListener loginPresenter;
-    Repository token;
-
-    public LoginInteractor(IOnFinishedLoginListener loginPresenter, Repository token) {
+    LoginContract.Presenter loginPresenter;
+    Repository<User> user;
+    public LoginInteractor(LoginContract.Presenter loginPresenter, Repository<User> user) {
         this.loginPresenter = loginPresenter;
-        this.token = token;
+        this.user = user;
     }
 
     @Override
     public void handleLogin(User user) {
         Call<String> call = RetrofitClient.get(Api.class)
                 .login(user);
-        token.set(user.getEmailAddress());
         call.enqueue(new Callback<String>() {
 
             @Override
@@ -34,6 +34,26 @@ public class LoginInteractor implements LoginContract.Interactor {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
+                loginPresenter.onFailure(t.getMessage());
+                t.printStackTrace();
+            }
+        });
+    }
+
+    @Override
+    public void getUser(String email) {
+        Call<User> call = RetrofitClient.get(Api.class)
+                .getUser(email);
+        call.enqueue(new Callback<User>() {
+
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                Log.d("RESPonse", response.body().getFirstname());
+                loginPresenter.saveUser(response);
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
                 loginPresenter.onFailure(t.getMessage());
                 t.printStackTrace();
 
