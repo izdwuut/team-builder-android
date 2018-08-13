@@ -4,7 +4,7 @@ import com.example.konikiewiczb.myapplication.framework.Api;
 import com.example.konikiewiczb.myapplication.framework.IOnFinishedLoginListener;
 import com.example.konikiewiczb.myapplication.framework.RetrofitClient;
 import com.example.konikiewiczb.myapplication.model.repositories.Repository;
-import com.example.konikiewiczb.myapplication.model.UserRegistration;
+import com.example.konikiewiczb.myapplication.model.User;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,7 +21,7 @@ public class LoginInteractor implements LoginContract.Interactor {
     }
 
     @Override
-    public void handleLogin(UserRegistration user) {
+    public void handleLogin(User user) {
         Call<String> call = RetrofitClient.get(Api.class)
                 .login(user);
         token.set(user.getEmailAddress());

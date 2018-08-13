@@ -4,8 +4,8 @@ import android.util.Log;
 
 import com.example.konikiewiczb.myapplication.framework.Http;
 import com.example.konikiewiczb.myapplication.framework.IOnFinishedLoginListener;
+import com.example.konikiewiczb.myapplication.model.User;
 import com.example.konikiewiczb.myapplication.model.repositories.Repository;
-import com.example.konikiewiczb.myapplication.model.UserRegistration;
 
 import retrofit2.Response;
 
@@ -21,7 +21,7 @@ public class LoginPresenter implements LoginContract.Presenter, IOnFinishedLogin
 
     @Override
     public void handleLogin(String login, String password) {
-        interactor.handleLogin(new UserRegistration(login, password));
+        interactor.handleLogin(new User(login, password));
     }
 
     @Override

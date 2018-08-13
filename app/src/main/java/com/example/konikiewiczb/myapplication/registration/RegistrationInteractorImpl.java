@@ -1,10 +1,8 @@
 package com.example.konikiewiczb.myapplication.registration;
 
-import android.util.Log;
-
 import com.example.konikiewiczb.myapplication.framework.Api;
 import com.example.konikiewiczb.myapplication.framework.RetrofitClient;
-import com.example.konikiewiczb.myapplication.model.UserRegistration;
+import com.example.konikiewiczb.myapplication.model.User;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -12,9 +10,9 @@ import retrofit2.Response;
 
 public class RegistrationInteractorImpl implements  RegistrationInteractor{
     @Override
-    public void registration(final OnRegistrationFinishedListener listener, UserRegistration userRegistration) {
+    public void registration(final OnRegistrationFinishedListener listener, User user) {
         Call<Void> registrationSendUserData = RetrofitClient.get(Api.class)
-                                .registerUser(userRegistration);
+                                .registerUser(user);
 
         registrationSendUserData.enqueue(new Callback<Void>() {
             @Override

@@ -1,6 +1,6 @@
 package com.example.konikiewiczb.myapplication.registration;
 
-import com.example.konikiewiczb.myapplication.model.UserRegistration;
+import com.example.konikiewiczb.myapplication.model.User;
 
 public interface RegistrationInteractor {
 
@@ -11,5 +11,5 @@ public interface RegistrationInteractor {
         void onFailure();
     }
 
-    void registration(OnRegistrationFinishedListener listener, UserRegistration userRegistration);
+    void registration(OnRegistrationFinishedListener listener, User user);
 }

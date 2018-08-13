@@ -2,73 +2,84 @@ package com.example.konikiewiczb.myapplication.model;
 
 public class User {
     Integer id;
-    String email;
-    String password;
-    String name;
-    String surname;
+    private String emailAddress;
+    private String firstname;
+    private String lastname;
+    private String password;
+    private String confirmPassword;
     String department;
     String status;
-    public User(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
-    public User(Integer id, String email, String password) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
-    public Integer getId() {
-        return id;
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
-    public String getEmail() {
-        return email;
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public String getName() {
-        return name;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    public User(String emailAddress, String password) {
+        this.emailAddress = emailAddress;
+        this.password = password;
+    }
+
+    public User(String emailAddress, String firstname, String lastname, String password, String confirmPassword) {
+        this.emailAddress = emailAddress;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getDepartment() {
         return department;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setId(Integer id) {
-
-        this.id = id;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
     public void setDepartment(String department) {
         this.department = department;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public void setStatus(String status) {

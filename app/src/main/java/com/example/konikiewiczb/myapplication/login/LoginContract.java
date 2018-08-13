@@ -2,9 +2,6 @@ package com.example.konikiewiczb.myapplication.login;
 
 import com.example.konikiewiczb.myapplication.framework.ProgressBarToggler;
 import com.example.konikiewiczb.myapplication.model.User;
-import com.example.konikiewiczb.myapplication.model.UserRegistration;
-
-import java.io.InputStream;
 
 public interface LoginContract {
     interface View extends ProgressBarToggler {
@@ -21,6 +18,6 @@ public interface LoginContract {
     }
 
     interface Interactor {
-        void handleLogin(UserRegistration user);
+        void handleLogin(User user);
     }
 }
