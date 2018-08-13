@@ -12,7 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.konikiewiczb.myapplication.login.LoginActivity;
-import com.example.konikiewiczb.myapplication.model.TokenRepository;
+import com.example.konikiewiczb.myapplication.model.repositories.TokenRepository;
 import com.example.konikiewiczb.myapplication.projects.list.ProjectsListsFragment;
 
 public class UserAreaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{

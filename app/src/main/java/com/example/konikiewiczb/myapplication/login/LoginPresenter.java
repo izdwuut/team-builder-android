@@ -3,13 +3,9 @@ package com.example.konikiewiczb.myapplication.login;
 import android.util.Log;
 
 import com.example.konikiewiczb.myapplication.framework.Http;
-import com.example.konikiewiczb.myapplication.framework.IOnFinishedListener;
 import com.example.konikiewiczb.myapplication.framework.IOnFinishedLoginListener;
-import com.example.konikiewiczb.myapplication.model.LoginResponse;
-import com.example.konikiewiczb.myapplication.model.Repository;
-import com.example.konikiewiczb.myapplication.model.User;
+import com.example.konikiewiczb.myapplication.model.repositories.Repository;
 import com.example.konikiewiczb.myapplication.model.UserRegistration;
-import com.example.konikiewiczb.myapplication.registration.RegistrationActivity;
 
 import retrofit2.Response;
 

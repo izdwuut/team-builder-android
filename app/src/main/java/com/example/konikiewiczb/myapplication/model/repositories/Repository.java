@@ -1,4 +1,4 @@
-package com.example.konikiewiczb.myapplication.model;
+package com.example.konikiewiczb.myapplication.model.repositories;
 
 public interface Repository<T> {
     T get();

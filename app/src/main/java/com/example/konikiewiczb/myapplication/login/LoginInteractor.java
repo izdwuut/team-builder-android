@@ -1,18 +1,10 @@
 package com.example.konikiewiczb.myapplication.login;
 
-import android.preference.PreferenceManager;
-
 import com.example.konikiewiczb.myapplication.framework.Api;
-import com.example.konikiewiczb.myapplication.framework.IOnFinishedListener;
 import com.example.konikiewiczb.myapplication.framework.IOnFinishedLoginListener;
 import com.example.konikiewiczb.myapplication.framework.RetrofitClient;
-import com.example.konikiewiczb.myapplication.model.LoginResponse;
-import com.example.konikiewiczb.myapplication.model.Repository;
-import com.example.konikiewiczb.myapplication.model.User;
+import com.example.konikiewiczb.myapplication.model.repositories.Repository;
 import com.example.konikiewiczb.myapplication.model.UserRegistration;
-
-import java.io.InputStream;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

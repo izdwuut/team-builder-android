@@ -1,8 +1,7 @@
 package com.example.konikiewiczb.myapplication.projects.list;
 
 import com.example.konikiewiczb.myapplication.framework.IOnFinishedListener;
-import com.example.konikiewiczb.myapplication.model.Repository;
-import com.example.konikiewiczb.myapplication.model.User;
+import com.example.konikiewiczb.myapplication.model.repositories.Repository;
 import com.example.konikiewiczb.myapplication.model.UserProject;
 
 import java.util.ArrayList;

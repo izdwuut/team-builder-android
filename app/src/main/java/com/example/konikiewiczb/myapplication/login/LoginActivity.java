@@ -11,8 +11,8 @@ import android.widget.Toast;
 
 import com.example.konikiewiczb.myapplication.R;
 import com.example.konikiewiczb.myapplication.UserAreaActivity;
-import com.example.konikiewiczb.myapplication.model.Repository;
-import com.example.konikiewiczb.myapplication.model.TokenRepository;
+import com.example.konikiewiczb.myapplication.model.repositories.Repository;
+import com.example.konikiewiczb.myapplication.model.repositories.TokenRepository;
 import com.example.konikiewiczb.myapplication.registration.RegistrationActivity;
 
 import java.io.InputStream;
