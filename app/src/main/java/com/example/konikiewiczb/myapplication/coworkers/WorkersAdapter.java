@@ -15,13 +15,23 @@ import java.util.List;
 public class WorkersAdapter extends RecyclerView.Adapter<WorkersAdapter.ViewHolder>{
 
     List<User> userListResponse;
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener{
+        void onItemClcik(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener = listener;
+    }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_user_coworker, parent, false);
-        return new ViewHolder(view);
+
+        return new ViewHolder(view, mListener);
     }
 
     @Override
@@ -40,10 +50,22 @@ public class WorkersAdapter extends RecyclerView.Adapter<WorkersAdapter.ViewHold
         public TextView tvNameLastname;
         public TextView tvEmail;
 
-        public ViewHolder(View v){
+        public ViewHolder(View v, OnItemClickListener listener){
             super(v);
             tvNameLastname = v.findViewById(R.id.tvNameSurname);
             tvEmail = v.findViewById(R.id.tvEmail);
+
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(listener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            listener.onItemClcik(position);
+                        }
+                    }
+                }
+            });
         }
     }
 

@@ -45,6 +45,14 @@ public class CoWorkersPresenterImpl implements CoWorkersContract.CoWorkersPresen
                 layoutManager = new LinearLayoutManager(context);
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setAdapter(workersAdapter);
+                workersAdapter.setOnItemClickListener(new WorkersAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClcik(int position) {
+                        response.body().get(position).setFirstname("CLICKED ELO");
+                        response.body().get(position).setLastname("CLICKED ELO");
+                        workersAdapter.notifyItemChanged(position);
+                    }
+                });
             }
         }
     }

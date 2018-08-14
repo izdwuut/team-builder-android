@@ -30,6 +30,7 @@ public class CoWorkersFragment extends Fragment implements CoWorkersContract.CoW
         coWorkersPresenter = new CoWorkersPresenterImpl(getActivity().getApplicationContext(), this, recyclerView);
         coWorkersPresenter.fetchWorkersList();
 
+
         return view;
     }
 

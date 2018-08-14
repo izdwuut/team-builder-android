@@ -72,3 +72,4 @@ app/src/main/res/raw/font_awesome_solid.otf
 
 # Android Studio
 .idea
+*.orig
