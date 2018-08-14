@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.konikiewiczb.myapplication.ProfileFragment;
 import com.example.konikiewiczb.myapplication.R;
+import com.example.konikiewiczb.myapplication.UserAreaActivity;
 import com.example.konikiewiczb.myapplication.model.User;
 import com.example.konikiewiczb.myapplication.single.employee.SingleEmployeeFragment;
 
@@ -58,15 +60,9 @@ public class CoWorkersPresenterImpl implements CoWorkersContract.CoWorkersPresen
                     @Override
                     public void onItemClcik(int position) {
                         Toast.makeText(context, response.body().get(position).getEmailAddress(),Toast.LENGTH_SHORT).show();
-//                        Fragment fragment = new SingleEmployeeFragment();
-//                        AppCompatActivity activity = (AppCompatActivity) context.getApplicationContext();
-//                        activity.getSupportFragmentManager().beginTransaction()
-//                                .replace(R.id.fragment_container, fragment)
-//                                .addToBackStack(null)
-//                                .commit();
-//                        response.body().get(position).setFirstname("CLICKED ELO");
-//                        response.body().get(position).setLastname("CLICKED ELO");
-//                        workersAdapter.notifyItemChanged(position);
+                        FragmentTransaction fragmentTransaction = UserAreaActivity.fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.fragment_container, new SingleEmployeeFragment());
+                        fragmentTransaction.commit();
                     }
                 });
             }
