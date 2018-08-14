@@ -1,13 +1,12 @@
 package com.example.konikiewiczb.myapplication.projects.list;
 
-import com.example.konikiewiczb.myapplication.framework.Api;
+import com.example.konikiewiczb.myapplication.framework.http.Api;
 import com.example.konikiewiczb.myapplication.framework.IOnFinishedListener;
-import com.example.konikiewiczb.myapplication.framework.RetrofitClient;
+import com.example.konikiewiczb.myapplication.framework.http.RetrofitClient;
 import com.example.konikiewiczb.myapplication.model.User;
 import com.example.konikiewiczb.myapplication.model.repositories.Repository;
 import com.example.konikiewiczb.myapplication.model.UserProject;
 
-import java.io.InputStream;
 import java.util.List;
 
 import retrofit2.Call;

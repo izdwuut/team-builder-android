@@ -2,8 +2,7 @@ package com.example.konikiewiczb.myapplication.login;
 
 import android.util.Log;
 
-import com.example.konikiewiczb.myapplication.framework.Http;
-import com.example.konikiewiczb.myapplication.framework.IOnFinishedLoginListener;
+import com.example.konikiewiczb.myapplication.framework.http.Http;
 import com.example.konikiewiczb.myapplication.model.User;
 import com.example.konikiewiczb.myapplication.model.repositories.Repository;
 

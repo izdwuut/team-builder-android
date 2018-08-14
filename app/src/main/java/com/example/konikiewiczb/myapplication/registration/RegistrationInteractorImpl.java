@@ -1,7 +1,7 @@
 package com.example.konikiewiczb.myapplication.registration;
 
-import com.example.konikiewiczb.myapplication.framework.Api;
-import com.example.konikiewiczb.myapplication.framework.RetrofitClient;
+import com.example.konikiewiczb.myapplication.framework.http.Api;
+import com.example.konikiewiczb.myapplication.framework.http.RetrofitClient;
 import com.example.konikiewiczb.myapplication.model.User;
 
 import retrofit2.Call;

@@ -1,6 +1,4 @@
-package com.example.konikiewiczb.myapplication.framework;
-
-import android.support.annotation.Nullable;
+package com.example.konikiewiczb.myapplication.framework.http;
 
 import com.example.konikiewiczb.myapplication.BuildConfig;
 import com.example.konikiewiczb.myapplication.Config;

@@ -1,10 +1,7 @@
 package com.example.konikiewiczb.myapplication.login;
 
-import android.util.Log;
-
-import com.example.konikiewiczb.myapplication.framework.Api;
-import com.example.konikiewiczb.myapplication.framework.IOnFinishedLoginListener;
-import com.example.konikiewiczb.myapplication.framework.RetrofitClient;
+import com.example.konikiewiczb.myapplication.framework.http.Api;
+import com.example.konikiewiczb.myapplication.framework.http.RetrofitClient;
 import com.example.konikiewiczb.myapplication.model.repositories.Repository;
 import com.example.konikiewiczb.myapplication.model.User;
 

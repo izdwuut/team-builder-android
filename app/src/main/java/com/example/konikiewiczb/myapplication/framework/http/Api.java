@@ -1,4 +1,4 @@
-package com.example.konikiewiczb.myapplication.framework;
+package com.example.konikiewiczb.myapplication.framework.http;
 
 
 import com.example.konikiewiczb.myapplication.model.UserProject;
