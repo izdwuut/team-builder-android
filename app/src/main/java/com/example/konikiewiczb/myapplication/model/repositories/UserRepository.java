@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.konikiewiczb.myapplication.Config;
+import com.example.konikiewiczb.myapplication.framework.json.GsonConverter;
 import com.example.konikiewiczb.myapplication.model.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -14,7 +15,7 @@ public class UserRepository implements Repository<User> {
     Gson gson;
     public UserRepository(Context context) {
         prefs = context.getSharedPreferences(prefs_key, Context.MODE_PRIVATE);
-        gson = new GsonBuilder().create();
+        gson = GsonConverter.get();
     }
 
     @Override
