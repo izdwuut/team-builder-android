@@ -92,7 +92,7 @@ public class RegistrationActivity extends Activity implements RegistrationView, 
     public void showSuccess() {
         final Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Rejestracja zakończone sukcesem.\nNa podany adress e-mail wysłaliśmy link aktywacyjny.")
+        builder.setMessage("Rejestracja zakończone sukcesem.\nNa podany adres e-mail wysłaliśmy link aktywacyjny.")
                 .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

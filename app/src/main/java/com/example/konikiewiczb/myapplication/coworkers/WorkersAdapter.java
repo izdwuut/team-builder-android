@@ -27,7 +27,7 @@ public class WorkersAdapter extends RecyclerView.Adapter<WorkersAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         User user = userListResponse.get(position);
-        holder.tvNameLastname.setText(user.getFirstname() + " " + user.getLastname());
+        holder.tvNameLastname.setText(user.toString());
         holder.tvEmail.setText(user.getEmailAddress());
     }
 
