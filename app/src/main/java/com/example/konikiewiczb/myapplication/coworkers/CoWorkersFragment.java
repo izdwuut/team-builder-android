@@ -66,7 +66,7 @@ public class CoWorkersFragment extends Fragment implements CoWorkersContract.CoW
     @Override
     public void adapterThisShit(Response<List<User>> response) {
         for(int i = 0; i < response.body().size(); i++){
-            workersAdapter = new WorkersAdapter(response.body());
+            workersAdapter = new WorkersAdapter(response.body(),getContext());
             layoutManager = new LinearLayoutManager(getContext());
             fragmentManager = getFragmentManager();
             recyclerView.setLayoutManager(layoutManager);
