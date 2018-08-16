@@ -12,13 +12,16 @@ import com.example.konikiewiczb.myapplication.model.User;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class WorkersAdapter extends RecyclerView.Adapter<WorkersAdapter.ViewHolder>{
 
     List<User> userListResponse;
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener{
-        void onItemClcik(int position);
+        void onItemClick(int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener){
@@ -47,13 +50,12 @@ public class WorkersAdapter extends RecyclerView.Adapter<WorkersAdapter.ViewHold
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView tvNameLastname;
-        public TextView tvEmail;
+        @BindView(R.id.tvNameSurname) public TextView tvNameLastname;
+        @BindView(R.id.tvEmail) public TextView tvEmail;
 
         public ViewHolder(View v, OnItemClickListener listener){
             super(v);
-            tvNameLastname = v.findViewById(R.id.tvNameSurname);
-            tvEmail = v.findViewById(R.id.tvEmail);
+            ButterKnife.bind(this, v);
 
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -61,7 +63,7 @@ public class WorkersAdapter extends RecyclerView.Adapter<WorkersAdapter.ViewHold
                     if(listener != null){
                         int position = getAdapterPosition();
                         if(position != RecyclerView.NO_POSITION){
-                            listener.onItemClcik(position);
+                            listener.onItemClick(position);
                         }
                     }
                 }

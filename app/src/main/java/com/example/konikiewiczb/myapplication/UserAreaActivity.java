@@ -21,21 +21,23 @@ import com.example.konikiewiczb.myapplication.model.repositories.Repository;
 import com.example.konikiewiczb.myapplication.model.repositories.UserRepository;
 import com.example.konikiewiczb.myapplication.projects.list.ProjectsListsFragment;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class UserAreaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    private DrawerLayout drawerLayout;
+    @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
     private Repository<User> userRepository;
-
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.nav_view) NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_area);
+        ButterKnife.bind(this);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        drawerLayout = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
