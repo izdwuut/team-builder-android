@@ -22,7 +22,6 @@ import com.example.konikiewiczb.myapplication.coworkers.employee.SingleEmployeeF
 import com.example.konikiewiczb.myapplication.model.User;
 import com.example.konikiewiczb.myapplication.model.repositories.Repository;
 import com.example.konikiewiczb.myapplication.model.repositories.TeamLeaderRepository;
-import com.example.konikiewiczb.myapplication.model.repositories.TokenRepository;
 import com.example.konikiewiczb.myapplication.model.UserProject;
 import com.example.konikiewiczb.myapplication.model.repositories.UserRepository;
 
@@ -38,7 +37,7 @@ public class ProjectsListsFragment extends Fragment implements ProjectsListContr
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getActivity().setTitle("Twoje projekty");
+        getActivity().setTitle(getString(R.string.app_user_projects));
         View view = inflater.inflate(R.layout.fragment_projects_list, container, false);
 
         progressBar = view.findViewById(R.id.progress_bar);

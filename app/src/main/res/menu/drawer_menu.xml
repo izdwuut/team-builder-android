@@ -8,28 +8,28 @@
             android:id="@+id/nav_project_list"
             android:icon="@drawable/ic_project_diagram_solid"
             android:checkable="true"
-            android:title="Twoje projekty" />
+            android:title="@string/app_user_projects" />
 
         <item
             android:id="@+id/nav_coworkers"
             android:icon="@drawable/ic_users_solid"
             android:checkable="true"
-            android:title="Wspolpracownicy" />
+            android:title="@string/app_co_workers" />
 
     </group>
 
-    <item android:title="Ustawienia">
+    <item android:title="@string/settings">
         <menu>
             <item
                 android:id="@+id/nav_profile"
                 android:icon="@drawable/ic_user_ninja_solid"
                 android:checkable="true"
-                android:title="Profil" />
+                android:title="@string/app_profile" />
             <item
                 android:id="@+id/nav_sign_out"
                 android:icon="@drawable/ic_sign_out_alt_solid"
                 android:checkable="true"
-                android:title="Wyloguj" />
+                android:title="@string/logout" />
         </menu>
     </item>
 

@@ -26,6 +26,7 @@ public class LoginActivity extends Activity implements LoginContract.View, View.
     LoginPresenter loginPresenter;
     ProgressBar progressBar;
     Map<String, EditText> inputs;
+    EditText email, password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,10 +39,9 @@ public class LoginActivity extends Activity implements LoginContract.View, View.
         login.setOnClickListener(this);
         progressBar = findViewById(R.id.progress_bar);
         hideProgressBar();
-
         inputs = new HashMap<>();
-        inputs.put("email", (EditText) findViewById(R.id.email));
-        inputs.put("password", (EditText) findViewById(R.id.password));
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
     }
 
     @Override
@@ -62,12 +62,27 @@ public class LoginActivity extends Activity implements LoginContract.View, View.
     @Override
     public void onClick(View view) {
         showProgressBar();
-        loginPresenter.handleLogin(inputs.get("email").getText().toString(), inputs.get("password").getText().toString());
+        loginPresenter.handleLogin(email.getText().toString(), password.getText().toString());
     }
 
     @Override
     public void loadWelcomePage() {
         startActivity(new Intent(getApplicationContext(),UserAreaActivity.class));
+    }
+
+    @Override
+    public void setEmailError() {
+        setError(email, getString(R.string.email_error));
+    }
+
+    @Override
+    public void setPasswordError() {
+        setError(password, getString(R.string.password_error));
+    }
+
+    @Override
+    public void showSaveUserError() {
+        displayMessage(getString(R.string.save_user_error));
     }
 
     public InputStream getCert() {
@@ -79,7 +94,7 @@ public class LoginActivity extends Activity implements LoginContract.View, View.
         startActivity(new Intent(getApplicationContext(),RegistrationActivity.class));
     }
 
-    public void setError(String field, String error) {
-        inputs.get(field).setError(error);
+    void setError(EditText field, String error) {
+        field.setError(error);
     }
 }

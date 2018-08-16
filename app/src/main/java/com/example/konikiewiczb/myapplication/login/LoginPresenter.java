@@ -39,8 +39,8 @@ public class LoginPresenter implements LoginContract.Presenter {
         if(Http.isCodeInRange(response.code(), 200)) {
             interactor.getUser(this.user.getEmailAddress());
         } else {
-            view.setError("email", "Niepoprawne dane.");
-            view.setError("password", "Niepoprawne dane.");
+            view.setEmailError();
+            view.setPasswordError();
             userRepository.remove();
         }
     }
@@ -60,7 +60,7 @@ public class LoginPresenter implements LoginContract.Presenter {
             userRepository.set(response.body());
             loadWelcomePage();
         } else {
-            view.displayMessage("Wystąpił błąd. Spróbuj ponownie.");
+            view.showSaveUserError();
         }
     }
 }
