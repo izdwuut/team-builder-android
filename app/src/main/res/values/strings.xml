@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">Transition Technologies Managed Services</string>
     <string name="app_projects_list">Lista projektow</string>
-    <string name="app_user_project">Twoje projekty</string>
+    <string name="app_user_projects">Twoje projekty</string>
     <string name="leader_role" translatable="false">Team Leader</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -24,4 +24,8 @@
     <string name="lastname_hint">Nazwisko</string>
     <string name="confirm_password_hint">Potwierdź hasło</string>
     <string name="cancel">Anuluj</string>
+    <string name="app_co_workers">Lista współpracowników</string>
+    <string name="app_profile">Profil</string>
+    <string name="logout">Logout</string>
+    <string name="settings">Ustawienia</string>
 </resources>

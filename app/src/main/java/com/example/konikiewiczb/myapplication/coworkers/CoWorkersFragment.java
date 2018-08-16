@@ -21,7 +21,7 @@ public class CoWorkersFragment extends Fragment implements CoWorkersContract.CoW
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getActivity().setTitle("Lista współpracowników");
+        getActivity().setTitle(getString(R.string.app_co_workers));
         View view = inflater.inflate(R.layout.fragment_coworkers, container, false);
 
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
