@@ -1,6 +1,7 @@
 package com.example.konikiewiczb.myapplication.registration;
 
 import com.example.konikiewiczb.myapplication.framework.http.Api;
+import com.example.konikiewiczb.myapplication.framework.http.Http;
 import com.example.konikiewiczb.myapplication.framework.http.RetrofitClient;
 import com.example.konikiewiczb.myapplication.model.User;
 
@@ -17,7 +18,7 @@ public class RegistrationInteractorImpl implements  RegistrationInteractor{
         registrationSendUserData.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if(response.code()>=200 && response.code()<300){
+                if(Http.isCodeInRange(response.code(), 200)){
                     listener.onSuccess();
                 }else{
                     listener.onFailure();
