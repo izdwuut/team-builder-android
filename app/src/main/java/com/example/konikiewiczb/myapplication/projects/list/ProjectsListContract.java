@@ -10,7 +10,6 @@ public interface ProjectsListContract {
          void displayMessage(String message);
          void showLeaderProjectsList(List<UserProject> projects);
          void showMemberProjectsList(List<UserProject> projects);
-
     }
 
     interface Presenter {

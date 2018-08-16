@@ -1,4 +1,4 @@
-package com.example.konikiewiczb.myapplication.single.employee;
+package com.example.konikiewiczb.myapplication.coworkers.employee;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

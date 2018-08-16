@@ -15,9 +15,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.konikiewiczb.myapplication.R;
-import com.example.konikiewiczb.myapplication.UserAreaActivity;
 import com.example.konikiewiczb.myapplication.model.User;
-import com.example.konikiewiczb.myapplication.single.employee.SingleEmployeeFragment;
+import com.example.konikiewiczb.myapplication.coworkers.employee.SingleEmployeeFragment;
 
 import java.util.List;
 

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.konikiewiczb.myapplication.R;
+import com.example.konikiewiczb.myapplication.coworkers.WorkersAdapter;
 import com.example.konikiewiczb.myapplication.framework.views.IconTextView;
 import com.example.konikiewiczb.myapplication.model.UserProject;
 
@@ -17,18 +18,40 @@ public class UserProjectsAdapter extends RecyclerView.Adapter<UserProjectsAdapte
     private List<UserProject> dataset;
     Context context;
     int visibility;
+    private OnProjectClickListener mListener;
+
+    public interface OnProjectClickListener{
+        void onItemClick(int position);
+    }
+
+    public void setOnProjectClickListener(OnProjectClickListener listener){
+        mListener = listener;
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView projectName;
         public TextView position;
         public TextView role;
         public IconTextView leaderIcon;
 
-        public ViewHolder(View v) {
+        public ViewHolder(View v, OnProjectClickListener listener) {
             super(v);
             projectName = v.findViewById(R.id.project_name);
             role = v.findViewById(R.id.role);
             position = v.findViewById(R.id.position);
             leaderIcon = v.findViewById(R.id.icon_leader);
+
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(listener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 
@@ -43,7 +66,7 @@ public class UserProjectsAdapter extends RecyclerView.Adapter<UserProjectsAdapte
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_user_project, parent, false);
 
-        return new ViewHolder(v);
+        return new ViewHolder(v, mListener);
     }
 
     @Override
