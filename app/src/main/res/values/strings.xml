@@ -5,7 +5,23 @@
     <string name="leader_role" translatable="false">Team Leader</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="email_error">Niepoprawne dane.</string>
-    <string name="password_error">Niepoprawne dane.</string>
+    <string name="email_error">Podany adres E-mail jest niepoprawny!</string>
+    <string name="password_error">Podane hasło jest nieprawidłowe!</string>
     <string name="save_user_error">Wystąpił błąd. Spróbuj ponownie.</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Hasło</string>
+    <string name="login_button">Zaloguj</string>
+    <string name="login_separator">LUB</string>
+    <string name="register">Zarejestruj</string>
+    <string name="registration_successful">Rejestracja zakończone sukcesem.\nNa podany adres e-mail wysłaliśmy link aktywacyjny.</string>
+    <string name="registration_failed">Niestety rejestracja się nie powiodła.\nPrzepraszamy.</string>
+    <string name="negative_button">Ok</string>
+    <string name="firstname_error">To pole nie może być puste!</string>
+    <string name="lastname_error">To pole nie może być puste!</string>
+    <string name="confirm_password_error">Hasła muszą być takie same!</string>
+    <string name="firstname_hint">Imię</string>
+    <string name="email_ttms_hint">Adres E-mail TTMS</string>
+    <string name="lastname_hint">Nazwisko</string>
+    <string name="confirm_password_hint">Potwierdź hasło</string>
+    <string name="cancel">Anuluj</string>
 </resources>

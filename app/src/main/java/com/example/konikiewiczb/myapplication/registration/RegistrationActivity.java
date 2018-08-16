@@ -60,31 +60,31 @@ public class RegistrationActivity extends Activity implements RegistrationView, 
 
     @Override
     public void showEmailError() {
-        etEmail.setError("Podany adres E-mail jest niepoprawny!");
+        etEmail.setError(getString(R.string.email_error));
         hideProgress();
     }
 
     @Override
     public void showFirstnameError() {
-        etFirstname.setError("To pole nie może być puste!");
+        etFirstname.setError(getString(R.string.firstname_error));
         hideProgress();
     }
 
     @Override
     public void showLastnameError() {
-        etLastname.setError("To pole nie może być puste!");
+        etLastname.setError(getString(R.string.lastname_error));
         hideProgress();
     }
 
     @Override
     public void showPasswordError() {
-        etPwd.setError("Podane hasło jest nie prawidłowe!");
+        etPwd.setError(getString(R.string.password_error));
         hideProgress();
     }
 
     @Override
     public void showConfirmPasswordError() {
-        etConfirmPwd.setError("Hasła muszą być takie same!");
+        etConfirmPwd.setError(getString(R.string.confirm_password_error));
         hideProgress();
     }
 
@@ -92,8 +92,8 @@ public class RegistrationActivity extends Activity implements RegistrationView, 
     public void showSuccess() {
         final Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Rejestracja zakończone sukcesem.\nNa podany adres e-mail wysłaliśmy link aktywacyjny.")
-                .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+        builder.setMessage(getString(R.string.registration_successful))
+                .setNegativeButton(getString(R.string.negative_button), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         RegistrationActivity.this.startActivity(intent);
@@ -109,8 +109,8 @@ public class RegistrationActivity extends Activity implements RegistrationView, 
         final Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         RegistrationActivity.this.startActivity(intent);
-        builder.setMessage("Niestety rejestracja się nie powiodła.\nPrzepraszamy")
-                .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+        builder.setMessage(getString(R.string.registration_failed))
+                .setNegativeButton(getString(R.string.negative_button), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         RegistrationActivity.this.startActivity(intent);
