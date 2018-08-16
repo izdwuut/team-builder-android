@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">Transition Technologies Managed Services</string>
+    <string name="app_name" translatable="false">Transition Technologies Managed Services</string>
     <string name="app_projects_list">Lista projektow</string>
     <string name="app_user_project">Twoje projekty</string>
-    <string name="leader_role">Team Leader</string>
+    <string name="leader_role" translatable="false">Team Leader</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="email_error">Niepoprawne dane.</string>
+    <string name="password_error">Niepoprawne dane.</string>
+    <string name="save_user_error">Wystąpił błąd. Spróbuj ponownie.</string>
 </resources>

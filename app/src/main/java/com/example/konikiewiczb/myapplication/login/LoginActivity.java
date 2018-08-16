@@ -72,17 +72,17 @@ public class LoginActivity extends Activity implements LoginContract.View, View.
 
     @Override
     public void setEmailError() {
-        setError(email, "Niepoprawne dane.");
+        setError(email, getString(R.string.email_error));
     }
 
     @Override
     public void setPasswordError() {
-        setError(password, "Niepoprawne dane.");
+        setError(password, getString(R.string.password_error));
     }
 
     @Override
     public void showSaveUserError() {
-        displayMessage("Wystąpił błąd. Spróbuj ponownie.");
+        displayMessage(getString(R.string.save_user_error));
     }
 
     public InputStream getCert() {
