@@ -11,8 +11,9 @@ public interface LoginContract {
         void displayMessage(String message);
 
         void loadWelcomePage();
-
-        void setError(String field, String error);
+        void setEmailError();
+        void setPasswordError();
+        void showSaveUserError();
     }
 
     interface Presenter {
