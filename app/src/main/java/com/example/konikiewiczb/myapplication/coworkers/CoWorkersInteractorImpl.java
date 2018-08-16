@@ -1,6 +1,7 @@
 package com.example.konikiewiczb.myapplication.coworkers;
 
 import com.example.konikiewiczb.myapplication.framework.http.Api;
+import com.example.konikiewiczb.myapplication.framework.http.Http;
 import com.example.konikiewiczb.myapplication.framework.http.RetrofitClient;
 import com.example.konikiewiczb.myapplication.model.User;
 
@@ -19,7 +20,7 @@ public class CoWorkersInteractorImpl implements CoWorkersContract.CoWorkersInter
         fetchCoworkers.enqueue(new Callback<List<User>>() {
             @Override
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                if(response.code()>=200 && response.code()<300){
+                if(Http.isCodeInRange(response.code(),200)){
                     onFetchingDataFinishedListener.onSuccess(response);
                 }else{
                     onFetchingDataFinishedListener.onFailure();

@@ -9,7 +9,7 @@ public class FontAwesomeTypeface {
 
     public static android.graphics.Typeface get(Context context) {
         if(font == null) {
-            //font = android.graphics.Typeface.createFromAsset(context.getAssets(), Config.ICONS_FONT);
+            font = android.graphics.Typeface.createFromAsset(context.getAssets(), Config.ICONS_FONT);
         }
         return font;
     }
