@@ -1,6 +1,7 @@
 package com.example.konikiewiczb.myapplication.model;
 
 public class UserProject {
+    Integer projectId;
     String name;
     String description;
     String roleName;
@@ -44,4 +45,11 @@ public class UserProject {
         this.positionName = positionName;
     }
 
+    public Integer getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
+    }
 }

@@ -26,11 +26,15 @@ import com.example.konikiewiczb.myapplication.model.repositories.UserRepository;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ProjectsListsFragment extends Fragment implements ProjectsListContract.View{
 
-    RecyclerView memberProjects, leaderProjects;
+    @BindView(R.id.member_projects) RecyclerView memberProjects;
+    @BindView(R.id.leader_projects) RecyclerView leaderProjects;
     ProjectsListContract.Presenter presenter;
-    ProgressBar progressBar;
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
     FragmentManager fragmentManager;
 
     @Nullable
@@ -38,13 +42,11 @@ public class ProjectsListsFragment extends Fragment implements ProjectsListContr
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getActivity().setTitle(getString(R.string.app_user_projects));
         View view = inflater.inflate(R.layout.fragment_projects_list, container, false);
+        ButterKnife.bind(this, view);
 
-        progressBar = view.findViewById(R.id.progress_bar);
         showProgressBar();
-        leaderProjects = view.findViewById(R.id.leader_projects);
         leaderProjects.setAdapter(new UserProjectsAdapter(getActivity().getApplicationContext(), View.VISIBLE));
         leaderProjects.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-        memberProjects = view.findViewById(R.id.member_projects);
         memberProjects.setAdapter(new UserProjectsAdapter(getActivity().getApplicationContext(), View.INVISIBLE));
         memberProjects.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 

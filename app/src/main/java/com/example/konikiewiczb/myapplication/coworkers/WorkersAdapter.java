@@ -14,11 +14,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.konikiewiczb.myapplication.R;
+import com.example.konikiewiczb.myapplication.framework.Dataset;
 import com.example.konikiewiczb.myapplication.model.User;
 
 import java.util.List;
 
-public class WorkersAdapter extends RecyclerView.Adapter<WorkersAdapter.ViewHolder>{
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class WorkersAdapter extends RecyclerView.Adapter<WorkersAdapter.ViewHolder> implements Dataset {
 
     private List<User> userListResponse;
     private OnItemClickListener mListener;
@@ -26,7 +30,7 @@ public class WorkersAdapter extends RecyclerView.Adapter<WorkersAdapter.ViewHold
     private Context context;
 
     public interface OnItemClickListener{
-        void onItemClcik(int position);
+        void onItemClick(int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener){
@@ -69,19 +73,17 @@ public class WorkersAdapter extends RecyclerView.Adapter<WorkersAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return userListResponse.size();
+        return userListResponse == null ? 0 : userListResponse.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        private ConstraintLayout item_worker;
-        public TextView tvNameLastname;
-        public TextView tvEmail;
+        @BindView(R.id.tvNameSurname) public TextView tvNameLastname;
+        @BindView(R.id.tvEmail) public TextView tvEmail;
+        @BindView(R.id.worker_item_id) public ConstraintLayout item_worker;
 
         public ViewHolder(View v, OnItemClickListener listener){
             super(v);
-            item_worker = (ConstraintLayout) v.findViewById(R.id.worker_item_id);
-            tvNameLastname = v.findViewById(R.id.tvNameSurname);
-            tvEmail = v.findViewById(R.id.tvEmail);
+            ButterKnife.bind(this, v);
 
 //            v.setOnClickListener(new View.OnClickListener() {
 //                @Override
@@ -97,9 +99,25 @@ public class WorkersAdapter extends RecyclerView.Adapter<WorkersAdapter.ViewHold
         }
     }
 
+
+
+    public WorkersAdapter() {
+
+    }
+
     public WorkersAdapter(List<User> userList, Context context){
         this.userListResponse = userList;
         this.context = context;
     }
+
+    public WorkersAdapter(Context context){
+        this.context = context;
+    }
+
+    @Override
+    public void setDataset(List dataset) {
+        this.userListResponse = dataset;
+    }
+
 
 }

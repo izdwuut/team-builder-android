@@ -29,6 +29,7 @@
     <string name="logout">Logout</string>
     <string name="settings">Ustawienia</string>
     <string name="role">Rola</string>
+    <string name="app_single_employee">Pojedyńczy pracownik</string>
     <string name="change_pass">Zmień hasło</string>
     <string name="change_data">Zmień dane</string>
     <string name="change_email">Zmień E-mail</string>
