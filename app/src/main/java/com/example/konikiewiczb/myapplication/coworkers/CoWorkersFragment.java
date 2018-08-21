@@ -20,12 +20,14 @@ import com.example.konikiewiczb.myapplication.coworkers.employee.SingleEmployeeF
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Response;
 
 public class CoWorkersFragment extends Fragment implements CoWorkersContract.CoWorkersView{
 
-    private ProgressBar progressBar;
-    private RecyclerView recyclerView;
+    @BindView(R.id.progressBar) ProgressBar progressBar;
+    @BindView(R.id.rvList) RecyclerView recyclerView;
     private CoWorkersContract.CoWorkersPresenter coWorkersPresenter;
     private WorkersAdapter workersAdapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -37,13 +39,10 @@ public class CoWorkersFragment extends Fragment implements CoWorkersContract.CoW
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getActivity().setTitle(getString(R.string.app_co_workers));
         View view = inflater.inflate(R.layout.fragment_coworkers, container, false);
-
-        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
-        recyclerView = (RecyclerView) view.findViewById(R.id.rvList);
+        ButterKnife.bind(this, view);
 
         coWorkersPresenter = new CoWorkersPresenterImpl(this);
         coWorkersPresenter.fetchWorkersList();
-
 
         return view;
     }
@@ -73,7 +72,7 @@ public class CoWorkersFragment extends Fragment implements CoWorkersContract.CoW
             recyclerView.setAdapter(workersAdapter);
             workersAdapter.setOnItemClickListener(new WorkersAdapter.OnItemClickListener() {
                 @Override
-                public void onItemClcik(int position) {
+                public void onItemClick(int position) {
                     Toast.makeText(getContext(), response.body().get(position).getEmailAddress(),Toast.LENGTH_SHORT).show();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.fragment_container, new SingleEmployeeFragment());

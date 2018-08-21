@@ -14,7 +14,7 @@ public class SingleEmployeeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getActivity().setTitle("Pojedyńczy pracownik");
+        getActivity().setTitle(getString(R.string.app_single_employee));
         View view = inflater.inflate(R.layout.fragment_single_employy, container, false);
 
         return view;

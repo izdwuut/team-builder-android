@@ -14,14 +14,18 @@ import com.example.konikiewiczb.myapplication.framework.Extensions;
 import com.example.konikiewiczb.myapplication.R;
 import com.example.konikiewiczb.myapplication.login.LoginActivity;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class RegistrationActivity extends Activity implements RegistrationView, View.OnClickListener {
 
-    private EditText etEmail;
-    private EditText etFirstname;
-    private EditText etLastname;
-    private EditText etPwd;
-    private EditText etConfirmPwd;
-    private ProgressBar progressBar;
+    @BindView(R.id.etEmail) EditText etEmail;
+    @BindView(R.id.etFirstname) EditText etFirstname;
+    @BindView(R.id.etLastname) EditText etLastname;
+    @BindView(R.id.etPwd) EditText etPwd;
+    @BindView(R.id.etConfirmPwd) EditText etConfirmPwd;
+    @BindView(R.id.progressBar2) ProgressBar progressBar;
 
     private RegistrationPresenter registrationPresenter;
 
@@ -29,28 +33,12 @@ public class RegistrationActivity extends Activity implements RegistrationView, 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-
-        etEmail = (EditText) findViewById(R.id.etEmail);
-        etFirstname = (EditText) findViewById(R.id.etFirstname);
-        etLastname = (EditText) findViewById(R.id.etLastname);
-        etPwd = (EditText) findViewById(R.id.etPwd);
-        etConfirmPwd = (EditText) findViewById(R.id.etConfirmPwd);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar2);
+        ButterKnife.bind(this);
 
         registrationPresenter = new RegistrationPresenterImpl(this);
-
-        findViewById(R.id.bSendData).setOnClickListener(this);
-
-        Button bCancel = (Button) findViewById(R.id.bCancel);
-        bCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigateToLogin();
-            }
-        });
-
     }
 
+    @OnClick(R.id.bSendData)
     @Override
     public void onClick(View view) {
         showProgress();
@@ -120,6 +108,7 @@ public class RegistrationActivity extends Activity implements RegistrationView, 
                 .show();
     }
 
+    @OnClick(R.id.bCancel)
     @Override
     public void navigateToLogin() {
         hideProgress();

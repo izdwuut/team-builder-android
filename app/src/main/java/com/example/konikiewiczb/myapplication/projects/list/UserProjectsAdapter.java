@@ -14,6 +14,9 @@ import com.example.konikiewiczb.myapplication.model.UserProject;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class UserProjectsAdapter extends RecyclerView.Adapter<UserProjectsAdapter.ViewHolder> {
     private List<UserProject> dataset;
     Context context;
@@ -29,17 +32,14 @@ public class UserProjectsAdapter extends RecyclerView.Adapter<UserProjectsAdapte
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView projectName;
-        public TextView position;
-        public TextView role;
-        public IconTextView leaderIcon;
+        @BindView(R.id.project_name) public TextView projectName;
+        @BindView(R.id.position) public TextView position;
+        @BindView(R.id.role) public TextView role;
+        @BindView(R.id.icon_leader) public IconTextView leaderIcon;
 
         public ViewHolder(View v, OnProjectClickListener listener) {
             super(v);
-            projectName = v.findViewById(R.id.project_name);
-            role = v.findViewById(R.id.role);
-            position = v.findViewById(R.id.position);
-            leaderIcon = v.findViewById(R.id.icon_leader);
+            ButterKnife.bind(this, v);
 
             v.setOnClickListener(new View.OnClickListener() {
                 @Override

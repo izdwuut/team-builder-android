@@ -21,27 +21,25 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class LoginActivity extends Activity implements LoginContract.View, View.OnClickListener {
-    Button login;
+    @BindView(R.id.sign_in) Button login;
     LoginPresenter loginPresenter;
-    ProgressBar progressBar;
-    Map<String, EditText> inputs;
-    EditText email, password;
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
+    @BindView(R.id.email) EditText email;
+    @BindView(R.id.password) EditText password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+        ButterKnife.bind(this);
         Repository<User> userRepository = new UserRepository(getApplicationContext());
         loginPresenter = new LoginPresenter(this, userRepository);
         loginPresenter.loadWelcomePage();
-        setContentView(R.layout.activity_login);
-
-        login = findViewById(R.id.sign_in);
-        login.setOnClickListener(this);
-        progressBar = findViewById(R.id.progress_bar);
         hideProgressBar();
-        inputs = new HashMap<>();
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
     }
 
     @Override
@@ -59,6 +57,7 @@ public class LoginActivity extends Activity implements LoginContract.View, View.
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
+    @OnClick(R.id.sign_in)
     @Override
     public void onClick(View view) {
         showProgressBar();
