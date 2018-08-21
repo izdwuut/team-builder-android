@@ -3,7 +3,6 @@ package com.example.konikiewiczb.myapplication;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -19,6 +18,7 @@ import com.example.konikiewiczb.myapplication.login.LoginActivity;
 import com.example.konikiewiczb.myapplication.model.User;
 import com.example.konikiewiczb.myapplication.model.repositories.Repository;
 import com.example.konikiewiczb.myapplication.model.repositories.UserRepository;
+import com.example.konikiewiczb.myapplication.profile.ProfileFragment;
 import com.example.konikiewiczb.myapplication.projects.list.ProjectsListsFragment;
 
 public class UserAreaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{

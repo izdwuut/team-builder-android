@@ -52,7 +52,7 @@ public class WorkersAdapter extends RecyclerView.Adapter<WorkersAdapter.ViewHold
                 TextView dialog_email_tv = (TextView) dialog.findViewById(R.id.tvEmail);
                 dialog_name_tv.setText(userListResponse.get(viewHolder.getAdapterPosition()).toString());
                 dialog_email_tv.setText(userListResponse.get(viewHolder.getAdapterPosition()).getEmailAddress());
-                Toast.makeText(context,"Test clist " + String.valueOf(viewHolder.getAdapterPosition()),Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,userListResponse.get(viewHolder.getAdapterPosition()).toString(),Toast.LENGTH_SHORT).show();
                 dialog.show();
             }
         });

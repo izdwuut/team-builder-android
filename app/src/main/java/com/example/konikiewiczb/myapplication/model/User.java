@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class User {
     Integer id;
-    @SerializedName(value="emailAddress", alternate={"userEmail"})
+    @SerializedName(value="emailAddress", alternate={"EmailAddress"})
     private String emailAddress;
     private String firstname;
     private String lastname;

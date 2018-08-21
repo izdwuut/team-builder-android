@@ -16,9 +16,8 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.konikiewiczb.myapplication.ProfileFragment;
+import com.example.konikiewiczb.myapplication.profile.ProfileFragment;
 import com.example.konikiewiczb.myapplication.R;
-import com.example.konikiewiczb.myapplication.coworkers.employee.SingleEmployeeFragment;
 import com.example.konikiewiczb.myapplication.model.User;
 import com.example.konikiewiczb.myapplication.model.repositories.Repository;
 import com.example.konikiewiczb.myapplication.model.repositories.TeamLeaderRepository;

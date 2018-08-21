@@ -28,4 +28,11 @@
     <string name="app_profile">Profil</string>
     <string name="logout">Logout</string>
     <string name="settings">Ustawienia</string>
+    <string name="role">Rola</string>
+    <string name="change_pass">Zmień hasło</string>
+    <string name="change_data">Zmień dane</string>
+    <string name="change_email">Zmień E-mail</string>
+    <string name="add_technology">Dodaj technologie</string>
+    <string name="image_description">image description</string>
+    <string name="profil_tittle">Twój profil</string>
 </resources>

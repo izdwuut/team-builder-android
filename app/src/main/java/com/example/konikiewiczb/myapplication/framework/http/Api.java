@@ -20,11 +20,15 @@ public interface Api {
     @GET("User/{email}/projects")
     Call<List<UserProject>> getUserProjects(@Path("email") String email);
 
-    @POST("User")
+    @POST("User/register")
     Call<Void> registerUser(@Body User user);
 
-    @GET("User/Users")
+    @GET("User")
     Call<List<User>> getUserList();
+
     @GET("User/{email}")
     Call<User> getUser(@Path("email") String email);
+
+    @GET("User/{email}/technologies")
+    Call<List<Object>> getUserTechnologiesList(@Path("email") String email);
 }
