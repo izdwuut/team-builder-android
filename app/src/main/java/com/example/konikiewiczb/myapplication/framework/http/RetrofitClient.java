@@ -2,6 +2,7 @@ package com.example.konikiewiczb.myapplication.framework.http;
 
 import com.example.konikiewiczb.myapplication.BuildConfig;
 import com.example.konikiewiczb.myapplication.Config;
+import com.example.konikiewiczb.myapplication.framework.json.GsonConverter;
 
 import java.security.cert.CertificateFactory;
 
@@ -31,7 +32,7 @@ public class RetrofitClient {
     private RetrofitClient (Class<Api> api, InputStream cert) {
         Retrofit.Builder builder = new retrofit2.Retrofit.Builder()
                 .baseUrl(BuildConfig.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create());
+                .addConverterFactory(GsonConverterFactory.create(GsonConverter.get()));
         if(BuildConfig.USE_SSL_CERT) {
             OkHttpClient client = getHttpClient(cert);
             builder.client(client);
@@ -51,6 +52,9 @@ public class RetrofitClient {
             instance = new RetrofitClient(api, cert);
         }
         return instance.getApi();
+    }
+    public static Api get() {
+        return get(Api.class);
     }
 
     Api getApi() {
