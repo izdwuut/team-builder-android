@@ -24,6 +24,7 @@
     <string name="lastname_hint">Nazwisko</string>
     <string name="confirm_password_hint">Potwierdź hasło</string>
     <string name="cancel">Anuluj</string>
+    <string name="anuluj">Anuluj</string>
     <string name="app_co_workers">Lista współpracowników</string>
     <string name="app_profile">Profil</string>
     <string name="logout">Logout</string>
@@ -36,4 +37,7 @@
     <string name="add_technology">Dodaj technologie</string>
     <string name="image_description">image description</string>
     <string name="profil_tittle">Twój profil</string>
+    <string name="technoloy">Technology</string>
+    <string name="technoloy_confirm_del">Czy na pewno chcesz usunąć wybraną technologię?</string>
+    <string name="confirm">Tak</string>
 </resources>

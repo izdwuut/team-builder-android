@@ -84,33 +84,12 @@ public class WorkersAdapter extends RecyclerView.Adapter<WorkersAdapter.ViewHold
         public ViewHolder(View v, OnItemClickListener listener){
             super(v);
             ButterKnife.bind(this, v);
-
-//            v.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    if(listener != null){
-//                        int position = getAdapterPosition();
-//                        if(position != RecyclerView.NO_POSITION){
-//                            listener.onItemClcik(position);
-//                        }
-//                    }
-//                }
-//            });
         }
     }
 
 
-
-    public WorkersAdapter() {
-
-    }
-
     public WorkersAdapter(List<User> userList, Context context){
         this.userListResponse = userList;
-        this.context = context;
-    }
-
-    public WorkersAdapter(Context context){
         this.context = context;
     }
 

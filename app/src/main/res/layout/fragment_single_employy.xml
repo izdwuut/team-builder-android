@@ -8,7 +8,7 @@
         android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#232323"
+        android:background="@color/header"
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
@@ -38,7 +38,8 @@
             android:padding="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
+            android:background="@color/white"
+            android:textColor="@color/header"
             android:text="Dodaj do projektu"
             android:layout_marginTop="10dp"/>
 

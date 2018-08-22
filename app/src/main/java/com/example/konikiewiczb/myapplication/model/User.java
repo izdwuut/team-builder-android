@@ -2,6 +2,8 @@ package com.example.konikiewiczb.myapplication.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class User {
     Integer id;
     @SerializedName(value="emailAddress", alternate={"EmailAddress"})
@@ -10,6 +12,7 @@ public class User {
     private String lastname;
     private String password;
     private String confirmPassword;
+    private List<Technology> userTechnologies;
     String systemRole;
     String department;
     String status;
@@ -93,6 +96,14 @@ public class User {
 
     public void setSystemRole(String systemRole) {
         this.systemRole = systemRole;
+    }
+
+    public List<Technology> getUserTechnologies() {
+        return userTechnologies;
+    }
+
+    public void setUserTechnologies(List<Technology> userTechnologies) {
+        this.userTechnologies = userTechnologies;
     }
 
     public String toString() {

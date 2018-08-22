@@ -1,6 +1,7 @@
 package com.example.konikiewiczb.myapplication.framework.http;
 
 
+import com.example.konikiewiczb.myapplication.model.Technology;
 import com.example.konikiewiczb.myapplication.model.UserProject;
 import com.example.konikiewiczb.myapplication.model.User;
 
@@ -9,6 +10,7 @@ import java.util.List;
 import retrofit2.http.Body;
 
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -30,5 +32,8 @@ public interface Api {
     Call<User> getUser(@Path("email") String email);
 
     @GET("User/{email}/technologies")
-    Call<List<Object>> getUserTechnologiesList(@Path("email") String email);
+    Call<List<Technology>> getUserTechnologiesList(@Path("email") String email);
+
+    @DELETE("User/{emailAddress}/technology/{technologyId}")
+    Call<Void> deleteThisTechnology(@Path("emailAddress") String email, @Path("technologyId") int id);
 }

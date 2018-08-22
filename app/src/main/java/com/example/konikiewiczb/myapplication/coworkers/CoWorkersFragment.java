@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,7 +15,6 @@ import android.widget.Toast;
 
 import com.example.konikiewiczb.myapplication.R;
 import com.example.konikiewiczb.myapplication.model.User;
-import com.example.konikiewiczb.myapplication.coworkers.employee.SingleEmployeeFragment;
 
 import java.util.List;
 
@@ -74,9 +72,6 @@ public class CoWorkersFragment extends Fragment implements CoWorkersContract.CoW
                 @Override
                 public void onItemClick(int position) {
                     Toast.makeText(getContext(), response.body().get(position).getEmailAddress(),Toast.LENGTH_SHORT).show();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container, new SingleEmployeeFragment());
-                    fragmentTransaction.commit();
                 }
             });
         }
