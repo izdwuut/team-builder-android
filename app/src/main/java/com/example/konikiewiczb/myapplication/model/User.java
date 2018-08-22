@@ -14,8 +14,17 @@ public class User {
     private String confirmPassword;
     private List<Technology> userTechnologies;
     String systemRole;
-    String department;
     String status;
+
+    public String getPositionName() {
+        return positionName;
+    }
+
+    public void setPositionName(String positionName) {
+        this.positionName = positionName;
+    }
+
+    String positionName;
 
     public String getEmailAddress() {
         return emailAddress;
@@ -76,10 +85,6 @@ public class User {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getDepartment() {
-        return department;
     }
 
     public String getStatus() {

@@ -24,7 +24,7 @@ import retrofit2.Response;
 
 public class CoWorkersFragment extends Fragment implements CoWorkersContract.CoWorkersView{
 
-    @BindView(R.id.progressBar) ProgressBar progressBar;
+//    @BindView(R.id.progressBar) ProgressBar progressBar;
     @BindView(R.id.rvList) RecyclerView recyclerView;
     private CoWorkersContract.CoWorkersPresenter coWorkersPresenter;
     private WorkersAdapter workersAdapter;
@@ -47,12 +47,13 @@ public class CoWorkersFragment extends Fragment implements CoWorkersContract.CoW
 
     @Override
     public void showProgressBar() {
-        progressBar.setVisibility(View.VISIBLE);
+//        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-        progressBar.setVisibility(View.INVISIBLE);
+
+//        progressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override

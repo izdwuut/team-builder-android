@@ -13,13 +13,10 @@ import com.example.konikiewiczb.myapplication.R;
 import com.example.konikiewiczb.myapplication.UserAreaActivity;
 import com.example.konikiewiczb.myapplication.model.User;
 import com.example.konikiewiczb.myapplication.model.repositories.Repository;
-import com.example.konikiewiczb.myapplication.model.repositories.TokenRepository;
 import com.example.konikiewiczb.myapplication.model.repositories.UserRepository;
 import com.example.konikiewiczb.myapplication.registration.RegistrationActivity;
 
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -81,7 +78,7 @@ public class LoginActivity extends Activity implements LoginContract.View, View.
 
     @Override
     public void showSaveUserError() {
-        displayMessage(getString(R.string.save_user_error));
+        displayMessage(getString(R.string.generic_error));
     }
 
     public InputStream getCert() {
