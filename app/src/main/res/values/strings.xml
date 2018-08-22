@@ -7,7 +7,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="email_error">Podany adres E-mail jest niepoprawny!</string>
     <string name="password_error">Podane hasło jest nieprawidłowe!</string>
-    <string name="save_user_error">Wystąpił błąd. Spróbuj ponownie.</string>
+    <string name="generic_error">Wystąpił błąd. Spróbuj ponownie.</string>
     <string name="email_hint">Email</string>
     <string name="password_hint">Hasło</string>
     <string name="login_button">Zaloguj</string>
