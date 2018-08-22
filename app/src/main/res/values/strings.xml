@@ -23,8 +23,7 @@
     <string name="email_ttms_hint">Adres E-mail TTMS</string>
     <string name="lastname_hint">Nazwisko</string>
     <string name="confirm_password_hint">Potwierdź hasło</string>
-    <string name="cancel">Anuluj</string>
-    <string name="anuluj">Anuluj</string>
+    <string name="cancel_string">Anuluj</string>
     <string name="app_co_workers">Lista współpracowników</string>
     <string name="app_profile">Profil</string>
     <string name="logout">Logout</string>

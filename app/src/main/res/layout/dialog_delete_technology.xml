@@ -51,7 +51,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@android:color/white"
                 android:padding="20dp"
-                android:text="@string/anuluj"
+                android:text="@string/cancel_string"
                 android:textSize="20sp"
                 android:textColor="@color/header"
                 app:layout_constraintBottom_toBottomOf="parent"
