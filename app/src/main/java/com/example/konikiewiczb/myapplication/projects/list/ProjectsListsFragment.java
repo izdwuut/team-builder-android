@@ -23,6 +23,7 @@ import com.example.konikiewiczb.myapplication.model.repositories.Repository;
 import com.example.konikiewiczb.myapplication.model.repositories.TeamLeaderRepository;
 import com.example.konikiewiczb.myapplication.model.UserProject;
 import com.example.konikiewiczb.myapplication.model.repositories.UserRepository;
+import com.example.konikiewiczb.myapplication.projects.project.ProjectFragment;
 
 import java.util.List;
 
@@ -68,7 +69,6 @@ public class ProjectsListsFragment extends Fragment implements ProjectsListContr
     @Override
     public void showLeaderProjectsList(List<UserProject> projects) {
         setDataset(leaderProjects, projects);
-        Log.d("PROJECTS", projects.toString());
     }
 
     @Override
@@ -84,9 +84,15 @@ public class ProjectsListsFragment extends Fragment implements ProjectsListContr
         adapter.setOnProjectClickListener(new UserProjectsAdapter.OnProjectClickListener() {
             @Override
             public void onItemClick(int position) {
-                Toast.makeText(getContext(), dataset.get(position).getName(),Toast.LENGTH_SHORT).show();
+                UserProject item = dataset.get(position);
+                ProjectFragment fragment = new ProjectFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", item.getProjectId());
+                fragment.setArguments(bundle);
+
+                Toast.makeText(getContext(), item.getName(),Toast.LENGTH_SHORT).show();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new ProfileFragment());
+                fragmentTransaction.replace(R.id.fragment_container, fragment);
                 fragmentTransaction.commit();
             }
         });

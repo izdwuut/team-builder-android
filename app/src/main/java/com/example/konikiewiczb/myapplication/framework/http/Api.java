@@ -2,6 +2,7 @@ package com.example.konikiewiczb.myapplication.framework.http;
 
 
 import com.example.konikiewiczb.myapplication.model.Technology;
+import com.example.konikiewiczb.myapplication.model.Project;
 import com.example.konikiewiczb.myapplication.model.UserProject;
 import com.example.konikiewiczb.myapplication.model.User;
 
@@ -34,6 +35,8 @@ public interface Api {
     @GET("User/{email}/technologies")
     Call<List<Technology>> getUserTechnologiesList(@Path("email") String email);
 
+    @GET("Project/{id}")
+    Call<Project> getProject(@Path("id") Integer id);
     @DELETE("User/{emailAddress}/technology/{technologyId}")
     Call<Void> deleteThisTechnology(@Path("emailAddress") String email, @Path("technologyId") int id);
 }

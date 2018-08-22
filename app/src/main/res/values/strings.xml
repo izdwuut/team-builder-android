@@ -40,4 +40,13 @@
     <string name="technoloy">Technology</string>
     <string name="technoloy_confirm_del">Czy na pewno chcesz usunąć wybraną technologię?</string>
     <string name="confirm">Tak</string>
+
+    <string name="project_start_date">Data startu</string>
+    <string name="project_end_date">Data zakończenia</string>
+    <string name="app_single_project">Pojedyńczy projekt</string>
+
+    <string name="project_candidates">Kandydaci</string>
+    <string name="project_participants">Uczestnicy</string>
+    <string name="project_entries">Stanowiska</string>
+    <string name="project_technologies">Technologie</string>
 </resources>

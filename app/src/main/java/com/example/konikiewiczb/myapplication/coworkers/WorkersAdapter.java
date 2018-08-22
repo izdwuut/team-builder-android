@@ -98,5 +98,7 @@ public class WorkersAdapter extends RecyclerView.Adapter<WorkersAdapter.ViewHold
         this.userListResponse = dataset;
     }
 
-
+    public WorkersAdapter(Context context) {
+        this.context = context;
+    }
 }
