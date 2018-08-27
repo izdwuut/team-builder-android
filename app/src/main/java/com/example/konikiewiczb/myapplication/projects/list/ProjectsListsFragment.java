@@ -4,19 +4,15 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.konikiewiczb.myapplication.profile.ProfileFragment;
 import com.example.konikiewiczb.myapplication.framework.view.GenericFragment;
 import com.example.konikiewiczb.myapplication.R;
 import com.example.konikiewiczb.myapplication.model.User;
@@ -24,6 +20,7 @@ import com.example.konikiewiczb.myapplication.model.repositories.Repository;
 import com.example.konikiewiczb.myapplication.model.repositories.TeamLeaderRepository;
 import com.example.konikiewiczb.myapplication.model.UserProject;
 import com.example.konikiewiczb.myapplication.model.repositories.UserRepository;
+import com.example.konikiewiczb.myapplication.projects.list.adapter.UserProjectsAdapter;
 import com.example.konikiewiczb.myapplication.projects.project.ProjectFragment;
 
 import java.util.List;
@@ -46,9 +43,10 @@ public class ProjectsListsFragment extends GenericFragment implements ProjectsLi
         ButterKnife.bind(this, view);
 
         progressBar.show();
-        leaderProjects.setAdapter(new UserProjectsAdapter(getActivity().getApplicationContext(), View.VISIBLE));
+        FragmentManager fm = getFragmentManager();
+        leaderProjects.setAdapter(new UserProjectsAdapter(View.VISIBLE, fm));
         leaderProjects.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-        memberProjects.setAdapter(new UserProjectsAdapter(getActivity().getApplicationContext(), View.INVISIBLE));
+        memberProjects.setAdapter(new UserProjectsAdapter(View.INVISIBLE, fm));
         memberProjects.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 
         Context context = getActivity().getApplicationContext();
@@ -81,20 +79,5 @@ public class ProjectsListsFragment extends GenericFragment implements ProjectsLi
         UserProjectsAdapter adapter = (UserProjectsAdapter) view.getAdapter();
         adapter.setDataset(dataset);
         adapter.notifyDataSetChanged();
-        adapter.setOnProjectClickListener(new UserProjectsAdapter.OnProjectClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                UserProject item = dataset.get(position);
-                ProjectFragment fragment = new ProjectFragment();
-                Bundle bundle = new Bundle();
-                bundle.putInt("id", item.getProjectId());
-                fragment.setArguments(bundle);
-
-                Toast.makeText(getContext(), item.getName(),Toast.LENGTH_SHORT).show();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, fragment);
-                fragmentTransaction.commit();
-            }
-        });
     }
 }
