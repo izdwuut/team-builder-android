@@ -28,7 +28,7 @@ public class CoWorkersPresenterImpl implements CoWorkersContract.CoWorkersPresen
 
     @Override
     public void onSuccess(Response<List<User>> response) {
-        coWorkersView.hideProgressBar();
+        coWorkersView.getProgressBar().show();
         if(response.isSuccessful()){
             coWorkersView.adapterThisShit(response);
         }
@@ -36,7 +36,6 @@ public class CoWorkersPresenterImpl implements CoWorkersContract.CoWorkersPresen
 
     @Override
     public void onFailure() {
-        coWorkersView.hideProgressBar();
-        coWorkersView.showError();
+        coWorkersView.getProgressBar().hide();
     }
 }

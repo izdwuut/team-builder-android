@@ -1,7 +1,6 @@
 package com.example.konikiewiczb.myapplication.coworkers;
 
-import android.support.v7.widget.RecyclerView;
-
+import com.example.konikiewiczb.myapplication.framework.views.progress_bar.ProgressBarHandler;
 import com.example.konikiewiczb.myapplication.model.User;
 
 import java.util.List;
@@ -10,7 +9,7 @@ import retrofit2.Response;
 
 public interface CoWorkersContract {
 
-    interface CoWorkersPresenter{
+    interface CoWorkersPresenter {
 
         void fetchWorkersList();
 
@@ -18,9 +17,9 @@ public interface CoWorkersContract {
 
     }
 
-    interface CoWorkersInteractor{
+    interface CoWorkersInteractor {
 
-        interface OnFetchingDataFinishedListener{
+        interface OnFetchingDataFinishedListener {
 
             void onSuccess(Response<List<User>> response);
 
@@ -32,13 +31,8 @@ public interface CoWorkersContract {
 
     }
 
-    interface CoWorkersView{
+    interface CoWorkersView extends ProgressBarHandler {
 
-        void showProgressBar();
-
-        void hideProgressBar();
-
-        void showError();
 
         void adapterThisShit(Response<List<User>> response);
 

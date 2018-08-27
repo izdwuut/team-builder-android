@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.konikiewiczb.myapplication.R;
+import com.example.konikiewiczb.myapplication.framework.views.GenericFragment;
 import com.example.konikiewiczb.myapplication.model.User;
 
 import java.util.List;
@@ -22,21 +23,18 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Response;
 
-public class CoWorkersFragment extends Fragment implements CoWorkersContract.CoWorkersView{
-
-//    @BindView(R.id.progressBar) ProgressBar progressBar;
+public class CoWorkersFragment extends GenericFragment implements CoWorkersContract.CoWorkersView{
     @BindView(R.id.rvList) RecyclerView recyclerView;
     private CoWorkersContract.CoWorkersPresenter coWorkersPresenter;
     private WorkersAdapter workersAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    private FragmentManager fragmentManager;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getActivity().setTitle(getString(R.string.app_co_workers));
-        View view = inflater.inflate(R.layout.fragment_coworkers, container, false);
+        View view = inflate(R.layout.fragment_coworkers, inflater, container);
         ButterKnife.bind(this, view);
 
         coWorkersPresenter = new CoWorkersPresenterImpl(this);
@@ -46,27 +44,10 @@ public class CoWorkersFragment extends Fragment implements CoWorkersContract.CoW
     }
 
     @Override
-    public void showProgressBar() {
-//        progressBar.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void hideProgressBar() {
-
-//        progressBar.setVisibility(View.INVISIBLE);
-    }
-
-    @Override
-    public void showError() {
-
-    }
-
-    @Override
     public void adapterThisShit(Response<List<User>> response) {
         for(int i = 0; i < response.body().size(); i++){
             workersAdapter = new WorkersAdapter(response.body(),getContext());
             layoutManager = new LinearLayoutManager(getContext());
-            fragmentManager = getFragmentManager();
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(workersAdapter);
             workersAdapter.setOnItemClickListener(new WorkersAdapter.OnItemClickListener() {
