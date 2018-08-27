@@ -13,6 +13,7 @@ public class ProjectPresenter implements ProjectContract.Presenter {
 
     @Override
     public void getProject(Integer id) {
+        view.getProgressBar().show();
         interactor.getProject(id);
     }
 
@@ -29,6 +30,7 @@ public class ProjectPresenter implements ProjectContract.Presenter {
         view.showEntries(project.getProjectEntries());
         view.showCandidates(project.getProjectCandidates());
         view.showTechnologies(project.getProjectTechnologies());
+        view.getProgressBar().hide();
     }
 
     @Override

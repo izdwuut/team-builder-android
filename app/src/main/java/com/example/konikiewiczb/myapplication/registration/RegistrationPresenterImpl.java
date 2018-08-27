@@ -19,7 +19,7 @@ public class RegistrationPresenterImpl implements RegistrationPresenter, Registr
 
     @Override
     public void onFailure() {
-        registrationView.hideProgress();
+        registrationView.getProgressBar().hide();
         registrationView.showFailureAler();
     }
 
@@ -96,6 +96,7 @@ public class RegistrationPresenterImpl implements RegistrationPresenter, Registr
             User user = new User(emailAdress, firstname, lastname, password, confirmPassword);
             registrationInteractor.registration(this, user);
         }
+        registrationView.getProgressBar().hide();
     }
 
     @Override

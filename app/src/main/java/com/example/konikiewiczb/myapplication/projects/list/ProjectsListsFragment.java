@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.konikiewiczb.myapplication.framework.views.GenericFragment;
 import com.example.konikiewiczb.myapplication.profile.ProfileFragment;
 import com.example.konikiewiczb.myapplication.R;
 import com.example.konikiewiczb.myapplication.model.User;
@@ -30,22 +31,21 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ProjectsListsFragment extends Fragment implements ProjectsListContract.View{
+public class ProjectsListsFragment extends GenericFragment implements ProjectsListContract.View{
 
     @BindView(R.id.member_projects) RecyclerView memberProjects;
     @BindView(R.id.leader_projects) RecyclerView leaderProjects;
     ProjectsListContract.Presenter presenter;
-    @BindView(R.id.progress_bar) ProgressBar progressBar;
     FragmentManager fragmentManager;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getActivity().setTitle(getString(R.string.app_user_projects));
-        View view = inflater.inflate(R.layout.fragment_projects_list, container, false);
+        View view = inflate(R.layout.fragment_projects_list, inflater, container);
         ButterKnife.bind(this, view);
 
-        showProgressBar();
+        progressBar.show();
         leaderProjects.setAdapter(new UserProjectsAdapter(getActivity().getApplicationContext(), View.VISIBLE));
         leaderProjects.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
         memberProjects.setAdapter(new UserProjectsAdapter(getActivity().getApplicationContext(), View.INVISIBLE));
@@ -96,15 +96,5 @@ public class ProjectsListsFragment extends Fragment implements ProjectsListContr
                 fragmentTransaction.commit();
             }
         });
-    }
-
-    @Override
-    public void showProgressBar() {
-        progressBar.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void hideProgressBar() {
-        progressBar.setVisibility(View.INVISIBLE);
     }
 }

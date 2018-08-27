@@ -12,20 +12,20 @@ import android.widget.ProgressBar;
 
 import com.example.konikiewiczb.myapplication.framework.Extensions;
 import com.example.konikiewiczb.myapplication.R;
+import com.example.konikiewiczb.myapplication.framework.views.GenericActivity;
 import com.example.konikiewiczb.myapplication.login.LoginActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class RegistrationActivity extends Activity implements RegistrationView, View.OnClickListener {
+public class RegistrationActivity extends GenericActivity implements RegistrationView, View.OnClickListener {
 
     @BindView(R.id.etEmail) EditText etEmail;
     @BindView(R.id.etFirstname) EditText etFirstname;
     @BindView(R.id.etLastname) EditText etLastname;
     @BindView(R.id.etPwd) EditText etPwd;
     @BindView(R.id.etConfirmPwd) EditText etConfirmPwd;
-    @BindView(R.id.progressBar2) ProgressBar progressBar;
 
     private RegistrationPresenter registrationPresenter;
 
@@ -33,6 +33,7 @@ public class RegistrationActivity extends Activity implements RegistrationView, 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        init();
         ButterKnife.bind(this);
 
         registrationPresenter = new RegistrationPresenterImpl(this);
@@ -41,7 +42,7 @@ public class RegistrationActivity extends Activity implements RegistrationView, 
     @OnClick(R.id.bSendData)
     @Override
     public void onClick(View view) {
-        showProgress();
+        progressBar.show();
         Extensions.hideKeyboard(this);
         registrationPresenter.validateData(etEmail.getText().toString(), etFirstname.getText().toString(), etLastname.getText().toString(), etPwd.getText().toString(), etConfirmPwd.getText().toString());
     }
@@ -49,31 +50,26 @@ public class RegistrationActivity extends Activity implements RegistrationView, 
     @Override
     public void showEmailError() {
         etEmail.setError(getString(R.string.email_error));
-        hideProgress();
     }
 
     @Override
     public void showFirstnameError() {
         etFirstname.setError(getString(R.string.firstname_error));
-        hideProgress();
     }
 
     @Override
     public void showLastnameError() {
         etLastname.setError(getString(R.string.lastname_error));
-        hideProgress();
     }
 
     @Override
     public void showPasswordError() {
         etPwd.setError(getString(R.string.password_error));
-        hideProgress();
     }
 
     @Override
     public void showConfirmPasswordError() {
         etConfirmPwd.setError(getString(R.string.confirm_password_error));
-        hideProgress();
     }
 
     @Override
@@ -93,7 +89,7 @@ public class RegistrationActivity extends Activity implements RegistrationView, 
 
     @Override
     public void showFailureAler() {
-        hideProgress();
+        progressBar.hide();
         final Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         RegistrationActivity.this.startActivity(intent);
@@ -111,18 +107,8 @@ public class RegistrationActivity extends Activity implements RegistrationView, 
     @OnClick(R.id.bCancel)
     @Override
     public void navigateToLogin() {
-        hideProgress();
+        progressBar.hide();
         Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
         RegistrationActivity.this.startActivity(intent);
-    }
-
-    @Override
-    public void showProgress() {
-        progressBar.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void hideProgress() {
-        progressBar.setVisibility(View.INVISIBLE);
     }
 }

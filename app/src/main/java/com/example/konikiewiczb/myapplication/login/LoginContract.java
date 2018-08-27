@@ -1,13 +1,12 @@
 package com.example.konikiewiczb.myapplication.login;
 
-import com.example.konikiewiczb.myapplication.framework.IOnFinishedLoginListener;
-import com.example.konikiewiczb.myapplication.framework.ProgressBarToggler;
+import com.example.konikiewiczb.myapplication.framework.views.progress_bar.ProgressBarHandler;
 import com.example.konikiewiczb.myapplication.model.User;
 
 import retrofit2.Response;
 
 public interface LoginContract {
-    interface View extends ProgressBarToggler {
+    interface View extends ProgressBarHandler {
         void displayMessage(String message);
 
         void loadWelcomePage();

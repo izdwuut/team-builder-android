@@ -1,6 +1,8 @@
 package com.example.konikiewiczb.myapplication.registration;
 
-public interface RegistrationView {
+import com.example.konikiewiczb.myapplication.framework.views.progress_bar.ProgressBarHandler;
+
+public interface RegistrationView extends ProgressBarHandler{
 
     void showEmailError();
 
@@ -17,8 +19,4 @@ public interface RegistrationView {
     void showFailureAler();
 
     void navigateToLogin();
-
-    void showProgress();
-
-    void hideProgress();
 }

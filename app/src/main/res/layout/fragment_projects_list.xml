@@ -9,21 +9,7 @@
     tools:context=".UserAreaActivity"
     tools:openDrawer="start">
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:indeterminateTint="@color/header"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/member_projects"
-        app:layout_constraintStart_toStartOf="@+id/member_projects"
-        app:layout_constraintTop_toTopOf="parent" />
+    <include layout="@layout/progress_bar" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/leader_projects"

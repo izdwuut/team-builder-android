@@ -34,7 +34,7 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     @Override
     public void logIn(Response<String> response) {
-        view.hideProgressBar();
+        view.getProgressBar().hide();
         view.displayMessage(response.body());
         if(Http.isCodeInRange(response.code(), 200)) {
             interactor.getUser(this.user.getEmailAddress());
@@ -47,7 +47,7 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     @Override
     public void onFailure(String message) {
-        view.hideProgressBar();
+        view.getProgressBar().hide();
         view.displayMessage(message);
         userRepository.remove();
     }

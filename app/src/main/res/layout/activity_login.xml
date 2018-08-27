@@ -10,18 +10,7 @@
     tools:context=".login.LoginActivity"
     tools:layout_editor_absoluteY="25dp">
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="8dp"
-        android:indeterminateTint="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/inputs_container"
-        app:layout_constraintEnd_toEndOf="@+id/inputs_container"
-        app:layout_constraintStart_toStartOf="@+id/inputs_container"
-        app:layout_constraintTop_toTopOf="@+id/inputs_container" />
+    <include layout="@layout/progress_bar" />
 
     <ImageView
         android:id="@+id/logo"

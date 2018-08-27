@@ -4,44 +4,46 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.konikiewiczb.myapplication.R;
 import com.example.konikiewiczb.myapplication.coworkers.WorkersAdapter;
 import com.example.konikiewiczb.myapplication.framework.Dataset;
-import com.example.konikiewiczb.myapplication.framework.DateTime;
 import com.example.konikiewiczb.myapplication.framework.StringListAdapter;
+import com.example.konikiewiczb.myapplication.framework.views.GenericFragment;
 import com.example.konikiewiczb.myapplication.model.ProjectEntry;
 import com.example.konikiewiczb.myapplication.model.Technology;
 import com.example.konikiewiczb.myapplication.model.User;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ProjectFragment extends Fragment implements ProjectContract.View {
-    @BindView(R.id.name) TextView name;
-    @BindView(R.id.description) TextView description;
-    @BindView(R.id.status) TextView status;
-    @BindView(R.id.start_date) TextView startDate;
-    @BindView(R.id.end_date) TextView endDate;
+public class ProjectFragment extends GenericFragment implements ProjectContract.View {
+    @BindView(R.id.name)
+    TextView name;
+    @BindView(R.id.description)
+    TextView description;
+    @BindView(R.id.status)
+    TextView status;
+    @BindView(R.id.start_date)
+    TextView startDate;
+    @BindView(R.id.end_date)
+    TextView endDate;
 
-    @BindView(R.id.project_entries) RecyclerView entries;
-    @BindView(R.id.project_technologies) RecyclerView technologies;
+    @BindView(R.id.project_entries)
+    RecyclerView entries;
+    @BindView(R.id.project_technologies)
+    RecyclerView technologies;
     RecyclerView candidates;
     RecyclerView participants;
-    @BindView(R.id.progress_bar) ProgressBar progressBar;
 
     Integer id;
     ProjectContract.Presenter presenter;
@@ -50,9 +52,10 @@ public class ProjectFragment extends Fragment implements ProjectContract.View {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getActivity().setTitle(getString(R.string.app_single_project));
-        View view = inflater.inflate(R.layout.fragment_single_project, container, false);
+        View view = inflate(R.layout.fragment_single_project, inflater, container);
         participants = view.findViewById(R.id.participants).findViewById(R.id.rvList);
         candidates = view.findViewById(R.id.candidates).findViewById(R.id.rvList);
+
         Context context = getActivity().getApplicationContext();
         ButterKnife.bind(this, view);
 
@@ -67,23 +70,12 @@ public class ProjectFragment extends Fragment implements ProjectContract.View {
 
         technologies.setAdapter(new StringListAdapter<Technology>());
         technologies.setLayoutManager(new LinearLayoutManager(context));
-        hideProgressBar();
 
         this.id = getArguments().getInt("id");
         this.presenter = new ProjectPresenter(this);
         presenter.getProject(id);
 
         return view;
-    }
-
-    @Override
-    public void showProgressBar() {
-        progressBar.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void hideProgressBar() {
-        progressBar.setVisibility(View.INVISIBLE);
     }
 
     private void displayMessage(String message) {
