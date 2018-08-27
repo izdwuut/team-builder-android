@@ -82,10 +82,6 @@ public class TechnologiesAdapter extends RecyclerView.Adapter<TechnologiesAdapte
 
     @Override
     public int getItemCount() {
-        if(technologyList.isEmpty()){
-            return 0;
-        }else{
-            return technologyList.size();
-        }
+        return technologyList == null ? 0 : technologyList.size();
     }
 }
