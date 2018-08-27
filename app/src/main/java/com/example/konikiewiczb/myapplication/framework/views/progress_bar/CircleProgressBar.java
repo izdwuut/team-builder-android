@@ -4,9 +4,9 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 public class CircleProgressBar implements ProgressBarToggler {
-    private android.widget.ProgressBar progressBar;
-    public CircleProgressBar(View v) {
-        this.progressBar = (ProgressBar) v;
+    private ProgressBar progressBar;
+    public CircleProgressBar(ProgressBar v) {
+        this.progressBar = v;
     }
 
     @Override

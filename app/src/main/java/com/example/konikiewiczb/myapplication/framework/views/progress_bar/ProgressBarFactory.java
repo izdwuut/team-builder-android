@@ -1,16 +1,13 @@
 package com.example.konikiewiczb.myapplication.framework.views.progress_bar;
 
-import android.view.View;
-
-import com.example.konikiewiczb.myapplication.R;
+import android.widget.ProgressBar;
 
 public class ProgressBarFactory {
-    public static ProgressBarToggler getCircleProgressBar(View view) {
-        View element = view.findViewById(R.id.progress_bar);
-        if(element == null) {
+    public static ProgressBarToggler getCircleProgressBar(ProgressBar view) {
+        if(view == null) {
             return null;
         }
-        ProgressBarToggler progressBar = new CircleProgressBar(element);
+        ProgressBarToggler progressBar = new CircleProgressBar(view);
         progressBar.hide();
         return progressBar;
     }

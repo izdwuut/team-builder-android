@@ -1,6 +1,7 @@
 package com.example.konikiewiczb.myapplication.framework.views;
 
 import android.app.Activity;
+import android.widget.ProgressBar;
 
 import com.example.konikiewiczb.myapplication.R;
 import com.example.konikiewiczb.myapplication.framework.views.progress_bar.ProgressBarFactory;
@@ -11,7 +12,7 @@ public class GenericActivity extends Activity implements ProgressBarHandler {
     protected ProgressBarToggler progressBar;
 
     protected void init() {
-        progressBar = ProgressBarFactory.getCircleProgressBar(findViewById(R.id.progress_bar_wrapper));
+        progressBar = ProgressBarFactory.getCircleProgressBar(findViewById(R.id.progress_bar));
     }
 
     @Override

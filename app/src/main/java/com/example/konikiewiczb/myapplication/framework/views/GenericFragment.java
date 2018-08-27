@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.konikiewiczb.myapplication.R;
 import com.example.konikiewiczb.myapplication.framework.views.progress_bar.ProgressBarFactory;
@@ -16,7 +17,7 @@ public class GenericFragment extends Fragment implements ProgressBarHandler {
     protected View inflate(int resId, LayoutInflater inflater, ViewGroup container) {
         View view = inflater.inflate(resId, container, false);
 
-        progressBar = ProgressBarFactory.getCircleProgressBar(view.findViewById(R.id.progress_bar_wrapper));
+        progressBar = ProgressBarFactory.getCircleProgressBar(view.findViewById(R.id.progress_bar));
 
         return view;
     }
@@ -24,6 +25,7 @@ public class GenericFragment extends Fragment implements ProgressBarHandler {
 
     @Override
     public ProgressBarToggler getProgressBar() {
-        return null;
+        return progressBar;
     }
+
 }

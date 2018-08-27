@@ -1,7 +1,6 @@
 package com.example.konikiewiczb.myapplication.framework.views.progress_bar;
 
 
-
-interface ProgressBarHandler {
+public interface ProgressBarHandler {
     ProgressBarToggler getProgressBar();
 }
