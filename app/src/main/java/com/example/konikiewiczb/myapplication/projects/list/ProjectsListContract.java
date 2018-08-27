@@ -1,7 +1,6 @@
 package com.example.konikiewiczb.myapplication.projects.list;
 
-import com.example.konikiewiczb.myapplication.framework.views.progress_bar.ProgressBarHandler;
-import com.example.konikiewiczb.myapplication.framework.views.progress_bar.ProgressBarToggler;
+import com.example.konikiewiczb.myapplication.framework.view.progress_bar.ProgressBarHandler;
 import com.example.konikiewiczb.myapplication.model.UserProject;
 
 import java.util.List;

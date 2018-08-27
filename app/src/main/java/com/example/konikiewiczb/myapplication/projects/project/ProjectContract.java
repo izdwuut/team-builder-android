@@ -1,6 +1,6 @@
 package com.example.konikiewiczb.myapplication.projects.project;
 
-import com.example.konikiewiczb.myapplication.framework.views.progress_bar.ProgressBarHandler;
+import com.example.konikiewiczb.myapplication.framework.view.progress_bar.ProgressBarHandler;
 import com.example.konikiewiczb.myapplication.model.Project;
 import com.example.konikiewiczb.myapplication.model.ProjectEntry;
 import com.example.konikiewiczb.myapplication.model.Technology;

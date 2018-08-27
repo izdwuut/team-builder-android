@@ -1,12 +1,11 @@
-package com.example.konikiewiczb.myapplication.framework.views;
+package com.example.konikiewiczb.myapplication.framework.view;
 
 import android.app.Activity;
-import android.widget.ProgressBar;
 
 import com.example.konikiewiczb.myapplication.R;
-import com.example.konikiewiczb.myapplication.framework.views.progress_bar.ProgressBarFactory;
-import com.example.konikiewiczb.myapplication.framework.views.progress_bar.ProgressBarHandler;
-import com.example.konikiewiczb.myapplication.framework.views.progress_bar.ProgressBarToggler;
+import com.example.konikiewiczb.myapplication.framework.view.progress_bar.ProgressBarFactory;
+import com.example.konikiewiczb.myapplication.framework.view.progress_bar.ProgressBarHandler;
+import com.example.konikiewiczb.myapplication.framework.view.progress_bar.ProgressBarToggler;
 
 public class GenericActivity extends Activity implements ProgressBarHandler {
     protected ProgressBarToggler progressBar;

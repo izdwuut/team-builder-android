@@ -1,7 +1,6 @@
-package com.example.konikiewiczb.myapplication.framework.views;
+package com.example.konikiewiczb.myapplication.framework.view;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.widget.TextView;
