@@ -2,6 +2,7 @@ package com.example.konikiewiczb.myapplication.profile;
 
 import android.app.Dialog;
 
+import com.example.konikiewiczb.myapplication.framework.views.progress_bar.ProgressBarHandler;
 import com.example.konikiewiczb.myapplication.model.Technology;
 
 import java.util.List;
@@ -15,6 +16,8 @@ public interface ProfileContract {
         void fetchUserTechnologies(String userEmail);
 
         void deleteChosenTechnology(String userEmail, int idTechnology);
+
+        void changePassword(String email, String oldPwd, String newPwd, String cnfPwd);
 
     }
 
@@ -30,9 +33,9 @@ public interface ProfileContract {
 
         }
 
-        void deleteChosenTechnology(OnDeletingTechnologyFinishedListener onDeletingTechnologyFinishedListener, String userEmail, int idTechnology);
+        void deleteChosenTechnology(OnDelTechFinishedListener onDeletingTechnologyFinishedListener, String userEmail, int idTechnology);
 
-        interface OnDeletingTechnologyFinishedListener{
+        interface OnDelTechFinishedListener{
 
             void DeleteSuccess();
 
@@ -40,16 +43,36 @@ public interface ProfileContract {
 
         }
 
+        void changePassword(OnChangingPasswordFinishedListener onChangingPasswordFinishedListener, String userEmail, String oldPwd, String newPwd, String cnfPwd);
+
+        interface OnChangingPasswordFinishedListener{
+
+            void ChangeSuccess();
+
+            void ChangeFailure();
+
+        }
+
     }
 
-    interface ProfileView{
+    interface ProfileView extends ProgressBarHandler{
 
         void startAdapter(Response<List<Technology>> response);
 
         void closeDialog(Dialog dialog);
 
-        void hiddeProgressBar();
+        void changePasswordDialog(Dialog dialog);
 
-        void showProgressBar();
+        void oldPwdEmptyError();
+
+        void newPwdEmptyError();
+
+        void cnfPwdEmptyError();
+
+        void pwdDontMatchError();
+
+        void onChangeSuccess();
+
+        void onChangeFailure();
     }
 }

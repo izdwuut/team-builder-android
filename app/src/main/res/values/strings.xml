@@ -36,6 +36,7 @@
     <string name="add_technology">Dodaj technologie</string>
     <string name="image_description">image description</string>
     <string name="profil_tittle">Twój profil</string>
+
     <string name="technoloy">Technology</string>
     <string name="technoloy_confirm_del">Czy na pewno chcesz usunąć wybraną technologię?</string>
     <string name="confirm">Tak</string>
@@ -48,4 +49,10 @@
     <string name="project_participants">Uczestnicy</string>
     <string name="project_entries">Stanowiska</string>
     <string name="project_technologies">Technologie</string>
+
+    <string name="oldPwd">Aktualne hasło</string>
+    <string name="newPwd">Nowe hasło</string>
+    <string name="cnfPwd">Potwierdź hasło</string>
+    <string name="chngPwd">Zmiana hasła</string>
+    <string name="confirm2">Zatwierdź</string>
 </resources>

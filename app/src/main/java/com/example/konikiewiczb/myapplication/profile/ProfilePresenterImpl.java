@@ -4,20 +4,23 @@ import android.app.Dialog;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.konikiewiczb.myapplication.framework.views.progress_bar.ProgressBarToggler;
 import com.example.konikiewiczb.myapplication.model.Technology;
 
 import java.util.List;
 
 import retrofit2.Response;
 
-public class ProfilePresenterImpl implements ProfileContract.ProfilePresenter, ProfileContract.ProfileInteractor.OnFetchingDataFinishedListener, ProfileContract.ProfileInteractor.OnDeletingTechnologyFinishedListener{
+public class ProfilePresenterImpl implements ProfileContract.ProfilePresenter, ProfileContract.ProfileInteractor.OnFetchingDataFinishedListener, ProfileContract.ProfileInteractor.OnDelTechFinishedListener, ProfileContract.ProfileInteractor.OnChangingPasswordFinishedListener{
 
     private ProfileContract.ProfileView profileView;
     private ProfileContract.ProfileInteractor profileInteractor;
+    private ProgressBarToggler progressBarToggler;
 
     public ProfilePresenterImpl(ProfileContract.ProfileView profileView){
         this.profileView = profileView;
         this.profileInteractor = new ProfileInteractorImpl();
+        progressBarToggler = profileView.getProgressBar();
     }
     @Override
     public void fetchUserTechnologies(String userEmail) {
@@ -28,13 +31,13 @@ public class ProfilePresenterImpl implements ProfileContract.ProfilePresenter, P
     public void TechnologiesSuccess(Response<List<Technology>> response) {
         if(response.isSuccessful()){
             profileView.startAdapter(response);
-            profileView.hiddeProgressBar();
+            progressBarToggler.hide();
         }
     }
 
     @Override
     public void TechnologiesFailure() {
-        profileView.hiddeProgressBar();
+        progressBarToggler.hide();
     }
 
     @Override
@@ -53,5 +56,43 @@ public class ProfilePresenterImpl implements ProfileContract.ProfilePresenter, P
 
     @Override
     public void DeleteFailure() {
+    }
+
+    @Override
+    public void changePassword(String email, String oldPwd, String newPwd, String cnfPwd) {
+        boolean pwdCanBeChangeg = true;
+        if(oldPwd.isEmpty()){
+            pwdCanBeChangeg = false;
+            profileView.oldPwdEmptyError();
+        }
+
+        if(newPwd.isEmpty()){
+            pwdCanBeChangeg = false;
+            profileView.newPwdEmptyError();
+        }
+
+        if(cnfPwd.isEmpty()){
+            pwdCanBeChangeg = false;
+            profileView.cnfPwdEmptyError();
+        }
+
+        if(pwdCanBeChangeg){
+            if(!newPwd.equals(cnfPwd)){
+                pwdCanBeChangeg = false;
+                profileView.pwdDontMatchError();
+            }else{
+                profileInteractor.changePassword(this, email, oldPwd, newPwd, cnfPwd);
+            }
+        }
+    }
+
+    @Override
+    public void ChangeSuccess() {
+        profileView.onChangeSuccess();
+    }
+
+    @Override
+    public void ChangeFailure() {
+        profileView.onChangeFailure();
     }
 }

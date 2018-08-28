@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.konikiewiczb.myapplication.framework.http.Api;
 import com.example.konikiewiczb.myapplication.framework.http.Http;
 import com.example.konikiewiczb.myapplication.framework.http.RetrofitClient;
+import com.example.konikiewiczb.myapplication.model.ChangePasswordData;
 import com.example.konikiewiczb.myapplication.model.Technology;
 
 import java.util.List;
@@ -38,7 +39,7 @@ public class ProfileInteractorImpl implements ProfileContract.ProfileInteractor 
     }
 
     @Override
-    public void deleteChosenTechnology(OnDeletingTechnologyFinishedListener onDeletingTechnologyFinishedListener, String userEmail, int idTechnology) {
+    public void deleteChosenTechnology(OnDelTechFinishedListener onDeletingTechnologyFinishedListener, String userEmail, int idTechnology) {
         Call<Void> deleteThisTechnology = RetrofitClient.get(Api.class)
                 .deleteThisTechnology(userEmail, idTechnology);
 
@@ -59,5 +60,33 @@ public class ProfileInteractorImpl implements ProfileContract.ProfileInteractor 
                 Log.d("Delete Technology", "Success. Technology: " + userEmail + " Id:" + idTechnology + "\nt");
             }
         });
+    }
+
+    @Override
+    public void changePassword(OnChangingPasswordFinishedListener onChangingPasswordFinishedListener, String email, String oldPwd, String newPwd, String cnfPwd) {
+        ChangePasswordData changePasswordData = new ChangePasswordData(oldPwd, newPwd, cnfPwd);
+
+        Call<Void> changePassword = RetrofitClient.get(Api.class)
+                .changePassword(email, changePasswordData);
+
+        changePassword.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccessful()){
+                    Log.d("CHANGE PASSWORD", "SUCCESS " + response.code());
+                    onChangingPasswordFinishedListener.ChangeSuccess();
+                }else{
+                    Log.d("CHANGE PASSWORD", "UnSuccess " + response.code());
+                    onChangingPasswordFinishedListener.ChangeFailure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                onChangingPasswordFinishedListener.ChangeFailure();
+                Log.d("CHANGE PASSWORD", "FAIL " + t);
+            }
+        });
+
     }
 }

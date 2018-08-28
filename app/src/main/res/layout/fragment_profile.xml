@@ -59,7 +59,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ivAvatar" />
 
     <Button
-        android:id="@+id/vChangePass"
+        android:id="@+id/bChangePass"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -90,7 +90,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
         android:text="@string/change_data"
-        app:layout_constraintBottom_toTopOf="@+id/vChangePass"
+        app:layout_constraintBottom_toTopOf="@+id/bChangePass"
         app:layout_constraintEnd_toStartOf="@+id/guideline12"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -113,19 +113,6 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
 
-    <ProgressBar
-        android:id="@+id/pbTechnology"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:indeterminateTint="@color/header"
-        app:layout_constraintBottom_toBottomOf="@+id/rvTechnologies"
-        app:layout_constraintEnd_toEndOf="@+id/rvTechnologies"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rvTechnologies" />
+    <include layout="@layout/progress_bar" />
 
 </android.support.constraint.ConstraintLayout>
