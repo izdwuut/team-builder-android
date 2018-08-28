@@ -1,5 +1,7 @@
 package com.example.konikiewiczb.myapplication.coworkers;
 
+import android.support.v7.widget.RecyclerView;
+
 import com.example.konikiewiczb.myapplication.framework.view.progress_bar.ProgressBarHandler;
 import com.example.konikiewiczb.myapplication.model.User;
 
@@ -34,7 +36,7 @@ public interface CoWorkersContract {
     interface CoWorkersView extends ProgressBarHandler {
 
 
-        void adapterThisShit(Response<List<User>> response);
+        void showCoWorkers(List<User> dataset);
 
     }
 }

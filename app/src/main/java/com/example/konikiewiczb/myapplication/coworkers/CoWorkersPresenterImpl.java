@@ -30,7 +30,7 @@ public class CoWorkersPresenterImpl implements CoWorkersContract.CoWorkersPresen
     public void onSuccess(Response<List<User>> response) {
         coWorkersView.getProgressBar().show();
         if(response.isSuccessful()){
-            coWorkersView.adapterThisShit(response);
+            coWorkersView.showCoWorkers(response.body());
         }
     }
 

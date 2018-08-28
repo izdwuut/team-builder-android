@@ -25,12 +25,10 @@ public class UserProjectsViewHolder extends GenericViewHolder {
     @BindView(R.id.role) public TextView role;
     @BindView(R.id.icon_leader) public IconTextView leaderIcon;
 
-    FragmentManager fragmentManager;
     List<UserProject> dataset;
 
     public UserProjectsViewHolder(View v, FragmentManager fragmentManager, List<UserProject> dataset) {
-        super(v);
-        this.fragmentManager = fragmentManager;
+        super(v, fragmentManager);
         this.dataset = dataset;
     }
 
@@ -43,10 +41,7 @@ public class UserProjectsViewHolder extends GenericViewHolder {
             Bundle bundle = new Bundle();
             bundle.putInt("id", item.getProjectId());
             fragment.setArguments(bundle);
-
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.commit();
+            switchFragment(fragment);
         }
     }
 }
