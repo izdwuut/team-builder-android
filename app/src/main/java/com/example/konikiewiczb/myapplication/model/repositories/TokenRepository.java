@@ -18,7 +18,7 @@ public class TokenRepository implements Repository<String> {
 
     @Override
     public void set(String val) {
-        String token = val;
+        String token = Config.LOGIN_TOKEN_PREFIX + val;
         prefs.edit().putString(Config.LOGIN_PREFERENCES_TOKEN, token).apply();
     }
 
