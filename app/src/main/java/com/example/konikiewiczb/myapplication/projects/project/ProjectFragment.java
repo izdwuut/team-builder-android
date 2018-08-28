@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.konikiewiczb.myapplication.R;
-import com.example.konikiewiczb.myapplication.coworkers.WorkersAdapter;
+import com.example.konikiewiczb.myapplication.coworkers.adapter.WorkersAdapter;
 import com.example.konikiewiczb.myapplication.framework.Dataset;
 import com.example.konikiewiczb.myapplication.framework.StringListAdapter;
 import com.example.konikiewiczb.myapplication.framework.view.GenericFragment;
