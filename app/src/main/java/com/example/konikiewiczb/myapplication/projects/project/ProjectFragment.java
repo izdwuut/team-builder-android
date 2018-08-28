@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.example.konikiewiczb.myapplication.R;
 import com.example.konikiewiczb.myapplication.coworkers.adapter.WorkersAdapter;
 import com.example.konikiewiczb.myapplication.framework.Dataset;
-import com.example.konikiewiczb.myapplication.framework.StringListAdapter;
+import com.example.konikiewiczb.myapplication.framework.adapter.string_list.StringListAdapter;
 import com.example.konikiewiczb.myapplication.framework.view.GenericFragment;
 import com.example.konikiewiczb.myapplication.model.ProjectEntry;
 import com.example.konikiewiczb.myapplication.model.Technology;
