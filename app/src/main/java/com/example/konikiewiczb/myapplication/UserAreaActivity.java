@@ -1,5 +1,6 @@
 package com.example.konikiewiczb.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -17,6 +18,7 @@ import com.example.konikiewiczb.myapplication.coworkers.CoWorkersFragment;
 import com.example.konikiewiczb.myapplication.login.LoginActivity;
 import com.example.konikiewiczb.myapplication.model.User;
 import com.example.konikiewiczb.myapplication.model.repositories.Repository;
+import com.example.konikiewiczb.myapplication.model.repositories.TokenRepository;
 import com.example.konikiewiczb.myapplication.model.repositories.UserRepository;
 import com.example.konikiewiczb.myapplication.profile.ProfileFragment;
 import com.example.konikiewiczb.myapplication.projects.list.ProjectsListsFragment;
@@ -28,6 +30,7 @@ public class UserAreaActivity extends AppCompatActivity implements NavigationVie
 
     @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
     private Repository<User> userRepository;
+    private Repository<String> tokenRepository;
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.nav_view) NavigationView navigationView;
 
@@ -48,7 +51,9 @@ public class UserAreaActivity extends AppCompatActivity implements NavigationVie
                     new ProjectsListsFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_project_list);
         }
-        userRepository = new UserRepository(getApplicationContext());
+        Context context = getApplicationContext();
+        userRepository = new UserRepository(context);
+        tokenRepository = new TokenRepository(context);
         showUserInfo(navigationView.getHeaderView(0), userRepository.get());
     }
 
@@ -79,6 +84,7 @@ public class UserAreaActivity extends AppCompatActivity implements NavigationVie
 
             case R.id.nav_sign_out:
                 userRepository.remove();
+                tokenRepository.remove();
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 break;
         }

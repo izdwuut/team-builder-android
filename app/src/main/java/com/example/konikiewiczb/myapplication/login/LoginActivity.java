@@ -1,7 +1,9 @@
 package com.example.konikiewiczb.myapplication.login;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +14,7 @@ import com.example.konikiewiczb.myapplication.UserAreaActivity;
 import com.example.konikiewiczb.myapplication.framework.view.GenericActivity;
 import com.example.konikiewiczb.myapplication.model.User;
 import com.example.konikiewiczb.myapplication.model.repositories.Repository;
+import com.example.konikiewiczb.myapplication.model.repositories.TokenRepository;
 import com.example.konikiewiczb.myapplication.model.repositories.UserRepository;
 import com.example.konikiewiczb.myapplication.registration.RegistrationActivity;
 
@@ -31,8 +34,11 @@ public class LoginActivity extends GenericActivity implements LoginContract.View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         init();
-        Repository<User> userRepository = new UserRepository(getApplicationContext());
-        loginPresenter = new LoginPresenter(this, userRepository);
+        Context context = getApplicationContext();
+        Repository<User> userRepository = new UserRepository(context);
+        Repository<String> tokenRepository = new TokenRepository(context);
+
+        loginPresenter = new LoginPresenter(this, userRepository, tokenRepository);
         loginPresenter.loadWelcomePage();
 
         ButterKnife.bind(this);

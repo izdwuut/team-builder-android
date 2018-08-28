@@ -2,6 +2,7 @@ package com.example.konikiewiczb.myapplication.login;
 
 import android.util.Log;
 
+import com.auth0.android.jwt.JWT;
 import com.example.konikiewiczb.myapplication.framework.http.Http;
 import com.example.konikiewiczb.myapplication.model.User;
 import com.example.konikiewiczb.myapplication.model.repositories.Repository;
@@ -12,11 +13,13 @@ public class LoginPresenter implements LoginContract.Presenter {
     LoginContract.View view;
     LoginContract.Interactor interactor;
     Repository<User> userRepository;
+    Repository<String> tokenRepository;
     User user;
-    public LoginPresenter(LoginContract.View view, Repository<User> userRepository) {
+    public LoginPresenter(LoginContract.View view, Repository<User> userRepository, Repository<String> tokenRepository) {
         this.view = view;
         interactor = new LoginInteractor(this, userRepository);
         this.userRepository = userRepository;
+        this.tokenRepository = tokenRepository;
     }
 
     @Override
@@ -27,21 +30,21 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     @Override
     public void loadWelcomePage() {
-        if(userRepository.isSet()) {
+        if(userRepository.isSet() && tokenRepository.isSet()) {
             view.loadWelcomePage();
         }
     }
 
     @Override
     public void logIn(Response<String> response) {
-        view.getProgressBar().hide();
-        view.displayMessage(response.body());
         if(Http.isCodeInRange(response.code(), 200)) {
+            tokenRepository.set(response.body());
             interactor.getUser(this.user.getEmailAddress());
         } else {
             view.setEmailError();
             view.setPasswordError();
-            userRepository.remove();
+            tokenRepository.remove();
+            view.getProgressBar().hide();
         }
     }
 
@@ -55,8 +58,8 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     @Override
     public void saveUser(Response<User> response) {
+        view.getProgressBar().hide();
         if(Http.isCodeInRange(response.code(), 200)) {
-            Log.d("mail", response.body().getEmailAddress());
             userRepository.set(response.body());
             loadWelcomePage();
         } else {

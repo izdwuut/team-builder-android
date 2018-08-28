@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.example.konikiewiczb.myapplication.framework.view.GenericFragment;
 import com.example.konikiewiczb.myapplication.model.Technology;
 import com.example.konikiewiczb.myapplication.model.User;
 import com.example.konikiewiczb.myapplication.model.repositories.Repository;
+import com.example.konikiewiczb.myapplication.model.repositories.TokenRepository;
 import com.example.konikiewiczb.myapplication.model.repositories.UserRepository;
 
 import java.util.List;
