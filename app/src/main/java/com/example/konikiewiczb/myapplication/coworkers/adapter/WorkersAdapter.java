@@ -18,8 +18,7 @@ public class WorkersAdapter extends GenericAdapter<User, WorkersViewHolder> {
     @NonNull
     @Override
     public WorkersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_user_coworker, parent, false);
+        View view = inflate(R.layout.item_user_coworker, parent);
 
         return new WorkersViewHolder(view, context, dataset);
     }

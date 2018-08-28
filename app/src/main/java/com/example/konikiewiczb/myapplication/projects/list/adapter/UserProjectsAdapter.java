@@ -22,8 +22,7 @@ public class UserProjectsAdapter extends GenericAdapter<UserProject, UserProject
 
     @Override
     public UserProjectsViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_user_project, parent, false);
+        View v = inflate(R.layout.item_user_project, parent);
 
         return new UserProjectsViewHolder(v, fragmentManager, dataset);
     }
