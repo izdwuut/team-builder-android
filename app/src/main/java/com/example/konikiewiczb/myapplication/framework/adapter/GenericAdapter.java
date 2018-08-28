@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 
 import java.util.List;
 
-public abstract class GenericAdapter<E, T extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<T> {
+public abstract class GenericAdapter<E, T extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<T> implements Dataset<E> {
     protected List<E> dataset;
     protected FragmentManager fragmentManager;
 
