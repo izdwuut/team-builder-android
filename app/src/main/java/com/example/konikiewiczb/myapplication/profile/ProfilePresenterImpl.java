@@ -1,10 +1,8 @@
 package com.example.konikiewiczb.myapplication.profile;
 
-import android.app.Dialog;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.example.konikiewiczb.myapplication.framework.views.progress_bar.ProgressBarToggler;
+import com.example.konikiewiczb.myapplication.framework.view.progress_bar.ProgressBarToggler;
 import com.example.konikiewiczb.myapplication.model.Technology;
 
 import java.util.List;

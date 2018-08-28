@@ -1,18 +1,15 @@
 package com.example.konikiewiczb.myapplication.registration;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 
 import com.example.konikiewiczb.myapplication.framework.Extensions;
 import com.example.konikiewiczb.myapplication.R;
-import com.example.konikiewiczb.myapplication.framework.views.GenericActivity;
+import com.example.konikiewiczb.myapplication.framework.view.GenericActivity;
 import com.example.konikiewiczb.myapplication.login.LoginActivity;
 
 import butterknife.BindView;

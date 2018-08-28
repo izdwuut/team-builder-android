@@ -16,7 +16,7 @@ import com.example.konikiewiczb.myapplication.R;
 import com.example.konikiewiczb.myapplication.coworkers.WorkersAdapter;
 import com.example.konikiewiczb.myapplication.framework.Dataset;
 import com.example.konikiewiczb.myapplication.framework.StringListAdapter;
-import com.example.konikiewiczb.myapplication.framework.views.GenericFragment;
+import com.example.konikiewiczb.myapplication.framework.view.GenericFragment;
 import com.example.konikiewiczb.myapplication.model.ProjectEntry;
 import com.example.konikiewiczb.myapplication.model.Technology;
 import com.example.konikiewiczb.myapplication.model.User;

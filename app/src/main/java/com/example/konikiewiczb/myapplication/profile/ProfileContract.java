@@ -2,7 +2,7 @@ package com.example.konikiewiczb.myapplication.profile;
 
 import android.app.Dialog;
 
-import com.example.konikiewiczb.myapplication.framework.views.progress_bar.ProgressBarHandler;
+import com.example.konikiewiczb.myapplication.framework.view.progress_bar.ProgressBarHandler;
 import com.example.konikiewiczb.myapplication.model.Technology;
 
 import java.util.List;
@@ -55,7 +55,7 @@ public interface ProfileContract {
 
     }
 
-    interface ProfileView extends ProgressBarHandler{
+    interface ProfileView extends ProgressBarHandler {
 
         void startAdapter(Response<List<Technology>> response);
 

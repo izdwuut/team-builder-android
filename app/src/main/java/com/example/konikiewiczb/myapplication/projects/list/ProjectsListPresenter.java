@@ -1,7 +1,7 @@
 package com.example.konikiewiczb.myapplication.projects.list;
 
 import com.example.konikiewiczb.myapplication.framework.IOnFinishedListener;
-import com.example.konikiewiczb.myapplication.framework.views.progress_bar.ProgressBarToggler;
+import com.example.konikiewiczb.myapplication.framework.view.progress_bar.ProgressBarToggler;
 import com.example.konikiewiczb.myapplication.model.User;
 import com.example.konikiewiczb.myapplication.model.repositories.Repository;
 import com.example.konikiewiczb.myapplication.model.UserProject;

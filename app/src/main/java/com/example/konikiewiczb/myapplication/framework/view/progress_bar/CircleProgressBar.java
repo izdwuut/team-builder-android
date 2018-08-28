@@ -1,4 +1,4 @@
-package com.example.konikiewiczb.myapplication.framework.views.progress_bar;
+package com.example.konikiewiczb.myapplication.framework.view.progress_bar;
 
 import android.view.View;
 import android.widget.ProgressBar;

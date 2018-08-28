@@ -1,4 +1,4 @@
-package com.example.konikiewiczb.myapplication.framework.views.progress_bar;
+package com.example.konikiewiczb.myapplication.framework.view.progress_bar;
 
 
 public interface ProgressBarHandler {

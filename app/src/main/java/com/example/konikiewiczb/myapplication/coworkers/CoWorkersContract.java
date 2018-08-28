@@ -1,6 +1,6 @@
 package com.example.konikiewiczb.myapplication.coworkers;
 
-import com.example.konikiewiczb.myapplication.framework.views.progress_bar.ProgressBarHandler;
+import com.example.konikiewiczb.myapplication.framework.view.progress_bar.ProgressBarHandler;
 import com.example.konikiewiczb.myapplication.model.User;
 
 import java.util.List;

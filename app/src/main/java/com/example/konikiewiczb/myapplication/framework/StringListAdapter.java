@@ -23,7 +23,6 @@ public class StringListAdapter<T> extends RecyclerView.Adapter<StringListAdapter
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_text, parent, false);
-
         return new ViewHolder(view);
     }
 

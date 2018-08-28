@@ -7,12 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.konikiewiczb.myapplication.R;
 import com.example.konikiewiczb.myapplication.model.Technology;
-
 
 import java.util.List;
 
@@ -82,10 +80,6 @@ public class TechnologiesAdapter extends RecyclerView.Adapter<TechnologiesAdapte
 
     @Override
     public int getItemCount() {
-        if(technologyList.isEmpty()){
-            return 0;
-        }else{
-            return technologyList.size();
-        }
+        return technologyList == null ? 0 : technologyList.size();
     }
 }

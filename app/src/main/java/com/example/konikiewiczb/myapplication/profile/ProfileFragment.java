@@ -2,7 +2,6 @@ package com.example.konikiewiczb.myapplication.profile;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -19,7 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.konikiewiczb.myapplication.R;
-import com.example.konikiewiczb.myapplication.framework.views.GenericFragment;
+import com.example.konikiewiczb.myapplication.framework.view.GenericFragment;
 import com.example.konikiewiczb.myapplication.model.Technology;
 import com.example.konikiewiczb.myapplication.model.User;
 import com.example.konikiewiczb.myapplication.model.repositories.Repository;

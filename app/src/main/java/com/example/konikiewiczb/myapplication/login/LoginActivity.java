@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import com.example.konikiewiczb.myapplication.R;
 import com.example.konikiewiczb.myapplication.UserAreaActivity;
-import com.example.konikiewiczb.myapplication.framework.views.GenericActivity;
+import com.example.konikiewiczb.myapplication.framework.view.GenericActivity;
 import com.example.konikiewiczb.myapplication.model.User;
 import com.example.konikiewiczb.myapplication.model.repositories.Repository;
 import com.example.konikiewiczb.myapplication.model.repositories.UserRepository;
