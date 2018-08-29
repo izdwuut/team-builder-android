@@ -12,9 +12,6 @@
         android:gravity="center"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:shadowDx="0dp"
-        android:shadowDy="0dp"
-        android:shadowRadius="0dp"
         android:text="Technology"
         android:textColor="@color/dark_gray"
         android:textSize="14sp" />
