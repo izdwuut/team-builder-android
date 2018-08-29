@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/technology"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:background="@drawable/button_tag_technology"
+        android:elevation="0dp"
+        android:gravity="center"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:shadowDx="0dp"
+        android:shadowDy="0dp"
+        android:shadowRadius="0dp"
+        android:text="Technology"
+        android:textColor="@color/dark_gray"
+        android:textSize="14sp" />
+</LinearLayout>

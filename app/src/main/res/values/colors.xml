@@ -8,4 +8,6 @@
     <color name="header">#2d2d2d</color>
     <color name="bgUserItem">#c9c9c9</color>
     <color name="hintColor">#808080</color>
+    <color name="light_gray">#d3d3c2</color>
+    <color name="dark_gray">#8c8c8c</color>
 </resources>
