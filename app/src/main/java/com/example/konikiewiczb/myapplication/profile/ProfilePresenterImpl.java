@@ -9,7 +9,7 @@ import java.util.List;
 
 import retrofit2.Response;
 
-public class ProfilePresenterImpl implements ProfileContract.ProfilePresenter, ProfileContract.ProfileInteractor.OnFetchingDataFinishedListener, ProfileContract.ProfileInteractor.OnDelTechFinishedListener, ProfileContract.ProfileInteractor.OnChangingPasswordFinishedListener{
+public class ProfilePresenterImpl implements ProfileContract.ProfilePresenter, ProfileContract.ProfileInteractor.OnFetchingDataFinishedListener, ProfileContract.ProfileInteractor.OnDelTechFinishedListener, ProfileContract.ProfileInteractor.OnChangingPasswordFinishedListener, ProfileContract.ProfileInteractor.OnGetingAllTechnologiesFinishedListener, ProfileContract.ProfileInteractor.OnAddingTechnologyToUserFinishedListener{
 
     private ProfileContract.ProfileView profileView;
     private ProfileContract.ProfileInteractor profileInteractor;
@@ -26,15 +26,15 @@ public class ProfilePresenterImpl implements ProfileContract.ProfilePresenter, P
     }
 
     @Override
-    public void TechnologiesSuccess(Response<List<Technology>> response) {
+    public void technologiesSuccess(Response<List<Technology>> response) {
         if(response.isSuccessful()){
-            profileView.startAdapter(response);
+            profileView.startAdapterDelTech(response);
             progressBarToggler.hide();
         }
     }
 
     @Override
-    public void TechnologiesFailure() {
+    public void technologiesFailure() {
         progressBarToggler.hide();
     }
 
@@ -42,18 +42,17 @@ public class ProfilePresenterImpl implements ProfileContract.ProfilePresenter, P
     public void deleteChosenTechnology(String userEmail, int idTechnology) {
         if(!userEmail.isEmpty()){
             profileInteractor.deleteChosenTechnology(this, userEmail, idTechnology);
-            Log.d("Delete Technology", "Failed. Technology: " + userEmail + " Id:" + idTechnology);
         }else{
             Log.d("Delete Technology", "Failed. Technology: " + userEmail + " Id:" + idTechnology);
         }
     }
 
     @Override
-    public void DeleteSuccess() {
+    public void deleteSuccess() {
     }
 
     @Override
-    public void DeleteFailure() {
+    public void deleteFailure() {
     }
 
     @Override
@@ -85,12 +84,44 @@ public class ProfilePresenterImpl implements ProfileContract.ProfilePresenter, P
     }
 
     @Override
-    public void ChangeSuccess() {
+    public void changeSuccess() {
         profileView.onChangeSuccess();
     }
 
     @Override
-    public void ChangeFailure() {
+    public void changeFailure() {
         profileView.onChangeFailure();
+    }
+
+    @Override
+    public void getAllTechnologies() {
+        profileInteractor.getAllTechnologies(this);
+    }
+    @Override
+    public void getSuccess(Response<List<Technology>> response) {
+        if(response.isSuccessful()){
+            profileView.startAdapterGetTech(response.body());
+        }
+    }
+
+    @Override
+    public void getFailure() {
+
+    }
+
+    @Override
+    public void addTechnologyToUser(String email, String technologyName, int technologyId) {
+        profileInteractor.addTechnologyToUser(this, email, technologyName, technologyId);
+    }
+
+
+    @Override
+    public void addSuccess(String technologyName) {
+        profileView.addTechSuccess(technologyName);
+    }
+
+    @Override
+    public void addFailure() {
+        profileView.addTechFail();
     }
 }

@@ -7,6 +7,7 @@ import com.example.konikiewiczb.myapplication.framework.http.Http;
 import com.example.konikiewiczb.myapplication.framework.http.RetrofitClient;
 import com.example.konikiewiczb.myapplication.model.ChangePasswordData;
 import com.example.konikiewiczb.myapplication.model.Technology;
+import com.example.konikiewiczb.myapplication.model.UserTechAdd;
 
 import java.util.List;
 
@@ -24,16 +25,16 @@ public class ProfileInteractorImpl implements ProfileContract.ProfileInteractor 
         fetchUserProject.enqueue(new Callback<List<Technology>>() {
             @Override
             public void onResponse(Call<List<Technology>> call, Response<List<Technology>> response) {
-                if(Http.isCodeInRange(response.code(),200)){
-                    onFetchingDataFinishedListener.TechnologiesSuccess(response);
-                }else{
-                    onFetchingDataFinishedListener.TechnologiesFailure();
+                if (Http.isCodeInRange(response.code(), 200)) {
+                    onFetchingDataFinishedListener.technologiesSuccess(response);
+                } else {
+                    onFetchingDataFinishedListener.technologiesFailure();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Technology>> call, Throwable t) {
-                onFetchingDataFinishedListener.TechnologiesFailure();
+                onFetchingDataFinishedListener.technologiesFailure();
             }
         });
     }
@@ -46,17 +47,17 @@ public class ProfileInteractorImpl implements ProfileContract.ProfileInteractor 
         deleteThisTechnology.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if(Http.isCodeInRange(response.code(),200)){
-                    onDeletingTechnologyFinishedListener.DeleteSuccess();
+                if (Http.isCodeInRange(response.code(), 200)) {
+                    onDeletingTechnologyFinishedListener.deleteSuccess();
                     Log.d("Delete Technology", "Success. Technology: " + userEmail + " Id:" + idTechnology);
-                }else{
-                    onDeletingTechnologyFinishedListener.DeleteFailure();
+                } else {
+                    onDeletingTechnologyFinishedListener.deleteFailure();
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                onDeletingTechnologyFinishedListener.DeleteFailure();
+                onDeletingTechnologyFinishedListener.deleteFailure();
                 Log.d("Delete Technology", "Success. Technology: " + userEmail + " Id:" + idTechnology + "\nt");
             }
         });
@@ -72,21 +73,63 @@ public class ProfileInteractorImpl implements ProfileContract.ProfileInteractor 
         changePassword.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if(response.isSuccessful()){
-                    Log.d("CHANGE PASSWORD", "SUCCESS " + response.code());
-                    onChangingPasswordFinishedListener.ChangeSuccess();
-                }else{
-                    Log.d("CHANGE PASSWORD", "UnSuccess " + response.code());
-                    onChangingPasswordFinishedListener.ChangeFailure();
+                if (response.isSuccessful()) {
+                    onChangingPasswordFinishedListener.changeSuccess();
+                } else {
+                    onChangingPasswordFinishedListener.changeFailure();
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                onChangingPasswordFinishedListener.ChangeFailure();
-                Log.d("CHANGE PASSWORD", "FAIL " + t);
+                onChangingPasswordFinishedListener.changeFailure();
             }
         });
 
+    }
+
+    @Override
+    public void getAllTechnologies(OnGetingAllTechnologiesFinishedListener onGetingAllTechnologiesFinishedListener) {
+        Call<List<Technology>> getAllTechnologies = RetrofitClient.get(Api.class)
+                .getAllTechnologies();
+
+        getAllTechnologies.enqueue(new Callback<List<Technology>>() {
+            @Override
+            public void onResponse(Call<List<Technology>> call, Response<List<Technology>> response) {
+                if(Http.isCodeInRange(response.code(), 200)){
+                    onGetingAllTechnologiesFinishedListener.getSuccess(response);
+                }else{
+                    onGetingAllTechnologiesFinishedListener.getFailure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Technology>> call, Throwable t) {
+                onGetingAllTechnologiesFinishedListener.getFailure();
+            }
+        });
+    }
+
+    @Override
+    public void addTechnologyToUser(OnAddingTechnologyToUserFinishedListener onAddingTechnologyToUserFinishedListener, String email,String technologyName, int technologyId) {
+        UserTechAdd userTechAdd = new UserTechAdd(email, technologyId);
+        Call<Void> addTechToUser = RetrofitClient.get(Api.class)
+                .addTechToUser(userTechAdd);
+
+        addTechToUser.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(Http.isCodeInRange(response.code(), 200)){
+                    onAddingTechnologyToUserFinishedListener.addSuccess(technologyName);
+                }else{
+                    onAddingTechnologyToUserFinishedListener.addFailure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                onAddingTechnologyToUserFinishedListener.addFailure();
+            }
+        });
     }
 }

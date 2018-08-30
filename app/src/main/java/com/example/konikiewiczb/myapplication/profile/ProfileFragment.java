@@ -9,7 +9,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +22,9 @@ import com.example.konikiewiczb.myapplication.framework.view.GenericFragment;
 import com.example.konikiewiczb.myapplication.model.Technology;
 import com.example.konikiewiczb.myapplication.model.User;
 import com.example.konikiewiczb.myapplication.model.repositories.Repository;
-import com.example.konikiewiczb.myapplication.model.repositories.TokenRepository;
 import com.example.konikiewiczb.myapplication.model.repositories.UserRepository;
+import com.example.konikiewiczb.myapplication.profile.adapter.AllTechnologiesAdapter;
+import com.example.konikiewiczb.myapplication.profile.adapter.TechnologiesAdapter;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Response;
 
-public class ProfileFragment extends GenericFragment implements ProfileContract.ProfileView{
+public class ProfileFragment extends GenericFragment implements ProfileContract.ProfileView {
 
     private Repository<User> userRepository;
     private ProfileContract.ProfilePresenter profilePresenter;
@@ -42,23 +42,31 @@ public class ProfileFragment extends GenericFragment implements ProfileContract.
 
     private Dialog confirmDeleteDialog;
     private Dialog changePasswordDialog;
+    private Dialog addTechnologyDialog;
 
-    @BindView(R.id.rvTechnologies) RecyclerView recyclerView;
-    @BindView(R.id.bChangePass) Button changePasswordBtn;
-    @BindView(R.id.tvName) TextView tvFirstLastName;
-    @BindView(R.id.tvEmail) TextView tvEmail;
-    @BindView(R.id.tvRole) TextView tvRole;
+    @BindView(R.id.rvTechnologies)
+    RecyclerView recyclerView;
+    @BindView(R.id.bChangePass)
+    Button changePasswordBtn;
+    @BindView(R.id.bAddTechnologies)
+    Button addTechnology;
+    @BindView(R.id.tvName)
+    TextView tvFirstLastName;
+    @BindView(R.id.tvEmail)
+    TextView tvEmail;
+    @BindView(R.id.tvRole)
+    TextView tvRole;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflate(R.layout.fragment_profile,inflater,container);
+        View view = inflate(R.layout.fragment_profile, inflater, container);
         getActivity().setTitle(getString(R.string.profil_tittle));
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
 
         userRepository = new UserRepository(getActivity().getApplicationContext());
-        fetchUserData(view, userRepository.get());
+        fetchUserData(userRepository.get());
 
         profilePresenter = new ProfilePresenterImpl(this);
         profilePresenter.fetchUserTechnologies(userRepository.get().getEmailAddress());
@@ -66,31 +74,33 @@ public class ProfileFragment extends GenericFragment implements ProfileContract.
         changePasswordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changePasswordDialog = new Dialog(getContext());
-                changePasswordDialog.setContentView(R.layout.dialog_change_pwd);
-                changePasswordDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                changePasswordDialog();
+            }
+        });
 
-                changePasswordDialog(changePasswordDialog);
+        addTechnology.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                profilePresenter.getAllTechnologies();
             }
         });
 
         return view;
     }
 
-    void fetchUserData(View view, User user){
+    void fetchUserData(User user) {
         tvFirstLastName.setText(user.toString());
         tvEmail.setText(user.getEmailAddress());
         tvRole.setText(user.getSystemRole());
     }
 
     @Override
-    public void startAdapter(Response<List<Technology>> response) {
-
+    public void startAdapterDelTech(Response<List<Technology>> response) {
         confirmDeleteDialog = new Dialog(getContext());
         confirmDeleteDialog.setContentView(R.layout.dialog_delete_technology);
         confirmDeleteDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+        layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setHasFixedSize(true);
         technologiesAdapter = new TechnologiesAdapter(response.body(), getContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -125,24 +135,65 @@ public class ProfileFragment extends GenericFragment implements ProfileContract.
     }
 
     @Override
-    public void closeDialog(Dialog dialog) {
-        dialog.hide();
+    public void addTechSuccess(String techName) {
+        Toast.makeText(getContext(), getString(R.string.addedTech) + techName, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void changePasswordDialog(Dialog dialog) {
-        dialog.show();
-        EditText tvOldPwd = (EditText) dialog.findViewById(R.id.etOldPwd);
-        EditText tvNewPwd = (EditText) dialog.findViewById(R.id.etNewPwd);
-        EditText tvCnfPwd = (EditText) dialog.findViewById(R.id.etCnfPwd);
+    public void addTechFail() {
+        Toast.makeText(getContext(), getString(R.string.cannotAddTech), Toast.LENGTH_SHORT).show();
+    }
 
-        Button confirmChange = (Button) dialog.findViewById(R.id.bConfirm);
-        Button cancelChange = (Button) dialog.findViewById(R.id.bCancel);
+    @Override
+    public void startAdapterGetTech(List<Technology> technologyList) {
+        addTechnologyDialog = new Dialog(getContext());
+        addTechnologyDialog.setContentView(R.layout.dialog_add_technology);
+        addTechnologyDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        Button bCancelAdd = (Button) addTechnologyDialog.findViewById(R.id.bCancel);
+        RecyclerView rvTechnologyList = (RecyclerView) addTechnologyDialog.findViewById(R.id.rvTechnologyList);
+
+        layoutManager = new LinearLayoutManager(getContext());
+        rvTechnologyList.setHasFixedSize(true);
+        AllTechnologiesAdapter allTechnologiesAdapter = new AllTechnologiesAdapter(technologyList, getContext());
+        rvTechnologyList.setLayoutManager(layoutManager);
+        rvTechnologyList.setAdapter(allTechnologiesAdapter);
+        allTechnologiesAdapter.setOnTechnologyClickListener(new AllTechnologiesAdapter.OnItemClcikListener() {
+            @Override
+            public void onAddClick(int position) {
+                profilePresenter.addTechnologyToUser(userRepository.get().getEmailAddress(), technologyList.get(position).getTechnologyName(), technologyList.get(position).getId());
+            }
+        });
+
+        addTechnologyDialog.show();
+
+        bCancelAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                profilePresenter.fetchUserTechnologies(userRepository.get().getEmailAddress());
+                closeDialog(addTechnologyDialog);
+            }
+        });
+
+    }
+
+    @Override
+    public void changePasswordDialog() {
+        changePasswordDialog = new Dialog(getContext());
+        changePasswordDialog.setContentView(R.layout.dialog_change_pwd);
+        changePasswordDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        changePasswordDialog.show();
+        EditText tvOldPwd = (EditText) changePasswordDialog.findViewById(R.id.etOldPwd);
+        EditText tvNewPwd = (EditText) changePasswordDialog.findViewById(R.id.etNewPwd);
+        EditText tvCnfPwd = (EditText) changePasswordDialog.findViewById(R.id.etCnfPwd);
+
+        Button confirmChange = (Button) changePasswordDialog.findViewById(R.id.bConfirm);
+        Button cancelChange = (Button) changePasswordDialog.findViewById(R.id.bCancel);
 
         cancelChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                closeDialog(dialog);
+                closeDialog(changePasswordDialog);
             }
         });
 
@@ -161,49 +212,54 @@ public class ProfileFragment extends GenericFragment implements ProfileContract.
     @Override
     public void oldPwdEmptyError() {
         EditText tvOldPwd = (EditText) changePasswordDialog.findViewById(R.id.etOldPwd);
-        tvOldPwd.setError("Nie podałeś starego hasła!");
+        tvOldPwd.setError(getString(R.string.oldPwdDenied));
     }
 
     @Override
     public void newPwdEmptyError() {
         EditText tvNewPwd = (EditText) changePasswordDialog.findViewById(R.id.etNewPwd);
-        tvNewPwd.setError("Nie podałeś nowego hasła");
+        tvNewPwd.setError(getString(R.string.newPwdDenied));
     }
 
     @Override
     public void cnfPwdEmptyError() {
         EditText tvCnfPwd = (EditText) changePasswordDialog.findViewById(R.id.etCnfPwd);
-        tvCnfPwd.setError("Nie potwierdziłeś nowego hasła");
+        tvCnfPwd.setError(getString(R.string.cnfPwdDenied));
     }
 
     @Override
     public void pwdDontMatchError() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setMessage("Hasła są różne");
-        builder.setNegativeButton("Ok", null)
+        builder.setMessage(getString(R.string.pwdDontMatch));
+        builder.setNegativeButton(getString(R.string.ok), null)
                 .create()
                 .show();
 
         EditText tvNewPwd = (EditText) changePasswordDialog.findViewById(R.id.etNewPwd);
-        tvNewPwd.setError("Hasła są różne");
+        tvNewPwd.setError(getString(R.string.pwdDontMatch));
         EditText tvCnfPwd = (EditText) changePasswordDialog.findViewById(R.id.etCnfPwd);
-        tvCnfPwd.setError("Hasła są różne");
+        tvCnfPwd.setError(getString(R.string.pwdDontMatch));
     }
 
     @Override
     public void onChangeSuccess() {
         changePasswordDialog.hide();
-        Toast.makeText(getContext(),"Hasło zostało zmienione pomyślnie", Toast.LENGTH_LONG);
+        Toast.makeText(getContext(), getString(R.string.pwdSuccessChange), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onChangeFailure() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setMessage("Podałeś złe hasło");
-        builder.setNegativeButton("Ok", null)
+        builder.setMessage(getString(R.string.pwdWrong));
+        builder.setNegativeButton(getString(R.string.ok), null)
                 .create()
                 .show();
         EditText tvOldPwd = (EditText) changePasswordDialog.findViewById(R.id.etOldPwd);
-        tvOldPwd.setError("Niepoprawne hasło!");
+        tvOldPwd.setError(getString(R.string.oldPwdDenied));
+    }
+
+    @Override
+    public void closeDialog(Dialog dialog) {
+        dialog.hide();
     }
 }

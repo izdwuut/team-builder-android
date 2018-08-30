@@ -19,6 +19,10 @@ public interface ProfileContract {
 
         void changePassword(String email, String oldPwd, String newPwd, String cnfPwd);
 
+        void getAllTechnologies();
+
+        void addTechnologyToUser(String email, String technologyName, int technologyId);
+
     }
 
     interface ProfileInteractor{
@@ -27,9 +31,9 @@ public interface ProfileContract {
 
         interface OnFetchingDataFinishedListener{
 
-            void TechnologiesSuccess(Response<List<Technology>> response);
+            void technologiesSuccess(Response<List<Technology>> response);
 
-            void TechnologiesFailure();
+            void technologiesFailure();
 
         }
 
@@ -37,9 +41,9 @@ public interface ProfileContract {
 
         interface OnDelTechFinishedListener{
 
-            void DeleteSuccess();
+            void deleteSuccess();
 
-            void DeleteFailure();
+            void deleteFailure();
 
         }
 
@@ -47,21 +51,46 @@ public interface ProfileContract {
 
         interface OnChangingPasswordFinishedListener{
 
-            void ChangeSuccess();
+            void changeSuccess();
 
-            void ChangeFailure();
+            void changeFailure();
 
+        }
+
+        void getAllTechnologies(OnGetingAllTechnologiesFinishedListener onGetingAllTechnologiesFinishedListener);
+
+        interface OnGetingAllTechnologiesFinishedListener{
+
+            void getSuccess(Response<List<Technology>> response);
+
+            void getFailure();
+
+        }
+
+        void addTechnologyToUser(OnAddingTechnologyToUserFinishedListener onAddingTechnologyToUserFinishedListener, String email,String technologyName, int technologyId);
+
+        interface OnAddingTechnologyToUserFinishedListener{
+
+            void addSuccess(String technologyName);
+
+            void addFailure();
         }
 
     }
 
     interface ProfileView extends ProgressBarHandler {
 
-        void startAdapter(Response<List<Technology>> response);
+        void startAdapterDelTech(Response<List<Technology>> response);
+
+        void startAdapterGetTech(List<Technology> technologyList);
 
         void closeDialog(Dialog dialog);
 
-        void changePasswordDialog(Dialog dialog);
+        void changePasswordDialog();
+
+        void addTechSuccess(String technologyName);
+
+        void addTechFail();
 
         void oldPwdEmptyError();
 

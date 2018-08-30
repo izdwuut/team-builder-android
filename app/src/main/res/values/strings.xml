@@ -36,6 +36,7 @@
     <string name="add_technology">Dodaj technologie</string>
     <string name="image_description">image description</string>
     <string name="profil_tittle">Twój profil</string>
+    <string name="ok">Ok</string>
 
     <string name="technoloy">Technology</string>
     <string name="technoloy_confirm_del">Czy na pewno chcesz usunąć wybraną technologię?</string>
@@ -55,4 +56,15 @@
     <string name="cnfPwd">Potwierdź hasło</string>
     <string name="chngPwd">Zmiana hasła</string>
     <string name="confirm2">Zatwierdź</string>
+    <string name="oldPwdDenied">Hasło niepoprawne!</string>
+    <string name="newPwdDenied">Nie podałeś nowego hasła!</string>
+    <string name="cnfPwdDenied">Nie potwierdziłeś nowego hasła!</string>
+    <string name="pwdDontMatch">Hasła są różne!</string>
+    <string name="pwdSuccessChange">Hasło zostało zmienione pomyślnie</string>
+    <string name="pwdWrong">Podałeś złe hasło!</string>
+
+    <string name="addTech">Dodaj technologie</string>
+    <string name="addedTech">Dodano technologie: </string>
+    <string name="cannotAddTech">Nie można dodać technologi!</string>
+    <string name="done">Zrobione</string>
 </resources>

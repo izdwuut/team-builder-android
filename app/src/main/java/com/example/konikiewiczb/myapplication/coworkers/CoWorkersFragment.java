@@ -23,8 +23,6 @@ import butterknife.ButterKnife;
 public class CoWorkersFragment extends GenericFragment implements CoWorkersContract.CoWorkersView{
     @BindView(R.id.rvList) RecyclerView coWorkers;
     private CoWorkersContract.CoWorkersPresenter coWorkersPresenter;
-    private WorkersAdapter workersAdapter;
-    private RecyclerView.LayoutManager layoutManager;
 
 
     @Nullable

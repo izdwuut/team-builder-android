@@ -2,18 +2,16 @@ package com.example.konikiewiczb.myapplication.framework.http;
 
 
 import com.example.konikiewiczb.myapplication.model.ChangePasswordData;
-import com.example.konikiewiczb.myapplication.model.Technology;
 import com.example.konikiewiczb.myapplication.model.Project;
-import com.example.konikiewiczb.myapplication.model.UserProject;
+import com.example.konikiewiczb.myapplication.model.Technology;
 import com.example.konikiewiczb.myapplication.model.User;
-import com.example.konikiewiczb.myapplication.profile.ProfileInteractorImpl;
-import com.example.konikiewiczb.myapplication.profile.ProfilePresenterImpl;
+import com.example.konikiewiczb.myapplication.model.UserProject;
+import com.example.konikiewiczb.myapplication.model.UserTechAdd;
 
 import java.util.List;
 
-import retrofit2.http.Body;
-
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -49,4 +47,10 @@ public interface Api {
 
     @PUT("User/{emailAddress}/changePassword")
     Call<Void> changePassword(@Path("emailAddress") String email, @Body ChangePasswordData changePassword);
+
+    @GET("Technology")
+    Call<List<Technology>> getAllTechnologies();
+
+    @POST("User/technology")
+    Call<Void> addTechToUser(@Body UserTechAdd userTechAdd);
 }

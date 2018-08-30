@@ -1,4 +1,4 @@
-package com.example.konikiewiczb.myapplication.profile;
+package com.example.konikiewiczb.myapplication.profile.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -31,14 +31,12 @@ public class TechnologiesAdapter extends RecyclerView.Adapter<TechnologiesAdapte
 
     public static class TechnologyViewHolder extends RecyclerView.ViewHolder{
         public ImageView trashIcon;
-        public ImageView technologyItem;
         public TextView technologyName;
 
 
         public TechnologyViewHolder(@NonNull View itemView, OnItemClcikListener onItemClcikListener) {
             super(itemView);
             trashIcon = itemView.findViewById(R.id.ivThrash);
-            technologyItem = itemView.findViewById(R.id.ivTechnology);
             technologyName = itemView.findViewById(R.id.tvTechnologyName);
 
             trashIcon.setOnClickListener(new View.OnClickListener() {
