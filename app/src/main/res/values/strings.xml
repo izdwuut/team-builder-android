@@ -56,6 +56,8 @@
     <string name="cnfPwd">Potwierdź hasło</string>
     <string name="chngPwd">Zmiana hasła</string>
     <string name="confirm2">Zatwierdź</string>
+    <string name="expand_open_positions">Pokaż otwarte stanowiska</string>
+    <string name="collapse">Zwiń</string>
     <string name="oldPwdDenied">Hasło niepoprawne!</string>
     <string name="newPwdDenied">Nie podałeś nowego hasła!</string>
     <string name="cnfPwdDenied">Nie potwierdziłeś nowego hasła!</string>

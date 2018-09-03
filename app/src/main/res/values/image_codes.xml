@@ -5,4 +5,6 @@
     <string name="user_circle">&#xf2bd;</string>
     <string name="icon_crown">&#xf521;</string>
     <string name="icon_eye">&#xf06e;</string>
+    <string name="icon_clock">&#xf017;</string>
+    <string name="bullet">&#8226;</string>
 </resources>
