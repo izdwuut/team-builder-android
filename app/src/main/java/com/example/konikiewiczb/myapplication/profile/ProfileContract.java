@@ -17,8 +17,6 @@ public interface ProfileContract {
 
         void deleteChosenTechnology(String userEmail, int idTechnology);
 
-        void changePassword(String email, String oldPwd, String newPwd, String cnfPwd);
-
         void getAllTechnologies();
 
         void addTechnologyToUser(String email, String technologyName, int technologyId);
@@ -44,16 +42,6 @@ public interface ProfileContract {
             void deleteSuccess();
 
             void deleteFailure();
-
-        }
-
-        void changePassword(OnChangingPasswordFinishedListener onChangingPasswordFinishedListener, String userEmail, String oldPwd, String newPwd, String cnfPwd);
-
-        interface OnChangingPasswordFinishedListener{
-
-            void changeSuccess();
-
-            void changeFailure();
 
         }
 
@@ -86,23 +74,9 @@ public interface ProfileContract {
 
         void closeDialog(Dialog dialog);
 
-        void changePasswordDialog();
-
         void addTechSuccess(String technologyName);
 
         void addTechFail();
-
-        void oldPwdEmptyError();
-
-        void newPwdEmptyError();
-
-        void cnfPwdEmptyError();
-
-        void pwdDontMatchError();
-
-        void onChangeSuccess();
-
-        void onChangeFailure();
 
         void listenerTechUserList(int techListSize);
     }

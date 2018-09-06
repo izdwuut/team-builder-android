@@ -22,6 +22,7 @@ import com.example.konikiewiczb.myapplication.model.repositories.TokenRepository
 import com.example.konikiewiczb.myapplication.model.repositories.UserRepository;
 import com.example.konikiewiczb.myapplication.profile.ProfileFragment;
 import com.example.konikiewiczb.myapplication.projects.list.ProjectsListsFragment;
+import com.example.konikiewiczb.myapplication.settings.SettingsFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -80,6 +81,11 @@ public class UserAreaActivity extends AppCompatActivity implements NavigationVie
             case R.id.nav_profile:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new ProfileFragment()).commit();
+                break;
+
+            case R.id.nav_settings:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new SettingsFragment()).commit();
                 break;
 
             case R.id.nav_sign_out:

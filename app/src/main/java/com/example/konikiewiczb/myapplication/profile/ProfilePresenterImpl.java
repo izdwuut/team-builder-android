@@ -9,7 +9,7 @@ import java.util.List;
 
 import retrofit2.Response;
 
-public class ProfilePresenterImpl implements ProfileContract.ProfilePresenter, ProfileContract.ProfileInteractor.OnFetchingDataFinishedListener, ProfileContract.ProfileInteractor.OnDelTechFinishedListener, ProfileContract.ProfileInteractor.OnChangingPasswordFinishedListener, ProfileContract.ProfileInteractor.OnGetingAllTechnologiesFinishedListener, ProfileContract.ProfileInteractor.OnAddingTechnologyToUserFinishedListener{
+public class ProfilePresenterImpl implements ProfileContract.ProfilePresenter, ProfileContract.ProfileInteractor.OnFetchingDataFinishedListener, ProfileContract.ProfileInteractor.OnDelTechFinishedListener, ProfileContract.ProfileInteractor.OnGetingAllTechnologiesFinishedListener, ProfileContract.ProfileInteractor.OnAddingTechnologyToUserFinishedListener{
 
     private ProfileContract.ProfileView profileView;
     private ProfileContract.ProfileInteractor profileInteractor;
@@ -53,44 +53,6 @@ public class ProfilePresenterImpl implements ProfileContract.ProfilePresenter, P
 
     @Override
     public void deleteFailure() {
-    }
-
-    @Override
-    public void changePassword(String email, String oldPwd, String newPwd, String cnfPwd) {
-        boolean pwdCanBeChangeg = true;
-        if(oldPwd.isEmpty()){
-            pwdCanBeChangeg = false;
-            profileView.oldPwdEmptyError();
-        }
-
-        if(newPwd.isEmpty()){
-            pwdCanBeChangeg = false;
-            profileView.newPwdEmptyError();
-        }
-
-        if(cnfPwd.isEmpty()){
-            pwdCanBeChangeg = false;
-            profileView.cnfPwdEmptyError();
-        }
-
-        if(pwdCanBeChangeg){
-            if(!newPwd.equals(cnfPwd)){
-                pwdCanBeChangeg = false;
-                profileView.pwdDontMatchError();
-            }else{
-                profileInteractor.changePassword(this, email, oldPwd, newPwd, cnfPwd);
-            }
-        }
-    }
-
-    @Override
-    public void changeSuccess() {
-        profileView.onChangeSuccess();
-    }
-
-    @Override
-    public void changeFailure() {
-        profileView.onChangeFailure();
     }
 
     @Override

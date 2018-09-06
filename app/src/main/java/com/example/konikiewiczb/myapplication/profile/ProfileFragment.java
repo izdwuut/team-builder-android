@@ -1,6 +1,5 @@
 package com.example.konikiewiczb.myapplication.profile;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -13,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,13 +39,10 @@ public class ProfileFragment extends GenericFragment implements ProfileContract.
     private RecyclerView.LayoutManager layoutManager;
 
     private Dialog confirmDeleteDialog;
-    private Dialog changePasswordDialog;
     private Dialog addTechnologyDialog;
 
     @BindView(R.id.rvTechnologies)
     RecyclerView recyclerView;
-    @BindView(R.id.bChangePass)
-    Button changePasswordBtn;
     @BindView(R.id.bAddTechnologies)
     Button addTechnology;
     @BindView(R.id.tvName)
@@ -72,13 +67,6 @@ public class ProfileFragment extends GenericFragment implements ProfileContract.
 
         profilePresenter = new ProfilePresenterImpl(this);
         profilePresenter.fetchUserTechnologies(userRepository.get().getEmailAddress());
-
-        changePasswordBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changePasswordDialog();
-            }
-        });
 
         addTechnology.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,87 +171,6 @@ public class ProfileFragment extends GenericFragment implements ProfileContract.
             }
         });
 
-    }
-
-    @Override
-    public void changePasswordDialog() {
-        changePasswordDialog = new Dialog(getContext());
-        changePasswordDialog.setContentView(R.layout.dialog_change_pwd);
-        changePasswordDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        changePasswordDialog.show();
-        EditText tvOldPwd = (EditText) changePasswordDialog.findViewById(R.id.etOldPwd);
-        EditText tvNewPwd = (EditText) changePasswordDialog.findViewById(R.id.etNewPwd);
-        EditText tvCnfPwd = (EditText) changePasswordDialog.findViewById(R.id.etCnfPwd);
-
-        Button confirmChange = (Button) changePasswordDialog.findViewById(R.id.bConfirm);
-        Button cancelChange = (Button) changePasswordDialog.findViewById(R.id.bCancel);
-
-        cancelChange.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                closeDialog(changePasswordDialog);
-            }
-        });
-
-        confirmChange.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String oldPwd = tvOldPwd.getText().toString();
-                String newPwd = tvNewPwd.getText().toString();
-                String cnfPwd = tvCnfPwd.getText().toString();
-
-                profilePresenter.changePassword(userRepository.get().getEmailAddress(), oldPwd, newPwd, cnfPwd);
-            }
-        });
-    }
-
-    @Override
-    public void oldPwdEmptyError() {
-        EditText tvOldPwd = (EditText) changePasswordDialog.findViewById(R.id.etOldPwd);
-        tvOldPwd.setError(getString(R.string.oldPwdDenied));
-    }
-
-    @Override
-    public void newPwdEmptyError() {
-        EditText tvNewPwd = (EditText) changePasswordDialog.findViewById(R.id.etNewPwd);
-        tvNewPwd.setError(getString(R.string.newPwdDenied));
-    }
-
-    @Override
-    public void cnfPwdEmptyError() {
-        EditText tvCnfPwd = (EditText) changePasswordDialog.findViewById(R.id.etCnfPwd);
-        tvCnfPwd.setError(getString(R.string.cnfPwdDenied));
-    }
-
-    @Override
-    public void pwdDontMatchError() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setMessage(getString(R.string.pwdDontMatch));
-        builder.setNegativeButton(getString(R.string.ok), null)
-                .create()
-                .show();
-
-        EditText tvNewPwd = (EditText) changePasswordDialog.findViewById(R.id.etNewPwd);
-        tvNewPwd.setError(getString(R.string.pwdDontMatch));
-        EditText tvCnfPwd = (EditText) changePasswordDialog.findViewById(R.id.etCnfPwd);
-        tvCnfPwd.setError(getString(R.string.pwdDontMatch));
-    }
-
-    @Override
-    public void onChangeSuccess() {
-        changePasswordDialog.hide();
-        Toast.makeText(getContext(), getString(R.string.pwdSuccessChange), Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onChangeFailure() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setMessage(getString(R.string.pwdWrong));
-        builder.setNegativeButton(getString(R.string.ok), null)
-                .create()
-                .show();
-        EditText tvOldPwd = (EditText) changePasswordDialog.findViewById(R.id.etOldPwd);
-        tvOldPwd.setError(getString(R.string.oldPwdDenied));
     }
 
     @Override

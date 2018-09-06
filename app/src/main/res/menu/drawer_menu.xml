@@ -26,6 +26,11 @@
                 android:checkable="true"
                 android:title="@string/app_profile" />
             <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_cogs_solid"
+                android:checkable="true"
+                android:title="@string/app_settings" />
+            <item
                 android:id="@+id/nav_sign_out"
                 android:icon="@drawable/ic_sign_out_alt_solid"
                 android:checkable="true"

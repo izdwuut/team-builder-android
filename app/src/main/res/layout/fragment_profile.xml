@@ -87,27 +87,12 @@
             android:clickable="true"
             android:elevation="10dp"
             android:text="@string/add_technology"
-            android:textSize="18sp"
             android:textColor="@color/header"
-            app:layout_constraintBottom_toTopOf="@+id/bChangePass"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/bChangePass"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:background="@drawable/ripple_effect"
-            android:text="@string/change_pass"
-            android:textSize="18sp"
-            android:textColor="@color/header"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 

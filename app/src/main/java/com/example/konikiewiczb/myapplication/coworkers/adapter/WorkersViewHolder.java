@@ -27,7 +27,7 @@ public class WorkersViewHolder extends GenericViewHolder<User> {
 
     @OnClick(R.id.worker_item_id)
     public void onClick(View view) {
-        Dialog dialog = getDialog(R.layout.fragment_single_employy);
+        Dialog dialog = getDialog(R.layout.dialog_single_employy);
         TextView dialog_name_tv = dialog.findViewById(R.id.tvNameSurname);
         TextView dialog_email_tv = dialog.findViewById(R.id.tvEmail);
         User user = dataset.get(getAdapterPosition());

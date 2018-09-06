@@ -5,7 +5,6 @@ import android.util.Log;
 import com.example.konikiewiczb.myapplication.framework.http.Api;
 import com.example.konikiewiczb.myapplication.framework.http.Http;
 import com.example.konikiewiczb.myapplication.framework.http.RetrofitClient;
-import com.example.konikiewiczb.myapplication.model.ChangePasswordData;
 import com.example.konikiewiczb.myapplication.model.Technology;
 import com.example.konikiewiczb.myapplication.model.UserTechAdd;
 
@@ -61,31 +60,6 @@ public class ProfileInteractorImpl implements ProfileContract.ProfileInteractor 
                 Log.d("Delete Technology", "Success. Technology: " + userEmail + " Id:" + idTechnology + "\nt");
             }
         });
-    }
-
-    @Override
-    public void changePassword(OnChangingPasswordFinishedListener onChangingPasswordFinishedListener, String email, String oldPwd, String newPwd, String cnfPwd) {
-        ChangePasswordData changePasswordData = new ChangePasswordData(oldPwd, newPwd, cnfPwd);
-
-        Call<Void> changePassword = RetrofitClient.get(Api.class)
-                .changePassword(email, changePasswordData);
-
-        changePassword.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.isSuccessful()) {
-                    onChangingPasswordFinishedListener.changeSuccess();
-                } else {
-                    onChangingPasswordFinishedListener.changeFailure();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                onChangingPasswordFinishedListener.changeFailure();
-            }
-        });
-
     }
 
     @Override

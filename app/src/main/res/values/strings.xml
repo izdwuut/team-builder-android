@@ -26,13 +26,12 @@
     <string name="cancel_string">Anuluj</string>
     <string name="app_co_workers">Lista współpracowników</string>
     <string name="app_profile">Profil</string>
+    <string name="app_settings">Ustawienia</string>
     <string name="logout">Logout</string>
     <string name="settings">Ustawienia</string>
     <string name="role">Rola</string>
     <string name="app_single_employee">Pojedyńczy pracownik</string>
     <string name="change_pass">Zmień hasło</string>
-    <string name="change_data">Zmień dane</string>
-    <string name="change_email">Zmień E-mail</string>
     <string name="add_technology">Dodaj technologie</string>
     <string name="image_description">image description</string>
     <string name="profil_tittle">Twój profil</string>
@@ -69,4 +68,10 @@
     <string name="addedTech">Dodano technologie: </string>
     <string name="cannotAddTech">Technologia już dodana!</string>
     <string name="done">Zrobione</string>
+
+    <string name="change_avatar">Zmień awatar</string>
+    <string name="change_personal_data">Zmień dane osobowe</string>
+    <string name="name">Imię:</string>
+    <string name="surname">Nazwisko:</string>
+    <string name="e_mail">E-mail:</string>
 </resources>
