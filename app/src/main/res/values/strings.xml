@@ -36,6 +36,8 @@
     <string name="add_technology">Dodaj technologie</string>
     <string name="image_description">image description</string>
     <string name="profil_tittle">Twój profil</string>
+    <string name="tech_list">Twoje technologie:</string>
+    <string name="tech_list_empty">Lista twoich technologii jest pusta. Dodaj technolgie.</string>
     <string name="ok">Ok</string>
 
     <string name="technoloy">Technology</string>
@@ -65,6 +67,6 @@
 
     <string name="addTech">Dodaj technologie</string>
     <string name="addedTech">Dodano technologie: </string>
-    <string name="cannotAddTech">Nie można dodać technologi!</string>
+    <string name="cannotAddTech">Technologia już dodana!</string>
     <string name="done">Zrobione</string>
 </resources>

@@ -3,11 +3,9 @@ package com.example.konikiewiczb.myapplication.projects.list;
 import com.example.konikiewiczb.myapplication.framework.IOnFinishedListener;
 import com.example.konikiewiczb.myapplication.framework.view.progress_bar.ProgressBarToggler;
 import com.example.konikiewiczb.myapplication.model.User;
-import com.example.konikiewiczb.myapplication.model.repositories.Repository;
 import com.example.konikiewiczb.myapplication.model.UserProject;
+import com.example.konikiewiczb.myapplication.model.repositories.Repository;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Response;
@@ -31,19 +29,19 @@ public class ProjectsListPresenter implements ProjectsListContract.Presenter, IO
 
     @Override
     public void onResponse(Response<List<UserProject>> response) {
-        List<UserProject> projects = response.body();
-        projects.sort(Comparator.comparing(UserProject::getName).reversed());
-        List<UserProject> member = new ArrayList<>();
-        List<UserProject> leader = new ArrayList<>();
-        for(UserProject p : projects) {
-            if(p.getRoleName().equals(teamLeader.get())) {
-                leader.add(p);
-            } else {
-                member.add(p);
-            }
-        }
-        view.showMemberProjectsList(member);
-        view.showLeaderProjectsList(leader);
+//        List<UserProject> projects = response.body();
+//        projects.sort(Comparator.comparing(UserProject::getName).reversed());
+//        List<UserProject> member = new ArrayList<>();
+//        List<UserProject> leader = new ArrayList<>();
+//        for(UserProject p : projects) {
+//            if(p.getRoleName().equals(teamLeader.get())) {
+//                leader.add(p);
+//            } else {
+//                member.add(p);
+//            }
+//        }
+//        view.showMemberProjectsList(member);
+//        view.showLeaderProjectsList(leader);
         ProgressBarToggler p = view.getProgressBar();
         p.hide();
     }

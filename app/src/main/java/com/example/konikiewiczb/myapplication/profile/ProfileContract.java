@@ -103,5 +103,7 @@ public interface ProfileContract {
         void onChangeSuccess();
 
         void onChangeFailure();
+
+        void listenerTechUserList(int techListSize);
     }
 }

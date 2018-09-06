@@ -56,6 +56,8 @@ public class ProfileFragment extends GenericFragment implements ProfileContract.
     TextView tvEmail;
     @BindView(R.id.tvRole)
     TextView tvRole;
+    @BindView(R.id.tvTechListHeader)
+    TextView tvTechHeader;
 
 
     @Nullable
@@ -100,6 +102,8 @@ public class ProfileFragment extends GenericFragment implements ProfileContract.
         confirmDeleteDialog.setContentView(R.layout.dialog_delete_technology);
         confirmDeleteDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
+        listenerTechUserList(response.body().size());
+
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setHasFixedSize(true);
         technologiesAdapter = new TechnologiesAdapter(response.body(), getContext());
@@ -119,6 +123,7 @@ public class ProfileFragment extends GenericFragment implements ProfileContract.
                         profilePresenter.deleteChosenTechnology(userRepository.get().getEmailAddress(), response.body().get(position).getId());
                         response.body().remove(position);
                         technologiesAdapter.notifyDataSetChanged();
+                        listenerTechUserList(response.body().size());
                         closeDialog(confirmDeleteDialog);
                     }
                 });
@@ -132,6 +137,8 @@ public class ProfileFragment extends GenericFragment implements ProfileContract.
 
             }
         });
+
+
     }
 
     @Override
@@ -162,6 +169,7 @@ public class ProfileFragment extends GenericFragment implements ProfileContract.
             @Override
             public void onAddClick(int position) {
                 profilePresenter.addTechnologyToUser(userRepository.get().getEmailAddress(), technologyList.get(position).getTechnologyName(), technologyList.get(position).getId());
+                listenerTechUserList(recyclerView.getAdapter().getItemCount());
             }
         });
 
@@ -256,6 +264,15 @@ public class ProfileFragment extends GenericFragment implements ProfileContract.
                 .show();
         EditText tvOldPwd = (EditText) changePasswordDialog.findViewById(R.id.etOldPwd);
         tvOldPwd.setError(getString(R.string.oldPwdDenied));
+    }
+
+    @Override
+    public void listenerTechUserList(int techListSize) {
+        if (techListSize == 0 ){
+            tvTechHeader.setText(R.string.tech_list_empty);
+        }else{
+            tvTechHeader.setText(R.string.tech_list);
+        }
     }
 
     @Override
